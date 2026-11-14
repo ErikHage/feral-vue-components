@@ -41,6 +41,34 @@ parts they use themselves, so they work either way.
 Overrides are merged in deeply, so an app changes only what it names, e.g.
 `createFeralVuetifyOptions({ theme: { defaultTheme: 'feralLight' } })`.
 
+## Components
+
+Each `Fr*` component wraps one Vuetify component and passes everything straight through: props,
+attributes, events and slots all reach the Vuetify component, and it's typed as that component.
+The wrapper only sets defaults, and they're structural (how it looks, never how it behaves).
+Anything the caller passes wins.
+
+| Component | Wraps   | Defaults                                              |
+| --------- | ------- | ----------------------------------------------------- |
+| `FrCard`  | `VCard` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
+
+Use them by name, or everywhere once `FeralComponents` is installed:
+
+```vue
+<script setup lang="ts">
+import { FrCard } from '@feral-auth/vue-components';
+</script>
+
+<template>
+  <FrCard title="Harvest" subtitle="Tomatoes">
+    <template #actions><v-btn text="Save" /></template>
+  </FrCard>
+  <fr-card title="Outlined" variant="outlined" />
+</template>
+```
+
+The defaults are exported too (`frCardDefaults`), for anything that needs to match them.
+
 ## Development
 
 | Script                  | Does                                                                     |
@@ -52,3 +80,9 @@ Overrides are merged in deeply, so an app changes only what it names, e.g.
 | `npm run lint`          | ESLint, failing on any warning.                                          |
 | `npm run typecheck`     | `vue-tsc` over source, specs and playground.                             |
 | `npm run verify`        | Format check, lint, typecheck, coverage and build: what CI runs.         |
+
+### The playground
+
+Each component has its own page, listed in the playground's left-hand menu. A page is a file
+named `playground/pages/<Component>Page.vue`, e.g. `FrCardPage.vue`. It is picked up
+automatically and served at the component's name in kebab case (`#/fr-card`).

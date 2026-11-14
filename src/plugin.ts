@@ -1,4 +1,5 @@
 import type { Component, Plugin } from 'vue';
+import { FrCard } from './components/FrCard';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
   return {
@@ -14,4 +15,4 @@ export function createComponentsPlugin(components: Record<string, Component>): P
  * Registers every Fr* component globally, so `<fr-card>` works in any template without an
  * import. Named imports work without it.
  */
-export const FeralComponents: Plugin = createComponentsPlugin({});
+export const FeralComponents: Plugin = createComponentsPlugin({ FrCard });
