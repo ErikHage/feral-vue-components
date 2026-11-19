@@ -54,7 +54,7 @@ caller passes wins.
 | ------------------ | ------------------ | --------------------------- | ----------------------------------------------------- |
 | `FrAccordion`      | `VExpansionPanels` | default, holding the panels | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
 | `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default | none: it takes its look from `FrAccordion`            |
-| `FrAlert`          | `VAlert`           | `title`, default            | `variant="tonal"`, `rounded="lg"`                     |
+| `FrAlert`          | `VAlert`           | `title`, default, `append`  | `variant="tonal"`, `rounded="lg"`                     |
 | `FrCard`           | `VCard`            | `title`, default, `actions` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -79,9 +79,10 @@ anything that needs to match them.
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
   the caller's (`<p class="px-4 pb-4">`). `actions` lines its content up on the right. VCard's
   own slots (`loader`, `image`, `prepend`...) are not forwarded.
-- **`FrAlert`**: `title` falls back to the `title` prop, and the message is the default slot,
-  falling back to `text`. VAlert's own slots (`prepend`, `append`, `close`...) are not forwarded;
-  its props (`type`, `icon`, `closable`, `v-model`...) all work.
+- **`FrAlert`**: `title` falls back to the `title` prop, the message is the default slot, falling
+  back to `text`, and `append` sits beside it on the right, before the close button. VAlert's
+  `prepend` and `close` slots are not forwarded; its props (`type`, `icon`, `closable`,
+  `v-model`...) all work.
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
   icon, and the body is the default slot, falling back to `text`. It carries no defaults because
   `FrAccordion` hands its own down to its panels.

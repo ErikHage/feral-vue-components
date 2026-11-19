@@ -19,5 +19,9 @@ const props = defineProps<{ title?: string; text?: string }>();
       <slot name="title">{{ props.title }}</slot>
     </v-alert-title>
     <slot>{{ props.text }}</slot>
+    <!-- Only when given: VAlert renders its append area whenever the slot exists -->
+    <template v-if="$slots.append" #append>
+      <slot name="append" />
+    </template>
   </v-alert>
 </template>

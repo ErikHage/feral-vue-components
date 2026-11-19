@@ -13,12 +13,13 @@ const shown = ref(true);
   <fr-alert v-model="shown" title="Imported" type="warning" closable>
     <template #title>Slot title</template>
     Body
+    <template #append>Undo</template>
   </fr-alert>
 
   <!-- @vue-expect-error not one of VAlert's types -->
   <fr-alert type="not-a-type" />
   <fr-alert>
-    <!-- @vue-expect-error FrAlert's slots are its own: VAlert's prepend slot is not one of them -->
-    <template #prepend>Icon</template>
+    <!-- @vue-expect-error FrAlert's slots are its own: VAlert's close slot is not one of them -->
+    <template #close>Shut</template>
   </fr-alert>
 </template>

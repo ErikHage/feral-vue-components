@@ -68,6 +68,24 @@ describe('FrAlert', () => {
     expect(wrapper.text()).not.toContain('Prop');
   });
 
+  it('puts the append slot beside the message, before the close button', () => {
+    const wrapper = mountWithVuetify(FrAlert, {
+      props: { text: 'Frost', closable: true },
+      slots: { append: () => h('button', { class: 'undo' }, 'Undo') },
+    });
+    const alert = wrapper.find('.v-alert').element;
+    const append = alert.querySelector('.v-alert__append');
+
+    expect(append?.querySelector('.undo')?.textContent).toBe('Undo');
+    expect(append?.nextElementSibling?.classList).toContain('v-alert__close');
+  });
+
+  it('renders no append area without the append slot', () => {
+    const wrapper = mountWithVuetify(FrAlert, { props: { text: 'Frost' } });
+
+    expect(wrapper.find('.v-alert__append').exists()).toBe(false);
+  });
+
   it('passes VAlert props through', () => {
     const wrapper = mountWithVuetify(FrAlert, {
       props: { type: 'warning', closable: true, text: 'Frost' },

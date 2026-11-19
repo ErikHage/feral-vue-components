@@ -11,11 +11,13 @@ export interface FrAlertSlots {
   title?: () => VNode[];
   /** The alert's message, below the title. Falls back to the `text` prop */
   default?: () => VNode[];
+  /** Beside the message on the right, before the close button: an action, say */
+  append?: () => VNode[];
 }
 
 /**
- * A Vuetify VAlert with the feral defaults and its own slots: `title`, and the message as the
- * default slot. It accepts every VAlert prop and event
+ * A Vuetify VAlert with the feral defaults and its own slots: `title`, the message as the default
+ * slot, and `append`. It accepts every VAlert prop and event
  */
 export const FrAlert = FrAlertComponent as unknown as new () => {
   $props: VAlertProps;

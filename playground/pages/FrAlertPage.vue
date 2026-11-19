@@ -9,7 +9,8 @@ const shown = ref(true);
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VAlert</code>. Defaults: <code>variant="tonal"</code>, <code>rounded="lg"</code>.
     Its slots are its own: <code>title</code>, falling back to the <code>title</code> prop, and the
-    message as the default slot, falling back to <code>text</code>.
+    message as the default slot, falling back to <code>text</code>, and <code>append</code>, beside
+    it on the right.
   </p>
   <div class="d-flex flex-column ga-4">
     <fr-alert title="Defaults" text="An alert with nothing overridden." />
@@ -23,6 +24,11 @@ const shown = ref(true);
     <fr-alert type="warning">
       <template #title>Title slot: <em class="ml-1">frost tonight</em></template>
       The message is the default slot, so anything can go here.
+    </fr-alert>
+    <fr-alert type="success" title="Append slot" text="Beside the message, on the right." closable>
+      <template #append>
+        <v-btn variant="text" text="Undo" />
+      </template>
     </fr-alert>
     <fr-alert
       v-model="shown"
