@@ -15,7 +15,9 @@
   <fr-chip text="Tomato" />
   <fr-chip-group column><fr-chip text="Tall" /></fr-chip-group>
   <fr-code-block>npm test</fr-code-block>
-  <fr-row spacing="none"><fr-col cols="6">Global</fr-col></fr-row>
+  <fr-container fluid>
+    <fr-row spacing="none"><fr-col cols="6">Global</fr-col></fr-row>
+  </fr-container>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -46,6 +48,8 @@
   <fr-col align-self="sideways" />
   <!-- @vue-expect-error spacing is 'default' or 'none' -->
   <fr-row spacing="huge" />
+  <!-- @vue-expect-error fluid is a boolean -->
+  <fr-container :fluid="'yes'" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

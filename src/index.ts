@@ -12,6 +12,7 @@ import type { FrChip } from './components/FrChip';
 import type { FrChipGroup } from './components/FrChipGroup';
 import type { FrCodeBlock } from './components/FrCodeBlock';
 import type { FrCol } from './components/FrCol';
+import type { FrContainer } from './components/FrContainer';
 import type { FrRow } from './components/FrRow';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
@@ -36,6 +37,7 @@ export { FrChip, type FrChipScope, type FrChipSlots } from './components/FrChip'
 export { FrChipGroup } from './components/FrChipGroup';
 export { FrCodeBlock } from './components/FrCodeBlock';
 export { FrCol } from './components/FrCol';
+export { FrContainer } from './components/FrContainer';
 export { FrRow, type FrRowSpacing } from './components/FrRow';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
@@ -57,6 +59,7 @@ declare module 'vue' {
     FrChipGroup: typeof FrChipGroup;
     FrCodeBlock: typeof FrCodeBlock;
     FrCol: typeof FrCol;
+    FrContainer: typeof FrContainer;
     FrRow: typeof FrRow;
   }
 }

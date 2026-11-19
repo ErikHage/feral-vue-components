@@ -11,6 +11,7 @@ import {
   VChip,
   VChipGroup,
   VCol,
+  VContainer,
   VExpansionPanel,
   VRow,
   VExpansionPanels,
@@ -30,6 +31,7 @@ import {
   FrChipGroup,
   FrCodeBlock,
   FrCol,
+  FrContainer,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -164,6 +166,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-row').classes()).toContain('justify-center');
   });
 
+  it('registers FrContainer globally, so <fr-container> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-container fluid>Global</fr-container>');
+
+    expect(wrapper.findComponent(VContainer).exists()).toBe(true);
+    expect(wrapper.find('.fr-container').classes()).toContain('v-container--fluid');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -179,6 +188,7 @@ describe('FeralComponents', () => {
     ['FrChipGroup', FrChipGroup],
     ['FrCodeBlock', FrCodeBlock],
     ['FrCol', FrCol],
+    ['FrContainer', FrContainer],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

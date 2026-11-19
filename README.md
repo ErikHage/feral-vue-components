@@ -66,6 +66,7 @@ caller passes wins.
 | `FrChipGroup`      | `VChipGroup`       | default, holding the chips   | none                                                  |
 | `FrCodeBlock`      | a `<pre>`          | default, the code            | padded, rounded, faint theme background               |
 | `FrCol`            | `VCol`             | default, the content         | none                                                  |
+| `FrContainer`      | `VContainer`       | default, the content         | none                                                  |
 | `FrRow`            | `VRow`             | default, the columns         | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -158,11 +159,15 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   while the default, `'default'`, keeps Vuetify's gutters and adds `fr-row`. Every other VRow
   prop (`density`, `tag`...) passes through.
 
+  With `FrContainer` (a VContainer, no defaults) around them, they lay out a page:
+
   ```vue
-  <fr-row align="center" justify="space-between">
-    <fr-col cols="12" md="6">Left</fr-col>
-    <fr-col cols="12" md="6">Right</fr-col>
-  </fr-row>
+  <fr-container>
+    <fr-row align="center" justify="space-between">
+      <fr-col cols="12" md="6">Left</fr-col>
+      <fr-col cols="12" md="6">Right</fr-col>
+    </fr-row>
+  </fr-container>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
