@@ -65,6 +65,7 @@ caller passes wins.
 | `FrChip`           | `VChip`            | default, `prepend`, `append` | none: it stays Vuetify's pill                         |
 | `FrChipGroup`      | `VChipGroup`       | default, holding the chips   | none                                                  |
 | `FrCodeBlock`      | a `<pre>`          | default, the code            | padded, rounded, faint theme background               |
+| `FrCol`            | `VCol`             | default, the content         | none                                                  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 

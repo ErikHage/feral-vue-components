@@ -10,6 +10,7 @@ import {
   VCheckbox,
   VChip,
   VChipGroup,
+  VCol,
   VExpansionPanel,
   VExpansionPanels,
 } from 'vuetify/components';
@@ -27,6 +28,7 @@ import {
   FrChip,
   FrChipGroup,
   FrCodeBlock,
+  FrCol,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -146,6 +148,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('pre.fr-code-block').text()).toBe('npm test');
   });
 
+  it('registers FrCol globally, so <fr-col> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-col cols="6">Global</fr-col>');
+
+    expect(wrapper.findComponent(VCol).exists()).toBe(true);
+    expect(wrapper.find('.fr-col').classes()).toContain('v-col--cols-6');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -160,6 +169,7 @@ describe('FeralComponents', () => {
     ['FrChip', FrChip],
     ['FrChipGroup', FrChipGroup],
     ['FrCodeBlock', FrCodeBlock],
+    ['FrCol', FrCol],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
