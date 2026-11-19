@@ -24,6 +24,7 @@
   <fr-dialog title="Global" closable>Body</fr-dialog>
   <fr-divider>or</fr-divider>
   <fr-fade-in><p>Fading</p></fr-fade-in>
+  <fr-file-field label="Global" accept=".csv" />
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -64,6 +65,8 @@
   <fr-divider variant="wavy" />
   <!-- @vue-expect-error group is a boolean -->
   <fr-fade-in :group="'yes'" />
+  <!-- @vue-expect-error not one of VFileInput's variants -->
+  <fr-file-field variant="not-a-variant" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

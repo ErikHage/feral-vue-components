@@ -71,6 +71,7 @@ caller passes wins.
 | `FrDialog`         | `VDialog` + `VCard` | `activator`, default, `actions`                    | `size="small"` (500px)                                |
 | `FrDivider`        | `VDivider`          | default, in the middle of the line                 | none                                                  |
 | `FrFadeIn`         | `VFadeTransition`   | default, what fades                                | `appear`: it fades in on first render too             |
+| `FrFileField`      | `VFileInput`        | `selection`                                        | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -89,7 +90,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -206,6 +207,11 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   renders, not only when it toggles with `v-if`. `:appear="false"`, `mode`, `group` and the rest
   pass through. It renders no element of its own, so it adds no `fr-*` class; that would land on
   your element.
+
+- **`FrFileField`**: the feral field look (as `FrAutocomplete`'s), and a `selection` slot for how
+  the chosen files show in the field, given their `fileNames`, `totalBytes` and
+  `totalBytesReadable`. Without the slot, VFileInput shows their names (or chips, with `chips`).
+  Note that without `multiple`, `v-model` is a single `File`, not an array.
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
   `'none'` removes the gutters between columns (`no-gutters`) and leaves off the `fr-row` class,
