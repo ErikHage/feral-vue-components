@@ -2,6 +2,7 @@ import type { Component, Plugin } from 'vue';
 import { FrAccordion } from './components/FrAccordion';
 import { FrAccordionPanel } from './components/FrAccordionPanel';
 import { FrAlert } from './components/FrAlert';
+import { FrAutocomplete } from './components/FrAutocomplete';
 import { FrCard } from './components/FrCard';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
@@ -22,5 +23,6 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrAccordion,
   FrAccordionPanel,
   FrAlert,
+  FrAutocomplete,
   FrCard,
 });

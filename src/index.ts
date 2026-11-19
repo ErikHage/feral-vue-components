@@ -1,6 +1,7 @@
 import type { FrAccordion } from './components/FrAccordion';
 import type { FrAccordionPanel } from './components/FrAccordionPanel';
 import type { FrAlert } from './components/FrAlert';
+import type { FrAutocomplete } from './components/FrAutocomplete';
 import type { FrCard } from './components/FrCard';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
@@ -10,6 +11,11 @@ export {
   type FrAccordionPanelTitleScope,
 } from './components/FrAccordionPanel';
 export { FrAlert, frAlertDefaults, type FrAlertSlots } from './components/FrAlert';
+export {
+  FrAutocomplete,
+  frAutocompleteDefaults,
+  type FrAutocompleteSlots,
+} from './components/FrAutocomplete';
 export { FrCard, frCardDefaults, type FrCardSlots } from './components/FrCard';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
@@ -20,6 +26,7 @@ declare module 'vue' {
     FrAccordion: typeof FrAccordion;
     FrAccordionPanel: typeof FrAccordionPanel;
     FrAlert: typeof FrAlert;
+    FrAutocomplete: typeof FrAutocomplete;
     FrCard: typeof FrCard;
   }
 }

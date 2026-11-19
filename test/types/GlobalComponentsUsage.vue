@@ -6,6 +6,7 @@
 <template>
   <fr-card title="Global" rounded="xl" />
   <fr-alert title="Global" type="info" />
+  <fr-autocomplete :items="['Tomato', 'Basil']" label="Global" />
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -16,6 +17,8 @@
   <fr-accordion variant="not-a-variant" />
   <!-- @vue-expect-error not one of VAlert's types -->
   <fr-alert type="not-a-type" />
+  <!-- @vue-expect-error not one of VAutocomplete's variants -->
+  <fr-autocomplete variant="not-a-variant" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

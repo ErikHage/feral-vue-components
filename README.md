@@ -55,6 +55,7 @@ caller passes wins.
 | `FrAccordion`      | `VExpansionPanels` | default, holding the panels | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
 | `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default | none: it takes its look from `FrAccordion`            |
 | `FrAlert`          | `VAlert`           | `title`, default, `append`  | `variant="tonal"`, `rounded="lg"`                     |
+| `FrAutocomplete`   | `VAutocomplete`    | `item`, `no-data`           | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 | `FrCard`           | `VCard`            | `title`, default, `actions` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -72,8 +73,8 @@ import { FrCard } from '@feral-auth/vue-components';
 </template>
 ```
 
-The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`), for
-anything that needs to match them.
+The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
+`frAutocompleteDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -83,6 +84,17 @@ anything that needs to match them.
   back to `text`, and `append` sits beside it on the right, before the close button. VAlert's
   `prepend` and `close` slots are not forwarded; its props (`type`, `icon`, `closable`,
   `v-model`...) all work.
+- **`FrAutocomplete`**: `item` fills one row of the list, and gets your own item (typed from
+  `items`) and its index; FrAutocomplete renders the row around it, so selecting still works.
+  `no-data` replaces `no-data-text` when nothing matches. VAutocomplete's other slots (`chip`,
+  `selection`, `prepend-item`...) are not forwarded; its props all work.
+
+  ```vue
+  <fr-autocomplete v-model="plantId" :items="plants" item-title="friendlyName" item-value="plantId">
+    <template #item="{ item }">{{ item.friendlyName }} ({{ item.family }})</template>
+  </fr-autocomplete>
+  ```
+
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
   icon, and the body is the default slot, falling back to `text`. It carries no defaults because
   `FrAccordion` hands its own down to its panels.
