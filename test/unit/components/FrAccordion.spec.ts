@@ -20,11 +20,13 @@ describe('FrAccordion', () => {
     warn.mockRestore();
   });
 
-  it('renders exactly one VExpansionPanels', () => {
+  it('renders exactly one VExpansionPanels, marked fr-accordion', () => {
     const wrapper = mountWithVuetify(FrAccordion);
 
     expect(wrapper.findAllComponents(VExpansionPanels)).toHaveLength(1);
-    expect(wrapper.classes()).toContain('v-expansion-panels');
+    expect(wrapper.classes()).toEqual(
+      expect.arrayContaining(['v-expansion-panels', 'fr-accordion']),
+    );
   });
 
   it('applies the feral defaults', () => {
@@ -95,7 +97,7 @@ describe('FrAccordion', () => {
     });
 
     expect(wrapper.classes()).toEqual(
-      expect.arrayContaining(['v-expansion-panels', 'plot-accordion']),
+      expect.arrayContaining(['v-expansion-panels', 'fr-accordion', 'plot-accordion']),
     );
     expect(wrapper.attributes()).toMatchObject({ 'data-test': 'accordion', id: 'plot' });
   });

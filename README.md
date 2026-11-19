@@ -52,7 +52,7 @@ caller passes wins.
 
 | Component          | Wraps              | Slots                       | Defaults                                              |
 | ------------------ | ------------------ | --------------------------- | ----------------------------------------------------- |
-| `FrAccordion`      | `VExpansionPanels` | Vuetify's                   | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
+| `FrAccordion`      | `VExpansionPanels` | default, holding the panels | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
 | `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default | none: it takes its look from `FrAccordion`            |
 | `FrCard`           | `VCard`            | `title`, default, `actions` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 

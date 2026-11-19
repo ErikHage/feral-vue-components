@@ -7,12 +7,12 @@ defineOptions({ name: 'FrAccordion' });
 
 <!--
   The caller's attributes fall through onto VExpansionPanels after the defaults, so the caller wins.
-  Its one slot always passes { prev, next }, so the scope needs no fallback, unlike FrCard's
+  Its one slot holds the panels, and passes on { prev, next } from VExpansionPanels
 -->
 <template>
-  <v-expansion-panels v-bind="frAccordionDefaults">
-    <template v-for="(_, name) in $slots" #[name]="scope">
-      <slot :name="name" v-bind="scope" />
+  <v-expansion-panels class="fr-accordion" v-bind="frAccordionDefaults">
+    <template #default="scope">
+      <slot v-bind="scope" />
     </template>
   </v-expansion-panels>
 </template>
