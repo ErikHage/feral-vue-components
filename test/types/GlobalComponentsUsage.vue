@@ -21,6 +21,7 @@
   <fr-data-table :headers="[{ title: 'Name', key: 'name' }]" :items="[{ name: 'Tomato' }]">
     <template #item.name="{ item }">{{ item.name }}</template>
   </fr-data-table>
+  <fr-dialog title="Global" closable>Body</fr-dialog>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -55,6 +56,8 @@
   <fr-container :fluid="'yes'" />
   <!-- @vue-expect-error density is one of VDataTable's densities -->
   <fr-data-table density="not-a-density" />
+  <!-- @vue-expect-error size is small, medium or large -->
+  <fr-dialog size="huge" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

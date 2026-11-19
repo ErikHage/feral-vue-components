@@ -50,25 +50,26 @@ root carries a class named after it (`fr-card`, `fr-accordion-panel`...) to styl
 The wrapper's defaults are structural (how it looks, never how it behaves), and anything the
 caller passes wins.
 
-| Component          | Wraps              | Slots                                              | Defaults                                              |
-| ------------------ | ------------------ | -------------------------------------------------- | ----------------------------------------------------- |
-| `FrAccordion`      | `VExpansionPanels` | default, holding the panels                        | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
-| `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default                        | none: it takes its look from `FrAccordion`            |
-| `FrAlert`          | `VAlert`           | `title`, default, `append`                         | `variant="tonal"`, `rounded="lg"`                     |
-| `FrAutocomplete`   | `VAutocomplete`    | `item`, `no-data`                                  | `variant="solo"`, `density="compact"`, `rounded="lg"` |
-| `FrAvatar`         | `VAvatar`          | default, `badge`                                   | none: it stays Vuetify's circle                       |
-| `FrBadge`          | `VBadge`           | default, `badge`                                   | none                                                  |
-| `FrBreadcrumbs`    | `VBreadcrumbs`     | `divider`                                          | dividers are chevrons, not `/`                        |
-| `FrBtn`            | `VBtn`             | default, `prepend`, `append`                       | `rounded="lg"`, except icon buttons, which stay round |
-| `FrCard`           | `VCard`            | `title`, default, `actions`                        | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
-| `FrCheckbox`       | `VCheckbox`        | `label`                                            | `density="compact"`                                   |
-| `FrChip`           | `VChip`            | default, `prepend`, `append`                       | none: it stays Vuetify's pill                         |
-| `FrChipGroup`      | `VChipGroup`       | default, holding the chips                         | none                                                  |
-| `FrCodeBlock`      | a `<pre>`          | default, the code                                  | padded, rounded, faint theme background               |
-| `FrCol`            | `VCol`             | default, the content                               | none                                                  |
-| `FrContainer`      | `VContainer`       | default, the content                               | none                                                  |
-| `FrDataTable`      | `VDataTable`       | `item.<key>`, `header.<key>`, `no-data`, `loading` | `density="compact"`, `hover`                          |
-| `FrRow`            | `VRow`             | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
+| Component          | Wraps               | Slots                                              | Defaults                                              |
+| ------------------ | ------------------- | -------------------------------------------------- | ----------------------------------------------------- |
+| `FrAccordion`      | `VExpansionPanels`  | default, holding the panels                        | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
+| `FrAccordionPanel` | `VExpansionPanel`   | `title`, `actions`, default                        | none: it takes its look from `FrAccordion`            |
+| `FrAlert`          | `VAlert`            | `title`, default, `append`                         | `variant="tonal"`, `rounded="lg"`                     |
+| `FrAutocomplete`   | `VAutocomplete`     | `item`, `no-data`                                  | `variant="solo"`, `density="compact"`, `rounded="lg"` |
+| `FrAvatar`         | `VAvatar`           | default, `badge`                                   | none: it stays Vuetify's circle                       |
+| `FrBadge`          | `VBadge`            | default, `badge`                                   | none                                                  |
+| `FrBreadcrumbs`    | `VBreadcrumbs`      | `divider`                                          | dividers are chevrons, not `/`                        |
+| `FrBtn`            | `VBtn`              | default, `prepend`, `append`                       | `rounded="lg"`, except icon buttons, which stay round |
+| `FrCard`           | `VCard`             | `title`, default, `actions`                        | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
+| `FrCheckbox`       | `VCheckbox`         | `label`                                            | `density="compact"`                                   |
+| `FrChip`           | `VChip`             | default, `prepend`, `append`                       | none: it stays Vuetify's pill                         |
+| `FrChipGroup`      | `VChipGroup`        | default, holding the chips                         | none                                                  |
+| `FrCodeBlock`      | a `<pre>`           | default, the code                                  | padded, rounded, faint theme background               |
+| `FrCol`            | `VCol`              | default, the content                               | none                                                  |
+| `FrContainer`      | `VContainer`        | default, the content                               | none                                                  |
+| `FrDataTable`      | `VDataTable`        | `item.<key>`, `header.<key>`, `no-data`, `loading` | `density="compact"`, `hover`                          |
+| `FrDialog`         | `VDialog` + `VCard` | `activator`, default, `actions`                    | `size="small"` (500px)                                |
+| `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -169,6 +170,30 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
       <fr-btn icon="mdi-pencil" variant="text" size="small" @click="edit(item)" />
     </template>
   </fr-data-table>
+  ```
+
+- **`FrDialog`**: a `VDialog` laid out as a card. Its props:
+  - `title` and `subtitle` fill the header; `closable` adds a close button there (an `FrBtn`).
+  - `v-model` opens and closes it. Without one, the `activator` slot opens it on its own, and the
+    close button still closes it.
+  - `size` is `small` (500px, the default), `medium` (600px) or `large` (800px); `max-width`
+    overrides it.
+  - `dividers` puts a divider under the header and above the actions.
+  - `persistent` and `scrollable` go to the dialog, both off by default; `id` goes on the card.
+
+  Its slots: `activator` (bind its `props` onto your button), the body as the default slot,
+  inside the card's text, and `actions`, pushed to the right. Other `VDialog` props
+  (`fullscreen`, `transition`...) pass through.
+
+  ```vue
+  <fr-dialog v-model="open" title="Edit planting" closable persistent>
+    <template #activator="{ props }"><fr-btn v-bind="props" text="Edit" /></template>
+    <fr-autocomplete v-model="plantId" :items="plants" label="Plant" />
+    <template #actions>
+      <fr-btn variant="text" text="Cancel" @click="open = false" />
+      <fr-btn color="primary" text="Save" @click="save" />
+    </template>
+  </fr-dialog>
   ```
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:

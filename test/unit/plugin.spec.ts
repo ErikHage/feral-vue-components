@@ -13,6 +13,7 @@ import {
   VCol,
   VContainer,
   VDataTable,
+  VDialog,
   VExpansionPanel,
   VRow,
   VExpansionPanels,
@@ -34,6 +35,7 @@ import {
   FrCol,
   FrContainer,
   FrDataTable,
+  FrDialog,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -184,6 +186,12 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-data-table tbody td').text()).toBe('Tomato');
   });
 
+  it('registers FrDialog globally, so <fr-dialog> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-dialog title="Global">Body</fr-dialog>');
+
+    expect(wrapper.findComponent(VDialog).exists()).toBe(true);
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -201,6 +209,7 @@ describe('FeralComponents', () => {
     ['FrCol', FrCol],
     ['FrContainer', FrContainer],
     ['FrDataTable', FrDataTable],
+    ['FrDialog', FrDialog],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

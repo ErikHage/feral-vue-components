@@ -15,6 +15,7 @@ import { FrCodeBlock } from './components/FrCodeBlock';
 import { FrCol } from './components/FrCol';
 import { FrContainer } from './components/FrContainer';
 import { FrDataTable } from './components/FrDataTable';
+import { FrDialog } from './components/FrDialog';
 import { FrRow } from './components/FrRow';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
@@ -48,5 +49,6 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrCol,
   FrContainer,
   FrDataTable,
+  FrDialog,
   FrRow,
 });

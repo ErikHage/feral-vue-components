@@ -14,6 +14,7 @@ import type { FrCodeBlock } from './components/FrCodeBlock';
 import type { FrCol } from './components/FrCol';
 import type { FrContainer } from './components/FrContainer';
 import type { FrDataTable } from './components/FrDataTable';
+import type { FrDialog } from './components/FrDialog';
 import type { FrRow } from './components/FrRow';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
@@ -46,6 +47,7 @@ export {
   type FrDataTableHeaderScope,
   type FrDataTableSlots,
 } from './components/FrDataTable';
+export { FrDialog, frDialogWidths, type FrDialogSize } from './components/FrDialog';
 export { FrRow, type FrRowSpacing } from './components/FrRow';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
@@ -69,6 +71,7 @@ declare module 'vue' {
     FrCol: typeof FrCol;
     FrContainer: typeof FrContainer;
     FrDataTable: typeof FrDataTable;
+    FrDialog: typeof FrDialog;
     FrRow: typeof FrRow;
   }
 }
