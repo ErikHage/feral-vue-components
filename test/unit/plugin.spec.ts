@@ -2,11 +2,19 @@ import { createApp, defineComponent, h } from 'vue';
 import {
   VAlert,
   VAutocomplete,
+  VAvatar,
   VCard,
   VExpansionPanel,
   VExpansionPanels,
 } from 'vuetify/components';
-import { FrAccordion, FrAccordionPanel, FrAlert, FrAutocomplete, FrCard } from '../../src';
+import {
+  FrAccordion,
+  FrAccordionPanel,
+  FrAlert,
+  FrAutocomplete,
+  FrAvatar,
+  FrCard,
+} from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
 
@@ -68,11 +76,19 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.v-autocomplete').classes()).toContain('fr-autocomplete');
   });
 
+  it('registers FrAvatar globally, so <fr-avatar> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-avatar text="EH" />');
+
+    expect(wrapper.findComponent(VAvatar).exists()).toBe(true);
+    expect(wrapper.find('.fr-avatar').text()).toBe('EH');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
     ['FrAlert', FrAlert],
     ['FrAutocomplete', FrAutocomplete],
+    ['FrAvatar', FrAvatar],
     ['FrCard', FrCard],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
