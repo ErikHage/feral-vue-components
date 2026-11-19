@@ -27,7 +27,7 @@ const shown = ref(true);
     </fr-alert>
     <fr-alert type="success" title="Append slot" text="Beside the message, on the right." closable>
       <template #append>
-        <v-btn variant="text" text="Undo" />
+        <fr-btn variant="text" text="Undo" />
       </template>
     </fr-alert>
     <fr-alert
@@ -38,7 +38,7 @@ const shown = ref(true);
       closable
     />
     <div>
-      <v-btn :disabled="shown" text="Show the closable alert again" @click="shown = true" />
+      <fr-btn :disabled="shown" text="Show the closable alert again" @click="shown = true" />
     </div>
     <fr-alert
       title="Overridden"

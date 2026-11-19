@@ -17,8 +17,8 @@
       <fr-card title="With actions" subtitle="body and actions slots" prepend-icon="mdi-sprout">
         <p class="px-4 pb-4">The body is the default slot.</p>
         <template #actions>
-          <v-btn text="Cancel" />
-          <v-btn color="primary" text="Save" />
+          <fr-btn text="Cancel" />
+          <fr-btn color="primary" text="Save" />
         </template>
       </fr-card>
     </v-col>

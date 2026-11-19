@@ -5,6 +5,7 @@ import type { FrAutocomplete } from './components/FrAutocomplete';
 import type { FrAvatar } from './components/FrAvatar';
 import type { FrBadge } from './components/FrBadge';
 import type { FrBreadcrumbs } from './components/FrBreadcrumbs';
+import type { FrBtn } from './components/FrBtn';
 import type { FrCard } from './components/FrCard';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
@@ -22,6 +23,7 @@ export {
 export { FrAvatar, type FrAvatarSlots } from './components/FrAvatar';
 export { FrBadge, type FrBadgeSlots } from './components/FrBadge';
 export { FrBreadcrumbs, type FrBreadcrumbsSlots } from './components/FrBreadcrumbs';
+export { FrBtn, frBtnDefaults, type FrBtnSlots } from './components/FrBtn';
 export { FrCard, frCardDefaults, type FrCardSlots } from './components/FrCard';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
@@ -36,6 +38,7 @@ declare module 'vue' {
     FrAvatar: typeof FrAvatar;
     FrBadge: typeof FrBadge;
     FrBreadcrumbs: typeof FrBreadcrumbs;
+    FrBtn: typeof FrBtn;
     FrCard: typeof FrCard;
   }
 }

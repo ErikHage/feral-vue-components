@@ -50,16 +50,17 @@ root carries a class named after it (`fr-card`, `fr-accordion-panel`...) to styl
 The wrapper's defaults are structural (how it looks, never how it behaves), and anything the
 caller passes wins.
 
-| Component          | Wraps              | Slots                       | Defaults                                              |
-| ------------------ | ------------------ | --------------------------- | ----------------------------------------------------- |
-| `FrAccordion`      | `VExpansionPanels` | default, holding the panels | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
-| `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default | none: it takes its look from `FrAccordion`            |
-| `FrAlert`          | `VAlert`           | `title`, default, `append`  | `variant="tonal"`, `rounded="lg"`                     |
-| `FrAutocomplete`   | `VAutocomplete`    | `item`, `no-data`           | `variant="solo"`, `density="compact"`, `rounded="lg"` |
-| `FrAvatar`         | `VAvatar`          | default, `badge`            | none: it stays Vuetify's circle                       |
-| `FrBadge`          | `VBadge`           | default, `badge`            | none                                                  |
-| `FrBreadcrumbs`    | `VBreadcrumbs`     | `divider`                   | dividers are chevrons, not `/`                        |
-| `FrCard`           | `VCard`            | `title`, default, `actions` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
+| Component          | Wraps              | Slots                        | Defaults                                              |
+| ------------------ | ------------------ | ---------------------------- | ----------------------------------------------------- |
+| `FrAccordion`      | `VExpansionPanels` | default, holding the panels  | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
+| `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default  | none: it takes its look from `FrAccordion`            |
+| `FrAlert`          | `VAlert`           | `title`, default, `append`   | `variant="tonal"`, `rounded="lg"`                     |
+| `FrAutocomplete`   | `VAutocomplete`    | `item`, `no-data`            | `variant="solo"`, `density="compact"`, `rounded="lg"` |
+| `FrAvatar`         | `VAvatar`          | default, `badge`             | none: it stays Vuetify's circle                       |
+| `FrBadge`          | `VBadge`           | default, `badge`             | none                                                  |
+| `FrBreadcrumbs`    | `VBreadcrumbs`     | `divider`                    | dividers are chevrons, not `/`                        |
+| `FrBtn`            | `VBtn`             | default, `prepend`, `append` | `rounded="lg"`, except icon buttons, which stay round |
+| `FrCard`           | `VCard`            | `title`, default, `actions`  | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -71,13 +72,13 @@ import { FrCard } from '@feral-auth/vue-components';
 <template>
   <fr-card title="Harvest" subtitle="Tomatoes">
     <p class="px-4">Three kilos this week.</p>
-    <template #actions><v-btn text="Save" /></template>
+    <template #actions><fr-btn text="Save" /></template>
   </fr-card>
 </template>
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -109,6 +110,10 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   pass `divider` (shown as text) or fill the `divider` slot, which gets the item before it (typed
   from `items`) and its index. VBreadcrumbs' `item`, `title` and `prepend` slots are not
   forwarded; `icon` still adds a leading icon.
+
+- **`FrBtn`**: the label is the default slot, in place of `text` (or `icon`), and `prepend` and
+  `append` replace `prepend-icon` and `append-icon`. Its only default is `rounded="lg"`: it stays
+  Vuetify's elevated button, and an icon button (`icon` set) stays a circle. VBtn's `loader` slot is not forwarded; `loading` still works.
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
   icon, and the body is the default slot, falling back to `text`. It carries no defaults because

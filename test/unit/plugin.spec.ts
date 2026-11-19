@@ -5,6 +5,7 @@ import {
   VAvatar,
   VBadge,
   VBreadcrumbs,
+  VBtn,
   VCard,
   VExpansionPanel,
   VExpansionPanels,
@@ -17,6 +18,7 @@ import {
   FrAvatar,
   FrBadge,
   FrBreadcrumbs,
+  FrBtn,
   FrCard,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -103,6 +105,13 @@ describe('FeralComponents', () => {
     );
   });
 
+  it('registers FrBtn globally, so <fr-btn> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-btn text="Save" />');
+
+    expect(wrapper.findComponent(VBtn).exists()).toBe(true);
+    expect(wrapper.find('.fr-btn').text()).toBe('Save');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -111,6 +120,7 @@ describe('FeralComponents', () => {
     ['FrAvatar', FrAvatar],
     ['FrBadge', FrBadge],
     ['FrBreadcrumbs', FrBreadcrumbs],
+    ['FrBtn', FrBtn],
     ['FrCard', FrCard],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

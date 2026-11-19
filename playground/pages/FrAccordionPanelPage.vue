@@ -14,7 +14,7 @@
         Title slot ({{ expanded ? 'open' : 'closed' }})
       </template>
       The body is the default slot, so anything can go here.
-      <v-btn class="ml-2" size="small" text="Even a button" />
+      <fr-btn class="ml-2" size="small" text="Even a button" />
     </fr-accordion-panel>
     <fr-accordion-panel title="Actions slot" text="The actions slot replaces the expand icon.">
       <template #actions="{ expanded }">
