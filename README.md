@@ -58,6 +58,7 @@ caller passes wins.
 | `FrAutocomplete`   | `VAutocomplete`    | `item`, `no-data`           | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 | `FrAvatar`         | `VAvatar`          | default, `badge`            | none: it stays Vuetify's circle                       |
 | `FrBadge`          | `VBadge`           | default, `badge`            | none                                                  |
+| `FrBreadcrumbs`    | `VBreadcrumbs`     | `divider`                   | dividers are chevrons, not `/`                        |
 | `FrCard`           | `VCard`            | `title`, default, `actions` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -103,6 +104,11 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
 
 - **`FrBadge`**: the default slot is what the badge sits on (an icon, a button), and `badge` is
   the badge's own content, in place of its `content` or `icon`. It sets no defaults.
+
+- **`FrBreadcrumbs`**: every divider is a chevron (`$next`, chevron-right in mdi) unless you
+  pass `divider` (shown as text) or fill the `divider` slot, which gets the item before it (typed
+  from `items`) and its index. VBreadcrumbs' `item`, `title` and `prepend` slots are not
+  forwarded; `icon` still adds a leading icon.
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
   icon, and the body is the default slot, falling back to `text`. It carries no defaults because

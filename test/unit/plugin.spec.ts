@@ -4,6 +4,7 @@ import {
   VAutocomplete,
   VAvatar,
   VBadge,
+  VBreadcrumbs,
   VCard,
   VExpansionPanel,
   VExpansionPanels,
@@ -15,6 +16,7 @@ import {
   FrAutocomplete,
   FrAvatar,
   FrBadge,
+  FrBreadcrumbs,
   FrCard,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -92,6 +94,15 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-badge .v-badge__badge').text()).toBe('3');
   });
 
+  it('registers FrBreadcrumbs globally, so <fr-breadcrumbs> resolves in templates', () => {
+    const wrapper = mountGlobal(`<fr-breadcrumbs :items="['Home', 'Tomato']" />`);
+
+    expect(wrapper.findComponent(VBreadcrumbs).exists()).toBe(true);
+    expect(wrapper.find('.fr-breadcrumbs .v-breadcrumbs-divider .mdi-chevron-right').exists()).toBe(
+      true,
+    );
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -99,6 +110,7 @@ describe('FeralComponents', () => {
     ['FrAutocomplete', FrAutocomplete],
     ['FrAvatar', FrAvatar],
     ['FrBadge', FrBadge],
+    ['FrBreadcrumbs', FrBreadcrumbs],
     ['FrCard', FrCard],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

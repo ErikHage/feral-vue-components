@@ -9,6 +9,7 @@
   <fr-autocomplete :items="['Tomato', 'Basil']" label="Global" />
   <fr-avatar text="EH" size="small" />
   <fr-badge :content="3">Inbox</fr-badge>
+  <fr-breadcrumbs :items="['Home', 'Tomato']" />
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -25,6 +26,8 @@
   <fr-avatar variant="not-a-variant" />
   <!-- @vue-expect-error content is a number or a string -->
   <fr-badge :content="{ count: 3 }" />
+  <!-- @vue-expect-error density is one of VBreadcrumbs' densities -->
+  <fr-breadcrumbs density="not-a-density" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>
