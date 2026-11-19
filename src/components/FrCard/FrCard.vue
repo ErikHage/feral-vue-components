@@ -7,9 +7,9 @@ defineOptions({ name: 'FrCard' });
 
 <!-- The caller's attributes fall through onto VCard after the defaults, so the caller wins -->
 <template>
-  <VCard v-bind="frCardDefaults">
+  <v-card v-bind="frCardDefaults">
     <template v-for="(_, name) in $slots" #[name]="scope">
       <slot :name="name" v-bind="scope ?? {}" />
     </template>
-  </VCard>
+  </v-card>
 </template>

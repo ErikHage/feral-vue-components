@@ -10,9 +10,9 @@ defineOptions({ name: 'FrAccordion' });
   Its one slot always passes { prev, next }, so the scope needs no fallback, unlike FrCard's
 -->
 <template>
-  <VExpansionPanels v-bind="frAccordionDefaults">
+  <v-expansion-panels v-bind="frAccordionDefaults">
     <template v-for="(_, name) in $slots" #[name]="scope">
       <slot :name="name" v-bind="scope" />
     </template>
-  </VExpansionPanels>
+  </v-expansion-panels>
 </template>

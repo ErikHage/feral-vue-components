@@ -1,6 +1,7 @@
 <!--
   Never run: vue-tsc checks it during `npm run typecheck`, to prove consumers get
-  VExpansionPanel's props on FrAccordionPanel, and its own slots, both imported and global
+  VExpansionPanel's props on an imported FrAccordionPanel, and its own slots.
+  GlobalComponentsUsage.vue covers the global registration
 -->
 <script setup lang="ts">
 import { FrAccordionPanel } from '../../src';
@@ -8,16 +9,13 @@ import { FrAccordionPanel } from '../../src';
 
 <template>
   <v-expansion-panels>
-    <FrAccordionPanel title="Imported" value="a" :disabled="false" expand-icon="mdi-plus">
+    <fr-accordion-panel title="Imported" value="a" :disabled="false" expand-icon="mdi-plus">
       <template #title="{ expanded }">{{ expanded ? 'Open' : 'Closed' }}</template>
       <template #actions="{ expandIcon }">{{ expandIcon }}</template>
       Body
-    </FrAccordionPanel>
-    <fr-accordion-panel title="Global" text="Body" :value="2" />
+    </fr-accordion-panel>
 
     <!-- @vue-expect-error title is a string -->
-    <FrAccordionPanel :title="42" />
-    <!-- @vue-expect-error disabled is a boolean, on the global registration -->
-    <fr-accordion-panel :disabled="'yes'" />
+    <fr-accordion-panel :title="42" />
   </v-expansion-panels>
 </template>

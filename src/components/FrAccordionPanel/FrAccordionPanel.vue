@@ -16,8 +16,8 @@ defineProps<{ title?: string; text?: string }>();
   own props (expandIcon, hideActions, eager...) down to the two children itself
 -->
 <template>
-  <VExpansionPanel>
-    <VExpansionPanelTitle>
+  <v-expansion-panel>
+    <v-expansion-panel-title>
       <template #default="scope">
         <slot name="title" v-bind="scope">{{ title }}</slot>
       </template>
@@ -25,9 +25,9 @@ defineProps<{ title?: string; text?: string }>();
       <template v-if="$slots.actions" #actions="scope">
         <slot name="actions" v-bind="scope" />
       </template>
-    </VExpansionPanelTitle>
-    <VExpansionPanelText>
+    </v-expansion-panel-title>
+    <v-expansion-panel-text>
       <slot>{{ text }}</slot>
-    </VExpansionPanelText>
-  </VExpansionPanel>
+    </v-expansion-panel-text>
+  </v-expansion-panel>
 </template>

@@ -12,6 +12,16 @@ export default withVueTs(
   pluginVue.configs['flat/recommended'],
   vueTsConfigs.recommended,
   {
+    // Every tag in a template is kebab-case, whether it's registered globally or imported
+    rules: {
+      'vue/component-name-in-template-casing': [
+        'error',
+        'kebab-case',
+        { registeredComponentsOnly: false },
+      ],
+    },
+  },
+  {
     files: ['src/**', 'playground/**'],
     languageOptions: { globals: { ...globals.browser } },
   },
