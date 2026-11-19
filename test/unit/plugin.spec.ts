@@ -14,6 +14,7 @@ import {
   VContainer,
   VDataTable,
   VDialog,
+  VDivider,
   VExpansionPanel,
   VRow,
   VExpansionPanels,
@@ -36,6 +37,7 @@ import {
   FrContainer,
   FrDataTable,
   FrDialog,
+  FrDivider,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -192,6 +194,13 @@ describe('FeralComponents', () => {
     expect(wrapper.findComponent(VDialog).exists()).toBe(true);
   });
 
+  it('registers FrDivider globally, so <fr-divider> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-divider>or</fr-divider>');
+
+    expect(wrapper.findComponent(VDivider).exists()).toBe(true);
+    expect(wrapper.find('.v-divider__content').text()).toBe('or');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -210,6 +219,7 @@ describe('FeralComponents', () => {
     ['FrContainer', FrContainer],
     ['FrDataTable', FrDataTable],
     ['FrDialog', FrDialog],
+    ['FrDivider', FrDivider],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

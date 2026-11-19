@@ -69,6 +69,7 @@ caller passes wins.
 | `FrContainer`      | `VContainer`        | default, the content                               | none                                                  |
 | `FrDataTable`      | `VDataTable`        | `item.<key>`, `header.<key>`, `no-data`, `loading` | `density="compact"`, `hover`                          |
 | `FrDialog`         | `VDialog` + `VCard` | `activator`, default, `actions`                    | `size="small"` (500px)                                |
+| `FrDivider`        | `VDivider`          | default, in the middle of the line                 | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -195,6 +196,10 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
     </template>
   </fr-dialog>
   ```
+
+- **`FrDivider`**: a plain line, or, with something in its default slot, a line split around it
+  (`<fr-divider>or</fr-divider>`). It sets no defaults; `vertical`, `inset`, `thickness`,
+  `variant` and the rest pass through.
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
   `'none'` removes the gutters between columns (`no-gutters`) and leaves off the `fr-row` class,

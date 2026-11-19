@@ -22,6 +22,7 @@
     <template #item.name="{ item }">{{ item.name }}</template>
   </fr-data-table>
   <fr-dialog title="Global" closable>Body</fr-dialog>
+  <fr-divider>or</fr-divider>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -58,6 +59,8 @@
   <fr-data-table density="not-a-density" />
   <!-- @vue-expect-error size is small, medium or large -->
   <fr-dialog size="huge" />
+  <!-- @vue-expect-error not one of VDivider's variants -->
+  <fr-divider variant="wavy" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>
