@@ -18,6 +18,7 @@ import {
   VExpansionPanel,
   VRow,
   VExpansionPanels,
+  VFadeTransition,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -38,6 +39,7 @@ import {
   FrDataTable,
   FrDialog,
   FrDivider,
+  FrFadeIn,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -201,6 +203,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.v-divider__content').text()).toBe('or');
   });
 
+  it('registers FrFadeIn globally, so <fr-fade-in> resolves in templates', () => {
+    const wrapper = mountGlobal('<div><fr-fade-in><p class="body">Fading</p></fr-fade-in></div>');
+
+    expect(wrapper.findComponent(VFadeTransition).exists()).toBe(true);
+    expect(wrapper.find('.body').text()).toBe('Fading');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -220,6 +229,7 @@ describe('FeralComponents', () => {
     ['FrDataTable', FrDataTable],
     ['FrDialog', FrDialog],
     ['FrDivider', FrDivider],
+    ['FrFadeIn', FrFadeIn],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

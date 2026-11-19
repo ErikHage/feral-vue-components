@@ -16,6 +16,7 @@ import type { FrContainer } from './components/FrContainer';
 import type { FrDataTable } from './components/FrDataTable';
 import type { FrDialog } from './components/FrDialog';
 import type { FrDivider } from './components/FrDivider';
+import type { FrFadeIn } from './components/FrFadeIn';
 import type { FrRow } from './components/FrRow';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
@@ -50,6 +51,7 @@ export {
 } from './components/FrDataTable';
 export { FrDialog, frDialogWidths, type FrDialogSize } from './components/FrDialog';
 export { FrDivider } from './components/FrDivider';
+export { FrFadeIn } from './components/FrFadeIn';
 export { FrRow, type FrRowSpacing } from './components/FrRow';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
@@ -75,6 +77,7 @@ declare module 'vue' {
     FrDataTable: typeof FrDataTable;
     FrDialog: typeof FrDialog;
     FrDivider: typeof FrDivider;
+    FrFadeIn: typeof FrFadeIn;
     FrRow: typeof FrRow;
   }
 }
