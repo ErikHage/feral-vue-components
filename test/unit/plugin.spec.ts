@@ -12,6 +12,7 @@ import {
   VChipGroup,
   VCol,
   VExpansionPanel,
+  VRow,
   VExpansionPanels,
 } from 'vuetify/components';
 import {
@@ -29,6 +30,7 @@ import {
   FrChipGroup,
   FrCodeBlock,
   FrCol,
+  FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -155,6 +157,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-col').classes()).toContain('v-col--cols-6');
   });
 
+  it('registers FrRow globally, so <fr-row> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-row justify="center"><fr-col>Global</fr-col></fr-row>');
+
+    expect(wrapper.findComponent(VRow).exists()).toBe(true);
+    expect(wrapper.find('.fr-row').classes()).toContain('justify-center');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -170,6 +179,7 @@ describe('FeralComponents', () => {
     ['FrChipGroup', FrChipGroup],
     ['FrCodeBlock', FrCodeBlock],
     ['FrCol', FrCol],
+    ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

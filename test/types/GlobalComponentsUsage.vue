@@ -15,7 +15,7 @@
   <fr-chip text="Tomato" />
   <fr-chip-group column><fr-chip text="Tall" /></fr-chip-group>
   <fr-code-block>npm test</fr-code-block>
-  <v-row><fr-col cols="6">Global</fr-col></v-row>
+  <fr-row spacing="none"><fr-col cols="6">Global</fr-col></fr-row>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -44,6 +44,8 @@
   <fr-chip-group variant="not-a-variant" />
   <!-- @vue-expect-error align-self is one of VCol's alignments -->
   <fr-col align-self="sideways" />
+  <!-- @vue-expect-error spacing is 'default' or 'none' -->
+  <fr-row spacing="huge" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>
