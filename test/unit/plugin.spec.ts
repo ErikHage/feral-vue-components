@@ -1,6 +1,6 @@
 import { createApp, defineComponent, h } from 'vue';
 import { VCard, VExpansionPanel, VExpansionPanels } from 'vuetify/components';
-import { FrAccordionPanel, FrCard } from '../../src';
+import { FrAccordion, FrAccordionPanel, FrCard } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
 
@@ -39,7 +39,17 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.v-expansion-panel-title').text()).toBe('Global');
   });
 
+  it('registers FrAccordion globally, so <fr-accordion> resolves in templates', () => {
+    const wrapper = mountGlobal(
+      '<fr-accordion><fr-accordion-panel title="Global" /></fr-accordion>',
+    );
+
+    expect(wrapper.findComponent(VExpansionPanels).classes()).toContain('rounded-lg');
+    expect(wrapper.find('.v-expansion-panel-title').text()).toBe('Global');
+  });
+
   it.each([
+    ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
     ['FrCard', FrCard],
   ])('registers it under the name %s', (name, component) => {
