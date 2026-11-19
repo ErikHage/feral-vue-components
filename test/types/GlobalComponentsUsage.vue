@@ -8,6 +8,7 @@
   <fr-alert title="Global" type="info" />
   <fr-autocomplete :items="['Tomato', 'Basil']" label="Global" />
   <fr-avatar text="EH" size="small" />
+  <fr-badge :content="3">Inbox</fr-badge>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -22,6 +23,8 @@
   <fr-autocomplete variant="not-a-variant" />
   <!-- @vue-expect-error not one of VAvatar's variants -->
   <fr-avatar variant="not-a-variant" />
+  <!-- @vue-expect-error content is a number or a string -->
+  <fr-badge :content="{ count: 3 }" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

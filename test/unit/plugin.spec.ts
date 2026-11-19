@@ -3,6 +3,7 @@ import {
   VAlert,
   VAutocomplete,
   VAvatar,
+  VBadge,
   VCard,
   VExpansionPanel,
   VExpansionPanels,
@@ -13,6 +14,7 @@ import {
   FrAlert,
   FrAutocomplete,
   FrAvatar,
+  FrBadge,
   FrCard,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -83,12 +85,20 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-avatar').text()).toBe('EH');
   });
 
+  it('registers FrBadge globally, so <fr-badge> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-badge :content="3">Inbox</fr-badge>');
+
+    expect(wrapper.findComponent(VBadge).exists()).toBe(true);
+    expect(wrapper.find('.fr-badge .v-badge__badge').text()).toBe('3');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
     ['FrAlert', FrAlert],
     ['FrAutocomplete', FrAutocomplete],
     ['FrAvatar', FrAvatar],
+    ['FrBadge', FrBadge],
     ['FrCard', FrCard],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

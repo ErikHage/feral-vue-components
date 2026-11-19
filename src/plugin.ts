@@ -4,6 +4,7 @@ import { FrAccordionPanel } from './components/FrAccordionPanel';
 import { FrAlert } from './components/FrAlert';
 import { FrAutocomplete } from './components/FrAutocomplete';
 import { FrAvatar } from './components/FrAvatar';
+import { FrBadge } from './components/FrBadge';
 import { FrCard } from './components/FrCard';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
@@ -26,5 +27,6 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrAlert,
   FrAutocomplete,
   FrAvatar,
+  FrBadge,
   FrCard,
 });

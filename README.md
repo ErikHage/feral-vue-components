@@ -57,6 +57,7 @@ caller passes wins.
 | `FrAlert`          | `VAlert`           | `title`, default, `append`  | `variant="tonal"`, `rounded="lg"`                     |
 | `FrAutocomplete`   | `VAutocomplete`    | `item`, `no-data`           | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 | `FrAvatar`         | `VAvatar`          | default, `badge`            | none: it stays Vuetify's circle                       |
+| `FrBadge`          | `VBadge`           | default, `badge`            | none                                                  |
 | `FrCard`           | `VCard`            | `title`, default, `actions` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -99,6 +100,9 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
 - **`FrAvatar`**: the default slot is what it shows (initials, say), in place of its `image`,
   `icon` or `text`, and `badge` fills the badge that the `badge` prop adds, which is a dot
   without it. It sets no defaults: `rounded="lg"`, as on the others, would square off the circle.
+
+- **`FrBadge`**: the default slot is what the badge sits on (an icon, a button), and `badge` is
+  the badge's own content, in place of its `content` or `icon`. It sets no defaults.
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
   icon, and the body is the default slot, falling back to `text`. It carries no defaults because
