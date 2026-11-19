@@ -50,24 +50,25 @@ root carries a class named after it (`fr-card`, `fr-accordion-panel`...) to styl
 The wrapper's defaults are structural (how it looks, never how it behaves), and anything the
 caller passes wins.
 
-| Component          | Wraps              | Slots                        | Defaults                                              |
-| ------------------ | ------------------ | ---------------------------- | ----------------------------------------------------- |
-| `FrAccordion`      | `VExpansionPanels` | default, holding the panels  | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
-| `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default  | none: it takes its look from `FrAccordion`            |
-| `FrAlert`          | `VAlert`           | `title`, default, `append`   | `variant="tonal"`, `rounded="lg"`                     |
-| `FrAutocomplete`   | `VAutocomplete`    | `item`, `no-data`            | `variant="solo"`, `density="compact"`, `rounded="lg"` |
-| `FrAvatar`         | `VAvatar`          | default, `badge`             | none: it stays Vuetify's circle                       |
-| `FrBadge`          | `VBadge`           | default, `badge`             | none                                                  |
-| `FrBreadcrumbs`    | `VBreadcrumbs`     | `divider`                    | dividers are chevrons, not `/`                        |
-| `FrBtn`            | `VBtn`             | default, `prepend`, `append` | `rounded="lg"`, except icon buttons, which stay round |
-| `FrCard`           | `VCard`            | `title`, default, `actions`  | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
-| `FrCheckbox`       | `VCheckbox`        | `label`                      | `density="compact"`                                   |
-| `FrChip`           | `VChip`            | default, `prepend`, `append` | none: it stays Vuetify's pill                         |
-| `FrChipGroup`      | `VChipGroup`       | default, holding the chips   | none                                                  |
-| `FrCodeBlock`      | a `<pre>`          | default, the code            | padded, rounded, faint theme background               |
-| `FrCol`            | `VCol`             | default, the content         | none                                                  |
-| `FrContainer`      | `VContainer`       | default, the content         | none                                                  |
-| `FrRow`            | `VRow`             | default, the columns         | `spacing="default"`: gutters, and the `fr-row` class  |
+| Component          | Wraps              | Slots                                              | Defaults                                              |
+| ------------------ | ------------------ | -------------------------------------------------- | ----------------------------------------------------- |
+| `FrAccordion`      | `VExpansionPanels` | default, holding the panels                        | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
+| `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default                        | none: it takes its look from `FrAccordion`            |
+| `FrAlert`          | `VAlert`           | `title`, default, `append`                         | `variant="tonal"`, `rounded="lg"`                     |
+| `FrAutocomplete`   | `VAutocomplete`    | `item`, `no-data`                                  | `variant="solo"`, `density="compact"`, `rounded="lg"` |
+| `FrAvatar`         | `VAvatar`          | default, `badge`                                   | none: it stays Vuetify's circle                       |
+| `FrBadge`          | `VBadge`           | default, `badge`                                   | none                                                  |
+| `FrBreadcrumbs`    | `VBreadcrumbs`     | `divider`                                          | dividers are chevrons, not `/`                        |
+| `FrBtn`            | `VBtn`             | default, `prepend`, `append`                       | `rounded="lg"`, except icon buttons, which stay round |
+| `FrCard`           | `VCard`            | `title`, default, `actions`                        | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
+| `FrCheckbox`       | `VCheckbox`        | `label`                                            | `density="compact"`                                   |
+| `FrChip`           | `VChip`            | default, `prepend`, `append`                       | none: it stays Vuetify's pill                         |
+| `FrChipGroup`      | `VChipGroup`       | default, holding the chips                         | none                                                  |
+| `FrCodeBlock`      | a `<pre>`          | default, the code                                  | padded, rounded, faint theme background               |
+| `FrCol`            | `VCol`             | default, the content                               | none                                                  |
+| `FrContainer`      | `VContainer`       | default, the content                               | none                                                  |
+| `FrDataTable`      | `VDataTable`       | `item.<key>`, `header.<key>`, `no-data`, `loading` | `density="compact"`, `hover`                          |
+| `FrRow`            | `VRow`             | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -85,7 +86,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -152,6 +153,22 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
 
   ```vue
   <fr-code-block>npm install @feral-auth/vue-components</fr-code-block>
+  ```
+
+- **`FrDataTable`**: passes on the slots that fill a cell or a header, `item.<key>` and
+  `header.<key>` for the column whose `key` follows the dot, plus `no-data` and `loading`. A cell
+  slot gets your own item (typed from `items`), the cell's `value`, its `index` and `column`. Row
+  and body slots (`item`, `body`, `headers`, `top`...) are not passed on: they need Vuetify
+  markup. Its defaults are `density="compact"` and `hover`; a shadow is yours to add, e.g.
+  `class="elevation-1"`. Note Vuetify 3+ identifies rows with `item-value`, not Vuetify 2's
+  `item-key`.
+
+  ```vue
+  <fr-data-table :headers="headers" :items="users" item-value="userId" :loading="loading">
+    <template #item.actions="{ item }">
+      <fr-btn icon="mdi-pencil" variant="text" size="small" @click="edit(item)" />
+    </template>
+  </fr-data-table>
   ```
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:

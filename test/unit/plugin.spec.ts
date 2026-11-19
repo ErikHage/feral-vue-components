@@ -12,6 +12,7 @@ import {
   VChipGroup,
   VCol,
   VContainer,
+  VDataTable,
   VExpansionPanel,
   VRow,
   VExpansionPanels,
@@ -32,6 +33,7 @@ import {
   FrCodeBlock,
   FrCol,
   FrContainer,
+  FrDataTable,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -173,6 +175,15 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-container').classes()).toContain('v-container--fluid');
   });
 
+  it('registers FrDataTable globally, so <fr-data-table> resolves in templates', () => {
+    const wrapper = mountGlobal(
+      `<fr-data-table :headers="[{ title: 'Name', key: 'name' }]" :items="[{ name: 'Tomato' }]" />`,
+    );
+
+    expect(wrapper.findComponent(VDataTable).exists()).toBe(true);
+    expect(wrapper.find('.fr-data-table tbody td').text()).toBe('Tomato');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -189,6 +200,7 @@ describe('FeralComponents', () => {
     ['FrCodeBlock', FrCodeBlock],
     ['FrCol', FrCol],
     ['FrContainer', FrContainer],
+    ['FrDataTable', FrDataTable],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

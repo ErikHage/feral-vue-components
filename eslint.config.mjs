@@ -19,6 +19,9 @@ export default withVueTs(
         'kebab-case',
         { registeredComponentsOnly: false },
       ],
+      // FrDataTable's cell and header slots are named with a dot (#item.actions), as Vuetify's
+      // are; without this the rule reads the dot as a directive modifier
+      'vue/valid-v-slot': ['error', { allowModifiers: true }],
     },
   },
   {

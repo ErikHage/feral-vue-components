@@ -18,6 +18,9 @@
   <fr-container fluid>
     <fr-row spacing="none"><fr-col cols="6">Global</fr-col></fr-row>
   </fr-container>
+  <fr-data-table :headers="[{ title: 'Name', key: 'name' }]" :items="[{ name: 'Tomato' }]">
+    <template #item.name="{ item }">{{ item.name }}</template>
+  </fr-data-table>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -50,6 +53,8 @@
   <fr-row spacing="huge" />
   <!-- @vue-expect-error fluid is a boolean -->
   <fr-container :fluid="'yes'" />
+  <!-- @vue-expect-error density is one of VDataTable's densities -->
+  <fr-data-table density="not-a-density" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>
