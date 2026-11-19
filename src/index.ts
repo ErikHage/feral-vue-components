@@ -8,7 +8,7 @@ export {
   type FrAccordionPanelSlots,
   type FrAccordionPanelTitleScope,
 } from './components/FrAccordionPanel';
-export { FrCard, frCardDefaults } from './components/FrCard';
+export { FrCard, frCardDefaults, type FrCardSlots } from './components/FrCard';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 

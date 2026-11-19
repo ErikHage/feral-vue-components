@@ -43,16 +43,16 @@ Overrides are merged in deeply, so an app changes only what it names, e.g.
 
 ## Components
 
-Each `Fr*` component wraps one Vuetify component and passes everything straight through: props,
-attributes, events and slots all reach the Vuetify component, and it's typed as that component.
-The wrapper only sets defaults, and they're structural (how it looks, never how it behaves).
-Anything the caller passes wins.
+Each `Fr*` component wraps one Vuetify component. Its props, attributes and events reach the
+Vuetify component, and it's typed with that component's props. Where a component has slots of its
+own, they're laid out for you, so content never needs a Vuetify component around it. The wrapper's
+defaults are structural (how it looks, never how it behaves), and anything the caller passes wins.
 
-| Component          | Wraps              | Defaults                                              |
-| ------------------ | ------------------ | ----------------------------------------------------- |
-| `FrAccordion`      | `VExpansionPanels` | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
-| `FrAccordionPanel` | `VExpansionPanel`  | none: it takes its look from `FrAccordion`            |
-| `FrCard`           | `VCard`            | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
+| Component          | Wraps              | Slots                       | Defaults                                              |
+| ------------------ | ------------------ | --------------------------- | ----------------------------------------------------- |
+| `FrAccordion`      | `VExpansionPanels` | Vuetify's                   | `variant="default"`, `elevation="2"`, `rounded="lg"`  |
+| `FrAccordionPanel` | `VExpansionPanel`  | `title`, `actions`, default | none: it takes its look from `FrAccordion`            |
+| `FrCard`           | `VCard`            | `title`, default, `actions` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -62,22 +62,23 @@ import { FrCard } from '@feral-auth/vue-components';
 </script>
 
 <template>
-  <FrCard title="Harvest" subtitle="Tomatoes">
+  <fr-card title="Harvest" subtitle="Tomatoes">
+    <p class="px-4">Three kilos this week.</p>
     <template #actions><v-btn text="Save" /></template>
-  </FrCard>
-  <fr-card title="Outlined" variant="outlined" />
+  </fr-card>
 </template>
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`), for anything that needs
 to match them.
 
-`FrAccordionPanel` is the exception to passing slots straight through. It builds its panel from
-a `VExpansionPanelTitle` and a `VExpansionPanelText`, so its slots are its own: `title` (falling
-back to the `title` prop), `actions` (replacing the expand icon), and the body as the default
-slot (falling back to `text`). Every `VExpansionPanel` prop and event still passes through.
-
-It carries no defaults because `FrAccordion` hands its own down to its panels.
+- **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
+  props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
+  the caller's (`<p class="px-4 pb-4">`). `actions` lines its content up on the right. VCard's
+  own slots (`loader`, `image`, `prepend`...) are not forwarded.
+- **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
+  icon, and the body is the default slot, falling back to `text`. It carries no defaults because
+  `FrAccordion` hands its own down to its panels.
 
 ```vue
 <fr-accordion>
