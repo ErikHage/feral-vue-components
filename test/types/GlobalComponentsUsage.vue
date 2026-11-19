@@ -5,6 +5,7 @@
 -->
 <template>
   <fr-card title="Global" rounded="xl" />
+  <fr-alert title="Global" type="info" />
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -13,6 +14,8 @@
   <fr-card variant="not-a-variant" />
   <!-- @vue-expect-error not one of VExpansionPanels' variants -->
   <fr-accordion variant="not-a-variant" />
+  <!-- @vue-expect-error not one of VAlert's types -->
+  <fr-alert type="not-a-type" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

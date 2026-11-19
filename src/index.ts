@@ -1,5 +1,6 @@
 import type { FrAccordion } from './components/FrAccordion';
 import type { FrAccordionPanel } from './components/FrAccordionPanel';
+import type { FrAlert } from './components/FrAlert';
 import type { FrCard } from './components/FrCard';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
@@ -8,6 +9,7 @@ export {
   type FrAccordionPanelSlots,
   type FrAccordionPanelTitleScope,
 } from './components/FrAccordionPanel';
+export { FrAlert, frAlertDefaults, type FrAlertSlots } from './components/FrAlert';
 export { FrCard, frCardDefaults, type FrCardSlots } from './components/FrCard';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
@@ -17,6 +19,7 @@ declare module 'vue' {
   interface GlobalComponents {
     FrAccordion: typeof FrAccordion;
     FrAccordionPanel: typeof FrAccordionPanel;
+    FrAlert: typeof FrAlert;
     FrCard: typeof FrCard;
   }
 }

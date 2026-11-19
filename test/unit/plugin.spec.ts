@@ -1,6 +1,6 @@
 import { createApp, defineComponent, h } from 'vue';
-import { VCard, VExpansionPanel, VExpansionPanels } from 'vuetify/components';
-import { FrAccordion, FrAccordionPanel, FrCard } from '../../src';
+import { VAlert, VCard, VExpansionPanel, VExpansionPanels } from 'vuetify/components';
+import { FrAccordion, FrAccordionPanel, FrAlert, FrCard } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
 
@@ -48,9 +48,17 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.v-expansion-panel-title').text()).toBe('Global');
   });
 
+  it('registers FrAlert globally, so <fr-alert> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-alert title="Global" />');
+
+    expect(wrapper.findComponent(VAlert).exists()).toBe(true);
+    expect(wrapper.find('.v-alert-title').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
+    ['FrAlert', FrAlert],
     ['FrCard', FrCard],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
