@@ -48,9 +48,10 @@ attributes, events and slots all reach the Vuetify component, and it's typed as 
 The wrapper only sets defaults, and they're structural (how it looks, never how it behaves).
 Anything the caller passes wins.
 
-| Component | Wraps   | Defaults                                              |
-| --------- | ------- | ----------------------------------------------------- |
-| `FrCard`  | `VCard` | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
+| Component          | Wraps             | Defaults                                              |
+| ------------------ | ----------------- | ----------------------------------------------------- |
+| `FrAccordionPanel` | `VExpansionPanel` | none: it takes its look from the panels around it     |
+| `FrCard`           | `VCard`           | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -68,6 +69,17 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`), for anything that needs to match them.
+
+`FrAccordionPanel` is the exception to passing slots straight through. It builds its panel from
+a `VExpansionPanelTitle` and a `VExpansionPanelText`, so its slots are its own: `title` (falling
+back to the `title` prop), `actions` (replacing the expand icon), and the body as the default
+slot (falling back to `text`). Every `VExpansionPanel` prop and event still passes through.
+
+```vue
+<v-expansion-panels>
+  <fr-accordion-panel title="Seeds">Sow in March.</fr-accordion-panel>
+</v-expansion-panels>
+```
 
 ## Development
 

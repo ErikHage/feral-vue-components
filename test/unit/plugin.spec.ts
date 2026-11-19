@@ -1,6 +1,6 @@
 import { createApp, defineComponent, h } from 'vue';
-import { VCard } from 'vuetify/components';
-import { FrCard } from '../../src';
+import { VCard, VExpansionPanel, VExpansionPanels } from 'vuetify/components';
+import { FrAccordionPanel, FrCard } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
 
@@ -16,18 +16,35 @@ describe('createComponentsPlugin', () => {
 });
 
 describe('FeralComponents', () => {
-  it('registers FrCard globally, so <fr-card> resolves in templates', () => {
-    const wrapper = mountWithVuetify(defineComponent({ template: '<fr-card title="Global" />' }), {
+  function mountGlobal(template: string) {
+    // Only the Fr* components come from the plugin; Vuetify's are declared locally, as in an app
+    return mountWithVuetify(defineComponent({ components: { VExpansionPanels }, template }), {
       global: { plugins: [FeralComponents] },
     });
+  }
+
+  it('registers FrCard globally, so <fr-card> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-card title="Global" />');
 
     expect(wrapper.findComponent(VCard).exists()).toBe(true);
     expect(wrapper.find('.v-card-title').text()).toBe('Global');
   });
 
-  it('registers it under the name FrCard', () => {
+  it('registers FrAccordionPanel globally, so <fr-accordion-panel> resolves in templates', () => {
+    const wrapper = mountGlobal(
+      '<v-expansion-panels><fr-accordion-panel title="Global" /></v-expansion-panels>',
+    );
+
+    expect(wrapper.findComponent(VExpansionPanel).exists()).toBe(true);
+    expect(wrapper.find('.v-expansion-panel-title').text()).toBe('Global');
+  });
+
+  it.each([
+    ['FrAccordionPanel', FrAccordionPanel],
+    ['FrCard', FrCard],
+  ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
-    expect(app.component('FrCard')).toBe(FrCard);
+    expect(app.component(name)).toBe(component);
   });
 });
