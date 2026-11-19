@@ -7,6 +7,7 @@ import {
   VBreadcrumbs,
   VBtn,
   VCard,
+  VCheckbox,
   VExpansionPanel,
   VExpansionPanels,
 } from 'vuetify/components';
@@ -20,6 +21,7 @@ import {
   FrBreadcrumbs,
   FrBtn,
   FrCard,
+  FrCheckbox,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -112,6 +114,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-btn').text()).toBe('Save');
   });
 
+  it('registers FrCheckbox globally, so <fr-checkbox> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-checkbox label="Global" />');
+
+    expect(wrapper.findComponent(VCheckbox).exists()).toBe(true);
+    expect(wrapper.find('.fr-checkbox label').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -122,6 +131,7 @@ describe('FeralComponents', () => {
     ['FrBreadcrumbs', FrBreadcrumbs],
     ['FrBtn', FrBtn],
     ['FrCard', FrCard],
+    ['FrCheckbox', FrCheckbox],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

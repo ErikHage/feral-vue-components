@@ -61,6 +61,7 @@ caller passes wins.
 | `FrBreadcrumbs`    | `VBreadcrumbs`     | `divider`                    | dividers are chevrons, not `/`                        |
 | `FrBtn`            | `VBtn`             | default, `prepend`, `append` | `rounded="lg"`, except icon buttons, which stay round |
 | `FrCard`           | `VCard`            | `title`, default, `actions`  | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
+| `FrCheckbox`       | `VCheckbox`        | `label`                      | `density="compact"`                                   |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -78,7 +79,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -114,6 +115,11 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
 - **`FrBtn`**: the label is the default slot, in place of `text` (or `icon`), and `prepend` and
   `append` replace `prepend-icon` and `append-icon`. Its only default is `rounded="lg"`: it stays
   Vuetify's elevated button, and an icon button (`icon` set) stays a circle. VBtn's `loader` slot is not forwarded; `loading` still works.
+
+- **`FrCheckbox`**: the `label` slot is the label's content, in place of the `label` prop (a link,
+  say); it still sits in the checkbox's own `<label>`, so clicking it still toggles. Its only
+  default is `density="compact"`, the feral fields' density. VCheckbox's other slots (`input`,
+  `prepend`, `append`, `details`...) are not forwarded.
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
   icon, and the body is the default slot, falling back to `text`. It carries no defaults because

@@ -8,6 +8,7 @@ import { FrBadge } from './components/FrBadge';
 import { FrBreadcrumbs } from './components/FrBreadcrumbs';
 import { FrBtn } from './components/FrBtn';
 import { FrCard } from './components/FrCard';
+import { FrCheckbox } from './components/FrCheckbox';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
   return {
@@ -33,4 +34,5 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrBreadcrumbs,
   FrBtn,
   FrCard,
+  FrCheckbox,
 });
