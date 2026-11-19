@@ -16,7 +16,7 @@ defineProps<{ title?: string; text?: string }>();
   own props (expandIcon, hideActions, eager...) down to the two children itself
 -->
 <template>
-  <v-expansion-panel>
+  <v-expansion-panel class="fr-accordion-panel">
     <v-expansion-panel-title>
       <template #default="scope">
         <slot name="title" v-bind="scope">{{ title }}</slot>

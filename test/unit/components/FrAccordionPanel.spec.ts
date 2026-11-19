@@ -114,7 +114,9 @@ describe('FrAccordionPanel', () => {
     const wrapper = mountPanel({ class: 'plot-panel', 'data-test': 'panel', id: 'plot' });
     const panel = wrapper.find('.v-expansion-panel');
 
-    expect(panel.classes()).toContain('plot-panel');
+    expect(panel.classes()).toEqual(
+      expect.arrayContaining(['v-expansion-panel', 'fr-accordion-panel', 'plot-panel']),
+    );
     expect(panel.attributes()).toMatchObject({ 'data-test': 'panel', id: 'plot' });
   });
 });

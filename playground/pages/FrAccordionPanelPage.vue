@@ -4,9 +4,9 @@
     A <code>VExpansionPanel</code> built from a <code>VExpansionPanelTitle</code> and a
     <code>VExpansionPanelText</code>. The title slot falls back to the <code>title</code> prop, the
     body is the default slot and falls back to <code>text</code>. No defaults of its own: it takes
-    its look from the panels around it. Shown here inside a plain <code>v-expansion-panels</code>.
+    its look from the <code>fr-accordion</code> around it.
   </p>
-  <v-expansion-panels>
+  <fr-accordion>
     <fr-accordion-panel title="Props only" text="Title and text both come from props." />
     <fr-accordion-panel>
       <template #title="{ expanded }">
@@ -28,5 +28,5 @@
       collapse-icon="mdi-minus"
     />
     <fr-accordion-panel title="Disabled" text="Never seen." disabled />
-  </v-expansion-panels>
+  </fr-accordion>
 </template>

@@ -45,8 +45,10 @@ Overrides are merged in deeply, so an app changes only what it names, e.g.
 
 Each `Fr*` component wraps one Vuetify component. Its props, attributes and events reach the
 Vuetify component, and it's typed with that component's props. Where a component has slots of its
-own, they're laid out for you, so content never needs a Vuetify component around it. The wrapper's
-defaults are structural (how it looks, never how it behaves), and anything the caller passes wins.
+own, they're laid out for you, so content never needs a Vuetify component around it. Each one's
+root carries a class named after it (`fr-card`, `fr-accordion-panel`...) to style or select by.
+The wrapper's defaults are structural (how it looks, never how it behaves), and anything the
+caller passes wins.
 
 | Component          | Wraps              | Slots                       | Defaults                                              |
 | ------------------ | ------------------ | --------------------------- | ----------------------------------------------------- |
