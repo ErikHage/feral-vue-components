@@ -12,6 +12,7 @@
   <fr-breadcrumbs :items="['Home', 'Tomato']" />
   <fr-btn text="Save" color="primary" />
   <fr-checkbox label="Climbing" />
+  <fr-chip text="Tomato" />
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -34,6 +35,8 @@
   <fr-btn variant="not-a-variant" />
   <!-- @vue-expect-error density is one of VCheckbox's densities -->
   <fr-checkbox density="not-a-density" />
+  <!-- @vue-expect-error not one of VChip's variants -->
+  <fr-chip variant="not-a-variant" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

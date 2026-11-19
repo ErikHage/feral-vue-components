@@ -62,6 +62,7 @@ caller passes wins.
 | `FrBtn`            | `VBtn`             | default, `prepend`, `append` | `rounded="lg"`, except icon buttons, which stay round |
 | `FrCard`           | `VCard`            | `title`, default, `actions`  | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 | `FrCheckbox`       | `VCheckbox`        | `label`                      | `density="compact"`                                   |
+| `FrChip`           | `VChip`            | default, `prepend`, `append` | none: it stays Vuetify's pill                         |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -120,6 +121,11 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   say); it still sits in the checkbox's own `<label>`, so clicking it still toggles. Its only
   default is `density="compact"`, the feral fields' density. VCheckbox's other slots (`input`,
   `prepend`, `append`, `details`...) are not forwarded.
+
+- **`FrChip`**: the label is the default slot, in place of `text`, and gets the chip's selection
+  state (`isSelected`, `toggle`...) inside a chip group; `prepend` and `append` replace their icon
+  or avatar. It sets no defaults: `rounded="lg"` would square off the pill. VChip's `close` and
+  `filter` slots are not forwarded; `closable` and `filter` still work.
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
   icon, and the body is the default slot, falling back to `text`. It carries no defaults because

@@ -8,6 +8,7 @@ import {
   VBtn,
   VCard,
   VCheckbox,
+  VChip,
   VExpansionPanel,
   VExpansionPanels,
 } from 'vuetify/components';
@@ -22,6 +23,7 @@ import {
   FrBtn,
   FrCard,
   FrCheckbox,
+  FrChip,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -121,6 +123,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-checkbox label').text()).toBe('Global');
   });
 
+  it('registers FrChip globally, so <fr-chip> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-chip text="Tomato" />');
+
+    expect(wrapper.findComponent(VChip).exists()).toBe(true);
+    expect(wrapper.find('.fr-chip').text()).toBe('Tomato');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -132,6 +141,7 @@ describe('FeralComponents', () => {
     ['FrBtn', FrBtn],
     ['FrCard', FrCard],
     ['FrCheckbox', FrCheckbox],
+    ['FrChip', FrChip],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
