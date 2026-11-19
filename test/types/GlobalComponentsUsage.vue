@@ -14,6 +14,7 @@
   <fr-checkbox label="Climbing" />
   <fr-chip text="Tomato" />
   <fr-chip-group column><fr-chip text="Tall" /></fr-chip-group>
+  <fr-code-block>npm test</fr-code-block>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>

@@ -43,7 +43,7 @@ Overrides are merged in deeply, so an app changes only what it names, e.g.
 
 ## Components
 
-Each `Fr*` component wraps one Vuetify component. Its props, attributes and events reach the
+Each `Fr*` component wraps one Vuetify component (or, for `FrCodeBlock`, a plain element). Its props, attributes and events reach the
 Vuetify component, and it's typed with that component's props. Where a component has slots of its
 own, they're laid out for you, so content never needs a Vuetify component around it. Each one's
 root carries a class named after it (`fr-card`, `fr-accordion-panel`...) to style or select by.
@@ -64,6 +64,7 @@ caller passes wins.
 | `FrCheckbox`       | `VCheckbox`        | `label`                      | `density="compact"`                                   |
 | `FrChip`           | `VChip`            | default, `prepend`, `append` | none: it stays Vuetify's pill                         |
 | `FrChipGroup`      | `VChipGroup`       | default, holding the chips   | none                                                  |
+| `FrCodeBlock`      | a `<pre>`          | default, the code            | padded, rounded, faint theme background               |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -136,6 +137,18 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   <fr-chip-group v-model="tags" multiple column filter>
     <fr-chip v-for="tag in offeredTags" :key="tag" :value="tag" :text="tag" />
   </fr-chip-group>
+  ```
+
+- **`FrCodeBlock`**: a `<pre>` whose default slot is the code, shown exactly as written. It is
+  padded (16px), rounded (8px), scrolls sideways when a line is too long, and sits on the theme's
+  text colour at 6% opacity, so it suits dark and light. That look is an inline style, so the
+  library still ships no CSS. Change it with `style`, which merges in after it and wins
+  (`style="padding: 8px"`); a clashing Vuetify utility class (`pa-2`, `rounded-0`) can't, since
+  Vuetify 4's classes are layered CSS and an inline style beats them. Classes that don't clash,
+  such as margins, work as usual.
+
+  ```vue
+  <fr-code-block>npm install @feral-auth/vue-components</fr-code-block>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand

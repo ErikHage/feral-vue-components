@@ -11,6 +11,7 @@ import { FrCard } from './components/FrCard';
 import { FrCheckbox } from './components/FrCheckbox';
 import { FrChip } from './components/FrChip';
 import { FrChipGroup } from './components/FrChipGroup';
+import { FrCodeBlock } from './components/FrCodeBlock';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
   return {
@@ -39,4 +40,5 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrCheckbox,
   FrChip,
   FrChipGroup,
+  FrCodeBlock,
 });

@@ -26,6 +26,7 @@ import {
   FrCheckbox,
   FrChip,
   FrChipGroup,
+  FrCodeBlock,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -139,6 +140,12 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-chip-group .fr-chip').text()).toBe('Tall');
   });
 
+  it('registers FrCodeBlock globally, so <fr-code-block> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-code-block>npm test</fr-code-block>');
+
+    expect(wrapper.find('pre.fr-code-block').text()).toBe('npm test');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -152,6 +159,7 @@ describe('FeralComponents', () => {
     ['FrCheckbox', FrCheckbox],
     ['FrChip', FrChip],
     ['FrChipGroup', FrChipGroup],
+    ['FrCodeBlock', FrCodeBlock],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
