@@ -29,11 +29,11 @@ const picked = ref('basil');
   <h3 class="text-subtitle-1 mb-2">
     In a chip group, the default slot gets the selection ({{ picked }})
   </h3>
-  <v-chip-group v-model="picked" mandatory>
+  <fr-chip-group v-model="picked" mandatory>
     <fr-chip v-for="plant in ['tomato', 'basil', 'squash']" :key="plant" :value="plant" filter>
       <template #default="{ isSelected }">
         {{ plant }}{{ isSelected ? ' (picked)' : '' }}
       </template>
     </fr-chip>
-  </v-chip-group>
+  </fr-chip-group>
 </template>

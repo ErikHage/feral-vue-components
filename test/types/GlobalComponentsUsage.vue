@@ -13,6 +13,7 @@
   <fr-btn text="Save" color="primary" />
   <fr-checkbox label="Climbing" />
   <fr-chip text="Tomato" />
+  <fr-chip-group column><fr-chip text="Tall" /></fr-chip-group>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
   </fr-accordion>
@@ -37,6 +38,8 @@
   <fr-checkbox density="not-a-density" />
   <!-- @vue-expect-error not one of VChip's variants -->
   <fr-chip variant="not-a-variant" />
+  <!-- @vue-expect-error not one of VChipGroup's variants -->
+  <fr-chip-group variant="not-a-variant" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

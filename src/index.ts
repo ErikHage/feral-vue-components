@@ -9,6 +9,7 @@ import type { FrBtn } from './components/FrBtn';
 import type { FrCard } from './components/FrCard';
 import type { FrCheckbox } from './components/FrCheckbox';
 import type { FrChip } from './components/FrChip';
+import type { FrChipGroup } from './components/FrChipGroup';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
 export {
@@ -29,6 +30,7 @@ export { FrBtn, frBtnDefaults, type FrBtnSlots } from './components/FrBtn';
 export { FrCard, frCardDefaults, type FrCardSlots } from './components/FrCard';
 export { FrCheckbox, frCheckboxDefaults, type FrCheckboxSlots } from './components/FrCheckbox';
 export { FrChip, type FrChipScope, type FrChipSlots } from './components/FrChip';
+export { FrChipGroup } from './components/FrChipGroup';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 
@@ -46,5 +48,6 @@ declare module 'vue' {
     FrCard: typeof FrCard;
     FrCheckbox: typeof FrCheckbox;
     FrChip: typeof FrChip;
+    FrChipGroup: typeof FrChipGroup;
   }
 }

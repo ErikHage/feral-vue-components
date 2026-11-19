@@ -63,6 +63,7 @@ caller passes wins.
 | `FrCard`           | `VCard`            | `title`, default, `actions`  | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 | `FrCheckbox`       | `VCheckbox`        | `label`                      | `density="compact"`                                   |
 | `FrChip`           | `VChip`            | default, `prepend`, `append` | none: it stays Vuetify's pill                         |
+| `FrChipGroup`      | `VChipGroup`       | default, holding the chips   | none                                                  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -126,6 +127,16 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   state (`isSelected`, `toggle`...) inside a chip group; `prepend` and `append` replace their icon
   or avatar. It sets no defaults: `rounded="lg"` would square off the pill. VChip's `close` and
   `filter` slots are not forwarded; `closable` and `filter` still work.
+
+- **`FrChipGroup`**: holds `FrChip`s, and hands its `color`, `variant`, `filter` and `disabled`
+  down to them (FrChip sets no defaults, so nothing gets in the way). It sets no defaults itself:
+  add `column` to wrap the chips instead of scrolling them in one row.
+
+  ```vue
+  <fr-chip-group v-model="tags" multiple column filter>
+    <fr-chip v-for="tag in offeredTags" :key="tag" :value="tag" :text="tag" />
+  </fr-chip-group>
+  ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
   icon, and the body is the default slot, falling back to `text`. It carries no defaults because
