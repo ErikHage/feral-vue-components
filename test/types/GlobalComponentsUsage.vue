@@ -33,6 +33,7 @@
   <fr-menu location="end" open-on-hover>Menu</fr-menu>
   <fr-progress-bar :model-value="40" color="success" />
   <fr-select :items="['Weekly']" label="Global" />
+  <fr-skeleton type="heading, paragraph" />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -94,6 +95,8 @@
   <fr-progress-bar :indeterminate="'yes'" />
   <!-- @vue-expect-error not one of VSelect's variants -->
   <fr-select variant="not-a-variant" />
+  <!-- @vue-expect-error loading is a boolean -->
+  <fr-skeleton :loading="'yes'" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

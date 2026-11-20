@@ -28,6 +28,7 @@ import type { FrMenu } from './components/FrMenu';
 import type { FrProgressBar } from './components/FrProgressBar';
 import type { FrRow } from './components/FrRow';
 import type { FrSelect } from './components/FrSelect';
+import type { FrSkeleton } from './components/FrSkeleton';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
 export {
@@ -84,6 +85,7 @@ export { FrMenu } from './components/FrMenu';
 export { FrProgressBar } from './components/FrProgressBar';
 export { FrRow, type FrRowSpacing } from './components/FrRow';
 export { FrSelect, frSelectDefaults, type FrSelectSlots } from './components/FrSelect';
+export { FrSkeleton } from './components/FrSkeleton';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 
@@ -120,5 +122,6 @@ declare module 'vue' {
     FrProgressBar: typeof FrProgressBar;
     FrRow: typeof FrRow;
     FrSelect: typeof FrSelect;
+    FrSkeleton: typeof FrSkeleton;
   }
 }

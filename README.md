@@ -82,6 +82,7 @@ caller passes wins.
 | `FrProgressBar`    | `VProgressLinear`   | default, over the bar, given `value`               | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 | `FrSelect`         | `VSelect`           | `item`, `no-data`                                  | `variant="solo"`, `density="compact"`, `rounded="lg"` |
+| `FrSkeleton`       | `VSkeletonLoader`   | default, shown once not `loading`                  | none                                                  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -350,6 +351,19 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
 
   ```vue
   <fr-select v-model="activityType" :items="activityTypes" label="Activity type" clearable />
+  ```
+
+- **`FrSkeleton`**: grey shapes standing in for content still loading; `type` says which
+  (`"heading, paragraph"`, `"card"`, `"table"`...). Wrap the real content in its default slot
+  and it shows that content once `loading` is false, the skeleton while it is true. Without a
+  slot it is always the skeleton. It sets no defaults; `elevation`, `max-width`, `boilerplate`
+  and the rest pass through. Once loaded it renders your content alone, with no element of its
+  own, so classes given to it apply only to the skeleton.
+
+  ```vue
+  <fr-skeleton :loading="!recipe" type="heading, paragraph" elevation="2" max-width="600">
+    <recipe-details :recipe="recipe" />
+  </fr-skeleton>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
