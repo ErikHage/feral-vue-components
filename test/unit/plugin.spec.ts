@@ -28,6 +28,7 @@ import {
   VListItem,
   VMenu,
   VProgressLinear,
+  VSelect,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -59,6 +60,7 @@ import {
   FrMenu,
   FrProgressBar,
   FrRow,
+  FrSelect,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -290,6 +292,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-progress-bar').attributes('aria-valuenow')).toBe('40');
   });
 
+  it('registers FrSelect globally, so <fr-select> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-select label="Global" />');
+
+    expect(wrapper.findComponent(VSelect).exists()).toBe(true);
+    expect(wrapper.find('.fr-select label').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -320,6 +329,7 @@ describe('FeralComponents', () => {
     ['FrMenu', FrMenu],
     ['FrProgressBar', FrProgressBar],
     ['FrRow', FrRow],
+    ['FrSelect', FrSelect],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

@@ -81,6 +81,7 @@ caller passes wins.
 | `FrMenu`           | `VMenu`             | `activator`, default, the menu                     | none                                                  |
 | `FrProgressBar`    | `VProgressLinear`   | default, over the bar, given `value`               | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
+| `FrSelect`         | `VSelect`           | `item`, `no-data`                                  | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -98,7 +99,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -339,6 +340,16 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
       <fr-col cols="12" md="6">Right</fr-col>
     </fr-row>
   </fr-container>
+  ```
+
+- **`FrSelect`**: the feral field look and the same slots as `FrAutocomplete`: `item` fills one
+  row of the list and gets your own item (typed from `items`) and its index, with FrSelect
+  rendering the row around it so selecting still works; `no-data` replaces `no-data-text` when
+  there are no items. VSelect's other slots (`chip`, `selection`, `prepend-item`...) are not
+  forwarded; its props all work, `return-object`, `multiple` and `chips` among them.
+
+  ```vue
+  <fr-select v-model="activityType" :items="activityTypes" label="Activity type" clearable />
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
