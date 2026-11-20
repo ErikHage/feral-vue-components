@@ -20,6 +20,7 @@ import {
   VExpansionPanels,
   VFadeTransition,
   VFileInput,
+  VForm,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -42,6 +43,7 @@ import {
   FrDivider,
   FrFadeIn,
   FrFileField,
+  FrForm,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -219,6 +221,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-file-field label').text()).toBe('Global');
   });
 
+  it('registers FrForm globally, so <fr-form> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-form><p class="body">Fields</p></fr-form>');
+
+    expect(wrapper.findComponent(VForm).exists()).toBe(true);
+    expect(wrapper.find('form.fr-form .body').text()).toBe('Fields');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -240,6 +249,7 @@ describe('FeralComponents', () => {
     ['FrDivider', FrDivider],
     ['FrFadeIn', FrFadeIn],
     ['FrFileField', FrFileField],
+    ['FrForm', FrForm],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

@@ -72,6 +72,7 @@ caller passes wins.
 | `FrDivider`        | `VDivider`          | default, in the middle of the line                 | none                                                  |
 | `FrFadeIn`         | `VFadeTransition`   | default, what fades                                | `appear`: it fades in on first render too             |
 | `FrFileField`      | `VFileInput`        | `selection`                                        | `variant="solo"`, `density="compact"`, `rounded="lg"` |
+| `FrForm`           | `VForm`             | default, the fields, given the form's state        | none: it never submits the page                       |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -212,6 +213,20 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   the chosen files show in the field, given their `fileNames`, `totalBytes` and
   `totalBytesReadable`. Without the slot, VFileInput shows their names (or chips, with `chips`).
   Note that without `multiple`, `v-model` is a single `File`, not an array.
+
+- **`FrForm`**: a form that never submits the page. Submitting it (Enter in a field, or a button
+  with `type="submit"`) validates its fields and emits `submit` with `{ valid, errors }`, whether
+  or not they passed, so check `valid`. `v-model` is whether every field passes (`null` while some
+  are unchecked). Its ref exposes `validate()`, `reset()` and `resetValidation()`, and the default
+  slot gets the same functions and the form's state (`isValid`, `errors`...). `disabled`,
+  `readonly`, `validate-on` and `fast-fail` pass through.
+
+  ```vue
+  <fr-form ref="form" v-model="valid" @submit="({ valid }) => valid && save()">
+    <fr-autocomplete v-model="plantId" :items="plants" label="Plant" :rules="[required]" />
+    <fr-btn type="submit" text="Save" :disabled="valid === false" />
+  </fr-form>
+  ```
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
   `'none'` removes the gutters between columns (`no-gutters`) and leaves off the `fr-row` class,
