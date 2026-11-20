@@ -85,6 +85,7 @@ caller passes wins.
 | `FrSkeleton`       | `VSkeletonLoader`   | default, shown once not `loading`                         | none                                                  |
 | `FrSlider`         | `VSlider`           | `label`, `prepend`, `append`, `thumb-label`, `tick-label` | `density="compact"`                                   |
 | `FrSpacer`         | `VSpacer`           | default, rarely used                                      | none                                                  |
+| `FrSpinner`        | `VProgressCircular` | default, in the middle, given `value`                     | `indeterminate`, unless given a value                 |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -389,6 +390,17 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
     <fr-spacer />
     <fr-btn color="primary" text="Save" />
   </div>
+  ```
+
+- **`FrSpinner`**: a loading spinner. It spins unless given a value (`v-model` or `model-value`,
+  0 to 100 by default), which it shows as a ring instead; an undefined value counts as none,
+  so it spins until the value arrives. `indeterminate` from the caller always wins. Its
+  default slot sits in the middle, given the `value`. `size`, `width`, `color` and the rest pass
+  through.
+
+  ```vue
+  <fr-spinner v-if="!plant" size="100" width="10" color="green" />
+  <fr-spinner :model-value="uploaded" color="primary">{{ uploaded }}%</fr-spinner>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand

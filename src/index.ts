@@ -31,6 +31,7 @@ import type { FrSelect } from './components/FrSelect';
 import type { FrSkeleton } from './components/FrSkeleton';
 import type { FrSlider } from './components/FrSlider';
 import type { FrSpacer } from './components/FrSpacer';
+import type { FrSpinner } from './components/FrSpinner';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
 export {
@@ -90,6 +91,7 @@ export { FrSelect, frSelectDefaults, type FrSelectSlots } from './components/FrS
 export { FrSkeleton } from './components/FrSkeleton';
 export { FrSlider, frSliderDefaults, type FrSliderSlots } from './components/FrSlider';
 export { FrSpacer } from './components/FrSpacer';
+export { FrSpinner } from './components/FrSpinner';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 
@@ -129,5 +131,6 @@ declare module 'vue' {
     FrSkeleton: typeof FrSkeleton;
     FrSlider: typeof FrSlider;
     FrSpacer: typeof FrSpacer;
+    FrSpinner: typeof FrSpinner;
   }
 }

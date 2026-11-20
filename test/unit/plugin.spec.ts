@@ -32,6 +32,7 @@ import {
   VSkeletonLoader,
   VSlider,
   VSpacer,
+  VProgressCircular,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -67,6 +68,7 @@ import {
   FrSkeleton,
   FrSlider,
   FrSpacer,
+  FrSpinner,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -326,6 +328,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.d-flex > .fr-spacer.v-spacer').exists()).toBe(true);
   });
 
+  it('registers FrSpinner globally, so <fr-spinner> resolves in templates, spinning', () => {
+    const wrapper = mountGlobal('<fr-spinner color="primary" />');
+
+    expect(wrapper.findComponent(VProgressCircular).exists()).toBe(true);
+    expect(wrapper.find('.fr-spinner.v-progress-circular--indeterminate').exists()).toBe(true);
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -360,6 +369,7 @@ describe('FeralComponents', () => {
     ['FrSkeleton', FrSkeleton],
     ['FrSlider', FrSlider],
     ['FrSpacer', FrSpacer],
+    ['FrSpinner', FrSpinner],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
