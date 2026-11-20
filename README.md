@@ -92,6 +92,7 @@ caller passes wins.
 | `FrTabs`           | `VTabs`             | default, below the tabs, given the selected `tab`         | `color="primary"`, `fixed-tabs`                       |
 | `FrTimeline`       | built from Fr parts | `day`, `actions`, `empty`                                 | none                                                  |
 | `FrToggle`         | `VSwitch`           | `label`, `prepend`, `append`, `thumb`, `track-true`...    | `density="compact"`                                   |
+| `FrTooltip`        | `VTooltip`          | `activator`, default, in place of `text`                  | none                                                  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -496,6 +497,17 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   <fr-toggle v-model="enableEdit" color="success" base-color="error">
     <template #label><fr-icon>{{ enableEdit ? 'mdi-lock-open' : 'mdi-lock' }}</fr-icon></template>
   </fr-toggle>
+  ```
+
+- **`FrTooltip`**: a hint shown while what it describes is hovered or focused. Bind its
+  `activator` slot's `props` onto that element; the tooltip's content is the `text` prop, or the
+  default slot in its place, passed on only when given. It sets no defaults; `location`,
+  `open-delay`, `disabled` and the rest pass through.
+
+  ```vue
+  <fr-tooltip text="Copy the link" location="end">
+    <template #activator="{ props }"><fr-btn v-bind="props" icon="mdi-content-copy" /></template>
+  </fr-tooltip>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand

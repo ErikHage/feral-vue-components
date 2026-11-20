@@ -38,6 +38,7 @@ import {
   VTabs,
   VSnackbarQueue,
   VSwitch,
+  VTooltip,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -80,6 +81,7 @@ import {
   FrTimeline,
   FrSnackbarQueue,
   FrToggle,
+  FrTooltip,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -391,6 +393,15 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-toggle label').text()).toBe('Global');
   });
 
+  it('registers FrTooltip globally, so <fr-tooltip> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-tooltip text="Global" location="top" />');
+
+    expect(wrapper.findComponent(VTooltip).props()).toMatchObject({
+      text: 'Global',
+      location: 'top',
+    });
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -432,6 +443,7 @@ describe('FeralComponents', () => {
     ['FrTimeline', FrTimeline],
     ['FrSnackbarQueue', FrSnackbarQueue],
     ['FrToggle', FrToggle],
+    ['FrTooltip', FrTooltip],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
