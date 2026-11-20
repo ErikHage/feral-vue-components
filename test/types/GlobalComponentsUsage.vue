@@ -31,6 +31,7 @@
   <fr-list-header sticky>Herbs</fr-list-header>
   <fr-list-item title="Basil" prepend-icon="mdi-leaf" to="/plants/2" />
   <fr-menu location="end" open-on-hover>Menu</fr-menu>
+  <fr-progress-bar :model-value="40" color="success" />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -88,6 +89,8 @@
   <fr-list-item variant="wavy" />
   <!-- @vue-expect-error open-on-hover is a boolean -->
   <fr-menu :open-on-hover="'yes'" />
+  <!-- @vue-expect-error indeterminate is a boolean -->
+  <fr-progress-bar :indeterminate="'yes'" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

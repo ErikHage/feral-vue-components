@@ -79,6 +79,7 @@ caller passes wins.
 | `FrListHeader`     | `VListSubheader`    | default, the heading's text                        | none                                                  |
 | `FrListItem`       | `VListItem`         | `prepend`, `title`, `subtitle`, default, `append`  | none                                                  |
 | `FrMenu`           | `VMenu`             | `activator`, default, the menu                     | none                                                  |
+| `FrProgressBar`    | `VProgressLinear`   | default, over the bar, given `value`               | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -311,6 +312,17 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
       <fr-list-item prepend-icon="mdi-delete" title="Delete" @click="remove" />
     </fr-list>
   </fr-menu>
+  ```
+
+- **`FrProgressBar`**: a bar filled to its `v-model` (0 to `max`, 100 by default), or moving
+  with `indeterminate` while something loads. Its default slot sits over the bar, given the
+  `value` and `buffer` as percentages; give it a `height` to fit. It sets no defaults; `color`,
+  `bg-color`, `height`, `buffer-value`, `striped`, `rounded` and the rest pass through.
+
+  ```vue
+  <fr-progress-bar :model-value="harvested" :max="target" color="success" height="20" rounded>
+    <template #default="{ value }">{{ Math.round(value) }}%</template>
+  </fr-progress-bar>
   ```
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
