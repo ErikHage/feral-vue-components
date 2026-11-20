@@ -76,6 +76,7 @@ caller passes wins.
 | `FrIcon`           | `VIcon`             | default, the icon's name                           | none                                                  |
 | `FrImage`          | `VImg`              | default, `placeholder`, `error`, `sources`         | none                                                  |
 | `FrList`           | `VList`             | default; `title`, `prepend`... for `items` rows    | `density="compact"`                                   |
+| `FrListHeader`     | `VListSubheader`    | default, the heading's text                        | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -260,6 +261,17 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
     <template #append="{ item }">
       <fr-chip size="small" :text="`${item.plantings} planted`" />
     </template>
+  </fr-list>
+  ```
+
+- **`FrListHeader`**: a heading between an `FrList`'s rows. Its text is its default slot or its
+  `title`; the slot wins. It sets no defaults; `color`, `inset` and `sticky` pass through. In an
+  `FrList` built from `items`, bind the `subheader` slot's `props` onto it.
+
+  ```vue
+  <fr-list>
+    <fr-list-header>Herbs</fr-list-header>
+    <fr-list-item title="Basil" />
   </fr-list>
   ```
 

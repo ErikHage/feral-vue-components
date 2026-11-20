@@ -22,6 +22,7 @@ import type { FrForm } from './components/FrForm';
 import type { FrIcon } from './components/FrIcon';
 import type { FrImage } from './components/FrImage';
 import type { FrList } from './components/FrList';
+import type { FrListHeader } from './components/FrListHeader';
 import type { FrRow } from './components/FrRow';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
@@ -73,6 +74,7 @@ export {
   type FrListRowScope,
   type FrListSlots,
 } from './components/FrList';
+export { FrListHeader } from './components/FrListHeader';
 export { FrRow, type FrRowSpacing } from './components/FrRow';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
@@ -104,6 +106,7 @@ declare module 'vue' {
     FrIcon: typeof FrIcon;
     FrImage: typeof FrImage;
     FrList: typeof FrList;
+    FrListHeader: typeof FrListHeader;
     FrRow: typeof FrRow;
   }
 }

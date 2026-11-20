@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { VListItem, VListSubheader } from 'vuetify/components';
+import { VListItem } from 'vuetify/components';
 
-// Until FrListItem and FrListHeader exist, the written rows use Vuetify's own
+// Until FrListItem exists, the written rows use Vuetify's own
 const plants = [
   { name: 'Tomato', plantId: 1, plantings: 3, icon: 'mdi-fruit-cherries' },
   { name: 'Basil', plantId: 2, plantings: 1, icon: 'mdi-leaf' },
@@ -59,7 +59,7 @@ const grouped = [
       <h3 class="text-subtitle-1 mb-2">The same, with subheader and title slots</h3>
       <fr-list id="grouped-slots" :items="grouped">
         <template #subheader="{ props }">
-          <v-list-subheader class="text-primary">{{ props.title }} ⟶</v-list-subheader>
+          <fr-list-header v-bind="props" color="primary">{{ props.title }} ⟶</fr-list-header>
         </template>
         <template #title="{ title }">
           <strong>{{ title }}</strong>
