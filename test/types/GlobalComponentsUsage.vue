@@ -26,6 +26,7 @@
   <fr-fade-in><p>Fading</p></fr-fade-in>
   <fr-file-field label="Global" accept=".csv" />
   <fr-icon size="small">mdi-sprout</fr-icon>
+  <fr-image src="/logo.png" alt="Logo" max-width="250" />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -73,6 +74,8 @@
   <fr-form :model-value="'yes'" />
   <!-- @vue-expect-error start is a boolean -->
   <fr-icon :start="'yes'" />
+  <!-- @vue-expect-error cover is a boolean -->
+  <fr-image :cover="'yes'" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

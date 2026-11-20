@@ -74,6 +74,7 @@ caller passes wins.
 | `FrFileField`      | `VFileInput`        | `selection`                                        | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 | `FrForm`           | `VForm`             | default, the fields, given the form's state        | none: it never submits the page                       |
 | `FrIcon`           | `VIcon`             | default, the icon's name                           | none                                                  |
+| `FrImage`          | `VImg`              | default, `placeholder`, `error`, `sources`         | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -233,6 +234,16 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   write it, or by `icon`. It sets no defaults; `size`, `color`, `start`, `end` and the rest pass
   through, and with `@click` it becomes a focusable button. Vuetify 2's `small` and `left` are
   gone: use `size="small"` and `start`.
+
+- **`FrImage`**: an image, sized to its `max-width` (or `width`, `aspect-ratio`...) and shown
+  whole, as Vuetify 2's `contain` did; `cover` fills and crops instead. It sets no defaults, so
+  centre it as before, with `class="mx-auto"`. Its slots are passed on only when given: the
+  default slot sits over the image, `placeholder` shows while it loads, `error` if it fails, and
+  `sources` takes `<source>` elements, wrapping the image in a `<picture>`.
+
+  ```vue
+  <fr-image :src="logo" alt="Logo" max-width="500" class="mx-auto" />
+  ```
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
   `'none'` removes the gutters between columns (`no-gutters`) and leaves off the `fr-row` class,

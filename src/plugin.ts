@@ -21,6 +21,7 @@ import { FrFadeIn } from './components/FrFadeIn';
 import { FrFileField } from './components/FrFileField';
 import { FrForm } from './components/FrForm';
 import { FrIcon } from './components/FrIcon';
+import { FrImage } from './components/FrImage';
 import { FrRow } from './components/FrRow';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
@@ -60,5 +61,6 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrFileField,
   FrForm,
   FrIcon,
+  FrImage,
   FrRow,
 });

@@ -22,6 +22,7 @@ import {
   VFileInput,
   VForm,
   VIcon,
+  VImg,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -46,6 +47,7 @@ import {
   FrFileField,
   FrForm,
   FrIcon,
+  FrImage,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -237,6 +239,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-icon').classes()).toContain('mdi-sprout');
   });
 
+  it('registers FrImage globally, so <fr-image> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-image src="/logo.png" alt="Logo" eager />');
+
+    expect(wrapper.findComponent(VImg).exists()).toBe(true);
+    expect(wrapper.find('.fr-image img').attributes('alt')).toBe('Logo');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -260,6 +269,7 @@ describe('FeralComponents', () => {
     ['FrFileField', FrFileField],
     ['FrForm', FrForm],
     ['FrIcon', FrIcon],
+    ['FrImage', FrImage],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
