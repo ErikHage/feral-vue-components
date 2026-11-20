@@ -49,6 +49,7 @@
   <fr-timeline :records="['2026-05-01']" :date-of="(day) => day">
     <template #day="{ records }">{{ records.join(', ') }}</template>
   </fr-timeline>
+  <fr-snackbar-queue :model-value="['Global']" timeout="2000" />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -126,6 +127,8 @@
   <fr-tabs :options="[{ title: 'No value' }]" />
   <!-- @vue-expect-error dateOf returns a date string, timestamp or Date -->
   <fr-timeline :records="[1]" :date-of="(n) => n > 0" />
+  <!-- @vue-expect-error displayStrategy is 'hold' or 'overflow' -->
+  <fr-snackbar-queue display-strategy="stack" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

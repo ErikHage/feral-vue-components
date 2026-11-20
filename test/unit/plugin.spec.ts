@@ -36,6 +36,7 @@ import {
   VSheet,
   VTable,
   VTabs,
+  VSnackbarQueue,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -76,6 +77,7 @@ import {
   FrTable,
   FrTabs,
   FrTimeline,
+  FrSnackbarQueue,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -374,6 +376,12 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-timeline h2').text()).toBe('2026-05-01');
   });
 
+  it('registers FrSnackbarQueue globally, so <fr-snackbar-queue> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-snackbar-queue :model-value="[]" />');
+
+    expect(wrapper.findComponent(VSnackbarQueue).props('closable')).toBe(true);
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -413,6 +421,7 @@ describe('FeralComponents', () => {
     ['FrTable', FrTable],
     ['FrTabs', FrTabs],
     ['FrTimeline', FrTimeline],
+    ['FrSnackbarQueue', FrSnackbarQueue],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

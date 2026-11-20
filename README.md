@@ -84,6 +84,7 @@ caller passes wins.
 | `FrSelect`         | `VSelect`           | `item`, `no-data`                                         | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 | `FrSkeleton`       | `VSkeletonLoader`   | default, shown once not `loading`                         | none                                                  |
 | `FrSlider`         | `VSlider`           | `label`, `prepend`, `append`, `thumb-label`, `tick-label` | `density="compact"`                                   |
+| `FrSnackbarQueue`  | `VSnackbarQueue`    | `text`, `header`, `actions`, `item`, given the message    | `rounded="lg"`, `closable`                            |
 | `FrSpacer`         | `VSpacer`           | default, rarely used                                      | none                                                  |
 | `FrSheet`          | `VSheet`            | default, the content                                      | `rounded="lg"`, `padding="default"` (16px)            |
 | `FrSpinner`        | `VProgressCircular` | default, in the middle, given `value`                     | `indeterminate`, unless given a value                 |
@@ -107,7 +108,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frTableDefaults`, `frTabsDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -468,6 +469,20 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
     </template>
     <template #empty><p>No entries yet.</p></template>
   </fr-timeline>
+  ```
+
+- **`FrSnackbarQueue`**: push messages onto its `v-model` array and it shows them as snackbars,
+  one after another, taking each off the array as it does. A message is a string or an object of
+  snackbar settings (`{ text, color, timeout }`, an `onDismiss`, a `promise`). It is rounded and
+  dismissable (`closable`) by default; the caller's settings win, and a message's own win over
+  both. The `text`, `header` and `actions` slots (the last given `props` that dismiss) and `item`
+  (the whole snackbar) get the message, each passed on only when given. A ref exposes `clear()`.
+  VSnackbarQueue renders no element of its own and passes `class` and `style` to no snackbar, so
+  style them with `content-class` or a message's own `class`.
+
+  ```vue
+  <fr-snackbar-queue v-model="messages" timeout="2000" />
+  <!-- then, in a handler: messages.value.push({ text: 'Saved', color: 'success' }) -->
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
