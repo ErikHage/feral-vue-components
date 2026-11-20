@@ -30,6 +30,7 @@
   <fr-list lines="two">Rows</fr-list>
   <fr-list-header sticky>Herbs</fr-list-header>
   <fr-list-item title="Basil" prepend-icon="mdi-leaf" to="/plants/2" />
+  <fr-menu location="end" open-on-hover>Menu</fr-menu>
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -85,6 +86,8 @@
   <fr-list-header :sticky="'yes'" />
   <!-- @vue-expect-error not one of VListItem's variants -->
   <fr-list-item variant="wavy" />
+  <!-- @vue-expect-error open-on-hover is a boolean -->
+  <fr-menu :open-on-hover="'yes'" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

@@ -78,6 +78,7 @@ caller passes wins.
 | `FrList`           | `VList`             | default; `title`, `prepend`... for `items` rows    | `density="compact"`                                   |
 | `FrListHeader`     | `VListSubheader`    | default, the heading's text                        | none                                                  |
 | `FrListItem`       | `VListItem`         | `prepend`, `title`, `subtitle`, default, `append`  | none                                                  |
+| `FrMenu`           | `VMenu`             | `activator`, default, the menu                     | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -291,6 +292,25 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
       </template>
     </fr-list-item>
   </fr-list>
+  ```
+
+- **`FrMenu`**: a menu that opens from what you put in its `activator` slot (bind the slot's
+  `props` onto it, as with `FrDialog`). Its default slot is the menu itself, usually an `FrList`
+  or `FrCard`, given `isActive` as a ref, so a button inside can close it with
+  `isActive.value = false` (the `activator` slot's `isActive` is a plain boolean). It sets no defaults: it opens below its activator on click and
+  closes when its content is clicked. `v-model`, `location`, `open-on-hover`,
+  `close-on-content-click` and the rest pass through.
+
+  ```vue
+  <fr-menu>
+    <template #activator="{ props }">
+      <fr-btn v-bind="props" icon="mdi-dots-vertical" variant="text" aria-label="Actions" />
+    </template>
+    <fr-list>
+      <fr-list-item prepend-icon="mdi-pencil" title="Edit" @click="edit" />
+      <fr-list-item prepend-icon="mdi-delete" title="Delete" @click="remove" />
+    </fr-list>
+  </fr-menu>
   ```
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
