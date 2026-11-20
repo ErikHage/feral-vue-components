@@ -35,6 +35,7 @@ import type { FrSpinner } from './components/FrSpinner';
 import type { FrSheet } from './components/FrSheet';
 import type { FrTable } from './components/FrTable';
 import type { FrTabs } from './components/FrTabs';
+import type { FrTimeline } from './components/FrTimeline';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
 export {
@@ -104,6 +105,7 @@ export {
   type FrTabsSlotScope,
   type FrTabsValue,
 } from './components/FrTabs';
+export { FrTimeline, type FrTimelineDate, type FrTimelineDayScope } from './components/FrTimeline';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 
@@ -147,5 +149,6 @@ declare module 'vue' {
     FrSheet: typeof FrSheet;
     FrTable: typeof FrTable;
     FrTabs: typeof FrTabs;
+    FrTimeline: typeof FrTimeline;
   }
 }

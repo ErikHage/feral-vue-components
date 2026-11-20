@@ -46,6 +46,9 @@
     </tbody>
   </fr-table>
   <fr-tabs :options="['Details', 'History']" grow />
+  <fr-timeline :records="['2026-05-01']" :date-of="(day) => day">
+    <template #day="{ records }">{{ records.join(', ') }}</template>
+  </fr-timeline>
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -121,6 +124,8 @@
   <fr-table striped="all" />
   <!-- @vue-expect-error an option object needs a value -->
   <fr-tabs :options="[{ title: 'No value' }]" />
+  <!-- @vue-expect-error dateOf returns a date string, timestamp or Date -->
+  <fr-timeline :records="[1]" :date-of="(n) => n > 0" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

@@ -75,6 +75,7 @@ import {
   FrSheet,
   FrTable,
   FrTabs,
+  FrTimeline,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -365,6 +366,14 @@ describe('FeralComponents', () => {
     ]);
   });
 
+  it('registers FrTimeline globally, so <fr-timeline> resolves in templates', () => {
+    const wrapper = mountGlobal(
+      `<fr-timeline :records="['2026-05-01']" :date-of="(day) => day" />`,
+    );
+
+    expect(wrapper.find('.fr-timeline h2').text()).toBe('2026-05-01');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -403,6 +412,7 @@ describe('FeralComponents', () => {
     ['FrSheet', FrSheet],
     ['FrTable', FrTable],
     ['FrTabs', FrTabs],
+    ['FrTimeline', FrTimeline],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

@@ -36,6 +36,7 @@ import { FrSpinner } from './components/FrSpinner';
 import { FrSheet } from './components/FrSheet';
 import { FrTable } from './components/FrTable';
 import { FrTabs } from './components/FrTabs';
+import { FrTimeline } from './components/FrTimeline';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
   return {
@@ -89,4 +90,5 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrSheet,
   FrTable,
   FrTabs,
+  FrTimeline,
 });

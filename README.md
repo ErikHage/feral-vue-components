@@ -89,6 +89,7 @@ caller passes wins.
 | `FrSpinner`        | `VProgressCircular` | default, in the middle, given `value`                     | `indeterminate`, unless given a value                 |
 | `FrTable`          | `VTable`            | `top`, `caption`, default, the rows, `bottom`             | `density="compact"`                                   |
 | `FrTabs`           | `VTabs`             | default, below the tabs, given the selected `tab`         | `color="primary"`, `fixed-tabs`                       |
+| `FrTimeline`       | built from Fr parts | `day`, `actions`, `empty`                                 | none                                                  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -448,6 +449,25 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
       <history-list v-else :history="history" />
     </template>
   </fr-tabs>
+  ```
+
+- **`FrTimeline`**: a column of the days that have records, newest first, beside the shown
+  day's records, with Older and Newer buttons either side of its heading. Modelled on
+  vigilant-harvest-app's DayTimeline. Give it `records` and `dateOf`, which returns a record's
+  date (a date string, timestamp or Date), read as the local day it falls on; a date-only string
+  such as `'2026-05-01'` is that day. Records whose date can't be read are left out. `v-model`
+  holds the shown day as YYYY-MM-DD; when it names no day with records, the newest is shown and
+  v-model told. Days more than one apart have a `...` between them. The `day` slot (the day's
+  content) and `actions` (beside its heading) get the `day` and its `records`, typed by the
+  records given; `empty` shows when there are none.
+
+  ```vue
+  <fr-timeline v-model="selectedDay" :records="journalEntries" :date-of="(e) => e.entryDate">
+    <template #day="{ records }">
+      <p v-for="entry in records" :key="entry.entryId">{{ entry.entry }}</p>
+    </template>
+    <template #empty><p>No entries yet.</p></template>
+  </fr-timeline>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
