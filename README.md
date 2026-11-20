@@ -93,6 +93,7 @@ caller passes wins.
 | `FrTimeline`       | built from Fr parts | `day`, `actions`, `empty`                                 | none                                                  |
 | `FrToggle`         | `VSwitch`           | `label`, `prepend`, `append`, `thumb`, `track-true`...    | `density="compact"`                                   |
 | `FrTooltip`        | `VTooltip`          | `activator`, default, in place of `text`                  | none                                                  |
+| `FrTree`           | `VTreeview`         | `title`, `prepend`, `append`, `toggle`, `item`...         | `density="compact"`                                   |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -110,7 +111,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frToggleDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frToggleDefaults`, `frTreeDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -508,6 +509,19 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   <fr-tooltip text="Copy the link" location="end">
     <template #activator="{ props }"><fr-btn v-bind="props" icon="mdi-content-copy" /></template>
   </fr-tooltip>
+  ```
+
+- **`FrTree`**: `items` with `children`, shown as rows that open to show their children, compact
+  by default as `FrList` is. Its slots are passed on only when given, and get the item, typed by
+  the items given: `prepend`, `title`, `subtitle` and `append` for a row's parts, `toggle` for its
+  open arrow, `header` and `footer` around a branch, `item` for a whole leaf row, `divider` and
+  `subheader`, and `no-data`, shown when a `search` matches nothing. `v-model:opened`,
+  `v-model:activated`, `selectable`, `open-on-click` and the rest pass through.
+
+  ```vue
+  <fr-tree v-model:opened="opened" :items="plots" item-value="id" open-on-click>
+    <template #append="{ item }">{{ item.crop }}</template>
+  </fr-tree>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand

@@ -39,6 +39,7 @@ import type { FrTimeline } from './components/FrTimeline';
 import type { FrSnackbarQueue } from './components/FrSnackbarQueue';
 import type { FrToggle } from './components/FrToggle';
 import type { FrTooltip } from './components/FrTooltip';
+import type { FrTree } from './components/FrTree';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
 export {
@@ -112,6 +113,7 @@ export { FrTimeline, type FrTimelineDate, type FrTimelineDayScope } from './comp
 export { FrSnackbarQueue, frSnackbarQueueDefaults } from './components/FrSnackbarQueue';
 export { FrToggle, frToggleDefaults, type FrToggleSlots } from './components/FrToggle';
 export { FrTooltip } from './components/FrTooltip';
+export { FrTree, frTreeDefaults } from './components/FrTree';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 
@@ -159,5 +161,6 @@ declare module 'vue' {
     FrSnackbarQueue: typeof FrSnackbarQueue;
     FrToggle: typeof FrToggle;
     FrTooltip: typeof FrTooltip;
+    FrTree: typeof FrTree;
   }
 }

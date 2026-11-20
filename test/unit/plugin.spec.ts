@@ -39,6 +39,7 @@ import {
   VSnackbarQueue,
   VSwitch,
   VTooltip,
+  VTreeview,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -82,6 +83,7 @@ import {
   FrSnackbarQueue,
   FrToggle,
   FrTooltip,
+  FrTree,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -402,6 +404,13 @@ describe('FeralComponents', () => {
     });
   });
 
+  it('registers FrTree globally, so <fr-tree> resolves in templates', () => {
+    const wrapper = mountGlobal(`<fr-tree :items="[{ title: 'Global', value: 1 }]" />`);
+
+    expect(wrapper.findComponent(VTreeview).exists()).toBe(true);
+    expect(wrapper.find('.fr-tree .v-list-item-title').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -444,6 +453,7 @@ describe('FeralComponents', () => {
     ['FrSnackbarQueue', FrSnackbarQueue],
     ['FrToggle', FrToggle],
     ['FrTooltip', FrTooltip],
+    ['FrTree', FrTree],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

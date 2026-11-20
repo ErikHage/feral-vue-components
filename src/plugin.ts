@@ -40,6 +40,7 @@ import { FrTimeline } from './components/FrTimeline';
 import { FrSnackbarQueue } from './components/FrSnackbarQueue';
 import { FrToggle } from './components/FrToggle';
 import { FrTooltip } from './components/FrTooltip';
+import { FrTree } from './components/FrTree';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
   return {
@@ -97,4 +98,5 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrSnackbarQueue,
   FrToggle,
   FrTooltip,
+  FrTree,
 });

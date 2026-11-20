@@ -52,6 +52,7 @@
   <fr-snackbar-queue :model-value="['Global']" timeout="2000" />
   <fr-toggle :model-value="true" label="Global" />
   <fr-tooltip text="Global" location="end" />
+  <fr-tree :items="[{ title: 'Global', value: 1 }]" />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -135,6 +136,8 @@
   <fr-toggle density="tight" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-tooltip :disabled="'yes'" />
+  <!-- @vue-expect-error not one of VTreeview's densities -->
+  <fr-tree density="tight" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>
