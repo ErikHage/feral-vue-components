@@ -23,6 +23,7 @@ import {
   VForm,
   VIcon,
   VImg,
+  VList,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -48,6 +49,7 @@ import {
   FrForm,
   FrIcon,
   FrImage,
+  FrList,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -246,6 +248,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-image img').attributes('alt')).toBe('Logo');
   });
 
+  it('registers FrList globally, so <fr-list> resolves in templates', () => {
+    const wrapper = mountGlobal(`<fr-list :items="['Tomato']" />`);
+
+    expect(wrapper.findComponent(VList).exists()).toBe(true);
+    expect(wrapper.find('.fr-list .v-list-item-title').text()).toBe('Tomato');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -270,6 +279,7 @@ describe('FeralComponents', () => {
     ['FrForm', FrForm],
     ['FrIcon', FrIcon],
     ['FrImage', FrImage],
+    ['FrList', FrList],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);

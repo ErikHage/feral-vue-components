@@ -75,6 +75,7 @@ caller passes wins.
 | `FrForm`           | `VForm`             | default, the fields, given the form's state        | none: it never submits the page                       |
 | `FrIcon`           | `VIcon`             | default, the icon's name                           | none                                                  |
 | `FrImage`          | `VImg`              | default, `placeholder`, `error`, `sources`         | none                                                  |
+| `FrList`           | `VList`             | default; `title`, `prepend`... for `items` rows    | `density="compact"`                                   |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -93,7 +94,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -243,6 +244,23 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
 
   ```vue
   <fr-image :src="logo" alt="Logo" max-width="500" class="mx-auto" />
+  ```
+
+- **`FrList`**: a list, compact by default. Write its rows in the default slot (`FrListItem`,
+  `FrListHeader`, `FrDivider`), or give it `items` and let it build them. Rows built from `items`
+  take the `title`, `subtitle`, `prepend` and `append` slots, each given its `item` (typed by the
+  `items` you pass) and Vuetify's row state (`isActive`, `isSelected`...). An item with
+  `children` opens a group whose row is the `header` slot; items of `type: 'subheader'` and
+  `type: 'divider'` take the `subheader` and `divider` slots. Those three get `props` to bind
+  onto what they render. With rows in the default slot, `items` is ignored. `lines`, `nav`,
+  `v-model:selected` and the rest pass through.
+
+  ```vue
+  <fr-list :items="plants" item-title="name" item-value="plantId" lines="two">
+    <template #append="{ item }">
+      <fr-chip size="small" :text="`${item.plantings} planted`" />
+    </template>
+  </fr-list>
   ```
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
