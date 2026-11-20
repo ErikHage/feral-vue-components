@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { VListItem } from 'vuetify/components';
-
-// Until FrListItem exists, the written rows use Vuetify's own
 const plants = [
   { name: 'Tomato', plantId: 1, plantings: 3, icon: 'mdi-fruit-cherries' },
   { name: 'Basil', plantId: 2, plantings: 1, icon: 'mdi-leaf' },
@@ -35,9 +32,9 @@ const grouped = [
     <fr-col cols="12" md="6">
       <h3 class="text-subtitle-1 mb-2">Written rows, lines="two" (as the apps use it)</h3>
       <fr-list id="written" lines="two">
-        <v-list-item title="Activity type" subtitle="Watering" />
-        <v-list-item title="Recurrence" subtitle="Every 3 days" />
-        <v-list-item title="Date(s)" subtitle="1 May – 30 Sep" />
+        <fr-list-item title="Activity type" subtitle="Watering" />
+        <fr-list-item title="Recurrence" subtitle="Every 3 days" />
+        <fr-list-item title="Date(s)" subtitle="1 May – 30 Sep" />
       </fr-list>
     </fr-col>
     <fr-col cols="12" md="6">
@@ -69,8 +66,8 @@ const grouped = [
     <fr-col cols="12" md="6">
       <h3 class="text-subtitle-1 mb-2">Overridden: density="default", nav</h3>
       <fr-list id="nav" density="default" nav>
-        <v-list-item prepend-icon="mdi-sprout" title="Garden" />
-        <v-list-item prepend-icon="mdi-calendar" title="Years" />
+        <fr-list-item prepend-icon="mdi-sprout" title="Garden" />
+        <fr-list-item prepend-icon="mdi-calendar" title="Years" />
       </fr-list>
     </fr-col>
   </fr-row>

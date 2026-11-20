@@ -24,6 +24,7 @@ import { FrIcon } from './components/FrIcon';
 import { FrImage } from './components/FrImage';
 import { FrList } from './components/FrList';
 import { FrListHeader } from './components/FrListHeader';
+import { FrListItem } from './components/FrListItem';
 import { FrRow } from './components/FrRow';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
@@ -66,5 +67,6 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrImage,
   FrList,
   FrListHeader,
+  FrListItem,
   FrRow,
 });

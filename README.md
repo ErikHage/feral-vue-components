@@ -77,6 +77,7 @@ caller passes wins.
 | `FrImage`          | `VImg`              | default, `placeholder`, `error`, `sources`         | none                                                  |
 | `FrList`           | `VList`             | default; `title`, `prepend`... for `items` rows    | `density="compact"`                                   |
 | `FrListHeader`     | `VListSubheader`    | default, the heading's text                        | none                                                  |
+| `FrListItem`       | `VListItem`         | `prepend`, `title`, `subtitle`, default, `append`  | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -272,6 +273,23 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   <fr-list>
     <fr-list-header>Herbs</fr-list-header>
     <fr-list-item title="Basil" />
+  </fr-list>
+  ```
+
+- **`FrListItem`**: one row of an `FrList`, from `title` and `subtitle`, or their slots. `prepend`
+  and `append` hold what goes either side (an `FrIcon`, an `FrAvatar`, `FrBtn`s), and the default
+  slot goes under the title. Each slot is passed on only when given, and gets Vuetify's row state
+  (`isActive`, `isSelected`...). It sets no defaults; `prepend-icon`, `to`, `value`, `rounded`,
+  `@click` and the rest pass through.
+
+  ```vue
+  <fr-list lines="two">
+    <fr-list-item v-for="item in schedules" :key="item.id" :title="item.name">
+      <template #subtitle>{{ item.description }}</template>
+      <template #append>
+        <fr-btn icon="mdi-delete" variant="text" size="small" @click="remove(item)" />
+      </template>
+    </fr-list-item>
   </fr-list>
   ```
 

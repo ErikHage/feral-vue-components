@@ -29,6 +29,7 @@
   <fr-image src="/logo.png" alt="Logo" max-width="250" />
   <fr-list lines="two">Rows</fr-list>
   <fr-list-header sticky>Herbs</fr-list-header>
+  <fr-list-item title="Basil" prepend-icon="mdi-leaf" to="/plants/2" />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -82,6 +83,8 @@
   <fr-list density="tight" />
   <!-- @vue-expect-error sticky is a boolean -->
   <fr-list-header :sticky="'yes'" />
+  <!-- @vue-expect-error not one of VListItem's variants -->
+  <fr-list-item variant="wavy" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

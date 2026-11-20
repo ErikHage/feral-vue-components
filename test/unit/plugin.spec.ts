@@ -25,6 +25,7 @@ import {
   VImg,
   VList,
   VListSubheader,
+  VListItem,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -52,6 +53,7 @@ import {
   FrImage,
   FrList,
   FrListHeader,
+  FrListItem,
   FrRow,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
@@ -264,6 +266,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-list-header').text()).toBe('Herbs');
   });
 
+  it('registers FrListItem globally, so <fr-list-item> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-list-item title="Basil" />');
+
+    expect(wrapper.findComponent(VListItem).exists()).toBe(true);
+    expect(wrapper.find('.fr-list-item .v-list-item-title').text()).toBe('Basil');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -290,6 +299,7 @@ describe('FeralComponents', () => {
     ['FrImage', FrImage],
     ['FrList', FrList],
     ['FrListHeader', FrListHeader],
+    ['FrListItem', FrListItem],
     ['FrRow', FrRow],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
