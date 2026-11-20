@@ -12,6 +12,10 @@ npm install @feral-auth/vue-components vue vuetify @mdi/font
 `vue` (^3.5) and `vuetify` (^4.3) are peer dependencies: the app owns its single copy of each.
 `@mdi/font` is optional, and needed only for the mdi icons the theme is set up to use.
 
+It is a private package of the `@feral-auth` npm org, so installing it needs an npm login that
+belongs to the org. It is pre-1.0: a minor or patch release may change a component's props,
+slots or defaults, so pin an exact version (`npm install --save-exact`).
+
 ## Set up
 
 ```ts
@@ -587,6 +591,20 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
 | `npm run lint`          | ESLint, failing on any warning.                                          |
 | `npm run typecheck`     | `vue-tsc` over source, specs and playground.                             |
 | `npm run verify`        | Format check, lint, typecheck, coverage and build: what CI runs.         |
+| `npm run test:package`  | Builds, then packs the package and uses it as an app would (see below).  |
+
+### Publishing
+
+By hand, as a private package of the `@feral-auth` npm org: bump `version`, merge to `master`,
+then `npm publish` from `master`. `publishConfig.access` is `restricted`, so only the org's
+members can see it; never publish it with `--access public`.
+
+`prepublishOnly` cleans, runs `verify`, then `scripts/check-package.mjs`, which CI runs too. It
+packs the package as npm would publish it, checks the tarball holds `dist/index.js`,
+`index.d.ts` and `index.css` and no source or tests, installs it into a scratch app with `vue`
+and `vuetify`, builds that app with Vite (importing `vuetify/styles`, the package and its
+`styles.css`), and type-checks a file that uses its types. That catches what `verify` can't: a
+file left out of the tarball, a broken `exports` entry, or types that don't resolve.
 
 ### The playground
 

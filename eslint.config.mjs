@@ -35,7 +35,7 @@ export default withVueTs(
     rules: { 'vue/one-component-per-file': 'off' },
   },
   {
-    files: ['*.config.*'],
+    files: ['*.config.*', 'scripts/**'],
     languageOptions: { globals: { ...globals.node } },
   },
   // Last, so formatting is Prettier's alone

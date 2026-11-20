@@ -51,7 +51,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
-    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build"
+    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run build",
+    "clean": "node --eval \"for (const dir of ['dist', 'coverage']) require('node:fs').rmSync(dir, { recursive: true, force: true })\"",
+    "test:package": "npm run build && node scripts/check-package.mjs",
+    "prepublishOnly": "npm run clean && npm run verify && node scripts/check-package.mjs"
   },
   "publishConfig": {
     "access": "restricted"
