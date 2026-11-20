@@ -87,6 +87,7 @@ caller passes wins.
 | `FrSpacer`         | `VSpacer`           | default, rarely used                                      | none                                                  |
 | `FrSheet`          | `VSheet`            | default, the content                                      | `rounded="lg"`, `padding="default"` (16px)            |
 | `FrSpinner`        | `VProgressCircular` | default, in the middle, given `value`                     | `indeterminate`, unless given a value                 |
+| `FrTable`          | `VTable`            | `top`, `caption`, default, the rows, `bottom`             | `density="compact"`                                   |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -104,7 +105,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frTableDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -413,6 +414,23 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   ```vue
   <fr-spinner v-if="!plant" size="100" width="10" color="green" />
   <fr-spinner :model-value="uploaded" color="primary">{{ uploaded }}%</fr-spinner>
+  ```
+
+- **`FrTable`**: a plain HTML table styled to the theme, compact by default. Write its rows
+  (`<thead>`, `<tbody>`) in the default slot; `top` and `bottom` sit above and below the table and
+  `caption` goes first inside it, each passed on only when given. `aria-label` lands on the inner
+  `<table>`. `hover`, `striped`, `height`, `fixed-header` and the rest pass through. For a table
+  built from `items`, with sorting and paging, use `FrDataTable`.
+
+  ```vue
+  <fr-table aria-label="Harvest">
+    <thead>
+      <tr><th>Plant</th><th>Kilos</th></tr>
+    </thead>
+    <tbody>
+      <tr v-for="row in harvest" :key="row.plant"><td>{{ row.plant }}</td><td>{{ row.kilos }}</td></tr>
+    </tbody>
+  </fr-table>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand

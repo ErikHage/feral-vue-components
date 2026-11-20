@@ -38,6 +38,13 @@
   <fr-spacer tag="span" />
   <fr-spinner color="primary" />
   <fr-sheet padding="small" elevation="2">Global</fr-sheet>
+  <fr-table hover>
+    <tbody>
+      <tr>
+        <td>Global</td>
+      </tr>
+    </tbody>
+  </fr-table>
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -109,6 +116,8 @@
   <fr-spinner shape="square" />
   <!-- @vue-expect-error padding is 'default', 'small' or 'none' -->
   <fr-sheet padding="large" />
+  <!-- @vue-expect-error striped is 'even' or 'odd' -->
+  <fr-table striped="all" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

@@ -33,6 +33,7 @@ import type { FrSlider } from './components/FrSlider';
 import type { FrSpacer } from './components/FrSpacer';
 import type { FrSpinner } from './components/FrSpinner';
 import type { FrSheet } from './components/FrSheet';
+import type { FrTable } from './components/FrTable';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
 export {
@@ -94,6 +95,7 @@ export { FrSlider, frSliderDefaults, type FrSliderSlots } from './components/FrS
 export { FrSpacer } from './components/FrSpacer';
 export { FrSpinner } from './components/FrSpinner';
 export { FrSheet, frSheetDefaults, type FrSheetPadding } from './components/FrSheet';
+export { FrTable, frTableDefaults, type FrTableSlots } from './components/FrTable';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 
@@ -135,5 +137,6 @@ declare module 'vue' {
     FrSpacer: typeof FrSpacer;
     FrSpinner: typeof FrSpinner;
     FrSheet: typeof FrSheet;
+    FrTable: typeof FrTable;
   }
 }
