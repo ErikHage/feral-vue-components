@@ -30,6 +30,7 @@ import {
   VProgressLinear,
   VSelect,
   VSkeletonLoader,
+  VSlider,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -63,6 +64,7 @@ import {
   FrRow,
   FrSelect,
   FrSkeleton,
+  FrSlider,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -308,6 +310,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-skeleton .v-skeleton-loader__heading').exists()).toBe(true);
   });
 
+  it('registers FrSlider globally, so <fr-slider> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-slider label="Global" />');
+
+    expect(wrapper.findComponent(VSlider).exists()).toBe(true);
+    expect(wrapper.find('.fr-slider .v-slider__label').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -340,6 +349,7 @@ describe('FeralComponents', () => {
     ['FrRow', FrRow],
     ['FrSelect', FrSelect],
     ['FrSkeleton', FrSkeleton],
+    ['FrSlider', FrSlider],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
