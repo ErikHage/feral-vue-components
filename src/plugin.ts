@@ -42,6 +42,7 @@ import { FrToggle } from './components/FrToggle';
 import { FrTooltip } from './components/FrTooltip';
 import { FrTree } from './components/FrTree';
 import { FrFieldGroup } from './components/FrFieldGroup';
+import { FrGrid } from './components/FrGrid';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
   return {
@@ -101,4 +102,5 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrTooltip,
   FrTree,
   FrFieldGroup,
+  FrGrid,
 });

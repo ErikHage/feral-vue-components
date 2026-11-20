@@ -85,6 +85,7 @@ import {
   FrTooltip,
   FrTree,
   FrFieldGroup,
+  FrGrid,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -418,6 +419,12 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.field-group > label').text()).toBe('Global');
   });
 
+  it('registers FrGrid globally, so <fr-grid> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-grid gap="small"><div class="cell">Global</div></fr-grid>');
+
+    expect(wrapper.find('.fr-grid.ga-1 > .cell').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -462,6 +469,7 @@ describe('FeralComponents', () => {
     ['FrTooltip', FrTooltip],
     ['FrTree', FrTree],
     ['FrFieldGroup', FrFieldGroup],
+    ['FrGrid', FrGrid],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

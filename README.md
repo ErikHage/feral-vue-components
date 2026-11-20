@@ -77,6 +77,7 @@ caller passes wins.
 | `FrFadeIn`         | `VFadeTransition`     | default, what fades                                       | `appear`: it fades in on first render too             |
 | `FrFieldGroup`     | a `<label>` + content | `description`, default, the field(s)                      | `size="default"`                                      |
 | `FrFileField`      | `VFileInput`          | `selection`                                               | `variant="solo"`, `density="compact"`, `rounded="lg"` |
+| `FrGrid`           | a CSS grid `<div>`    | default, each child a cell                                | 240px columns, 12px gap, stretched                    |
 | `FrForm`           | `VForm`               | default, the fields, given the form's state               | none: it never submits the page                       |
 | `FrIcon`           | `VIcon`               | default, the icon's name                                  | none                                                  |
 | `FrImage`          | `VImg`                | default, `placeholder`, `error`, `sources`                | none                                                  |
@@ -544,6 +545,25 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
       <fr-select v-model="minute" :items="minutes" class="field-group--field" />
     </div>
   </fr-field-group>
+  ```
+
+- **`FrGrid`**: a CSS grid in which each child is a cell. It fits as many columns of at least
+  `min-item-width` (240px) as it can, up to `max-columns`, stretching them to fill the row
+  (`:stretch="false"` leaves empty columns at the end instead). Given `weights` (`[2, 1]`), the
+  columns take those proportions, stacking into one once the narrowest would be under
+  `min-item-width`; it watches its own width for that. `gap="small"` spaces cells 4px apart
+  rather than 12px; `min-row-height` and `uniform-rows` size the rows; `align` places cells in
+  their row. Cells may shrink below their content's width (`styles.css`), so nothing overflows
+  its column.
+
+  ```vue
+  <fr-grid :max-columns="3">
+    <fr-card v-for="plot in plots" :key="plot.id" :title="plot.name" />
+  </fr-grid>
+  <fr-grid :weights="[2, 1]">
+    <plot-map />
+    <plot-details />
+  </fr-grid>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand

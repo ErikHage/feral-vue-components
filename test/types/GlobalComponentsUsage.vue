@@ -54,6 +54,7 @@
   <fr-tooltip text="Global" location="end" />
   <fr-tree :items="[{ title: 'Global', value: 1 }]" />
   <fr-field-group label="Global" size="small"><input /></fr-field-group>
+  <fr-grid :max-columns="2"><div>Global</div></fr-grid>
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -141,6 +142,8 @@
   <fr-tree density="tight" />
   <!-- @vue-expect-error size is 'default' or 'small' -->
   <fr-field-group size="large" />
+  <!-- @vue-expect-error gap is 'small' or unset -->
+  <fr-grid gap="large" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

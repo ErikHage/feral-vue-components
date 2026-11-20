@@ -41,6 +41,7 @@ import type { FrToggle } from './components/FrToggle';
 import type { FrTooltip } from './components/FrTooltip';
 import type { FrTree } from './components/FrTree';
 import type { FrFieldGroup } from './components/FrFieldGroup';
+import type { FrGrid } from './components/FrGrid';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
 export {
@@ -116,6 +117,7 @@ export { FrToggle, frToggleDefaults, type FrToggleSlots } from './components/FrT
 export { FrTooltip } from './components/FrTooltip';
 export { FrTree, frTreeDefaults } from './components/FrTree';
 export { FrFieldGroup, type FrFieldGroupSize } from './components/FrFieldGroup';
+export { FrGrid, type FrGridAlign, type FrGridGap } from './components/FrGrid';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 
@@ -165,5 +167,6 @@ declare module 'vue' {
     FrTooltip: typeof FrTooltip;
     FrTree: typeof FrTree;
     FrFieldGroup: typeof FrFieldGroup;
+    FrGrid: typeof FrGrid;
   }
 }
