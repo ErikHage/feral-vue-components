@@ -85,6 +85,7 @@ caller passes wins.
 | `FrSkeleton`       | `VSkeletonLoader`   | default, shown once not `loading`                         | none                                                  |
 | `FrSlider`         | `VSlider`           | `label`, `prepend`, `append`, `thumb-label`, `tick-label` | `density="compact"`                                   |
 | `FrSpacer`         | `VSpacer`           | default, rarely used                                      | none                                                  |
+| `FrSheet`          | `VSheet`            | default, the content                                      | `rounded="lg"`, `padding="default"` (16px)            |
 | `FrSpinner`        | `VProgressCircular` | default, in the middle, given `value`                     | `indeterminate`, unless given a value                 |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -103,7 +104,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSliderDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -390,6 +391,17 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
     <fr-spacer />
     <fr-btn color="primary" text="Save" />
   </div>
+  ```
+
+- **`FrSheet`**: a plain surface in the theme's colours, for a page's content or a panel, rounded
+  (`rounded="lg"`) and padded by default. `padding` is `'default'` (16px), `'small'` (8px) or
+  `'none'`; use it rather than a `pa-*` class, which would sit beside the default one rather than
+  replace it. `elevation`, `color`, `border`, `height` and the rest pass through.
+
+  ```vue
+  <fr-sheet elevation="2" height="30vh" padding="small">
+    <fr-list :items="plantings" />
+  </fr-sheet>
   ```
 
 - **`FrSpinner`**: a loading spinner. It spins unless given a value (`v-model` or `model-value`,

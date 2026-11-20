@@ -33,6 +33,7 @@ import {
   VSlider,
   VSpacer,
   VProgressCircular,
+  VSheet,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -69,6 +70,7 @@ import {
   FrSlider,
   FrSpacer,
   FrSpinner,
+  FrSheet,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -335,6 +337,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-spinner.v-progress-circular--indeterminate').exists()).toBe(true);
   });
 
+  it('registers FrSheet globally, so <fr-sheet> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-sheet padding="small">Global</fr-sheet>');
+
+    expect(wrapper.findComponent(VSheet).exists()).toBe(true);
+    expect(wrapper.find('.fr-sheet.pa-2.rounded-lg').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -370,6 +379,7 @@ describe('FeralComponents', () => {
     ['FrSlider', FrSlider],
     ['FrSpacer', FrSpacer],
     ['FrSpinner', FrSpinner],
+    ['FrSheet', FrSheet],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

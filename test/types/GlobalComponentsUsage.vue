@@ -37,6 +37,7 @@
   <fr-slider :model-value="40" label="Global" />
   <fr-spacer tag="span" />
   <fr-spinner color="primary" />
+  <fr-sheet padding="small" elevation="2">Global</fr-sheet>
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -106,6 +107,8 @@
   <fr-spacer :tag="3" />
   <!-- @vue-expect-error not one of VProgressCircular's shapes -->
   <fr-spinner shape="square" />
+  <!-- @vue-expect-error padding is 'default', 'small' or 'none' -->
+  <fr-sheet padding="large" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>
