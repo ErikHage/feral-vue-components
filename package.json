@@ -26,6 +26,7 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./styles.css": "./dist/index.css",
     "./package.json": "./package.json"
   },
   "files": [
@@ -33,7 +34,9 @@
     "README.md",
     "LICENSE"
   ],
-  "sideEffects": false,
+  "sideEffects": [
+    "*.css"
+  ],
   "engines": {
     "node": ">=22.12.0"
   },

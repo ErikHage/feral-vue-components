@@ -4,7 +4,8 @@ import dts from 'vite-plugin-dts';
 import { defineConfig } from 'vite';
 
 // The library build: ESM only, with vue and vuetify left to the consuming app, so it shares
-// the app's single copy of each. Vuetify's CSS is the app's to import too
+// the app's single copy of each. Vuetify's CSS is the app's to import too, as is this library's:
+// the components' <style> blocks build into dist/index.css, exported as ./styles.css
 export default defineConfig({
   plugins: [
     vue(),

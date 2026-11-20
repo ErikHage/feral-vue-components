@@ -78,8 +78,8 @@ watch(
 
 <!--
   A column of the days with records, newest first, beside the shown day's records, with Older and
-  Newer buttons either side of its heading. Modelled on DayTimeline in vigilant-harvest-app. The
-  library ships no CSS, so the look is Vuetify's: the days are a nav FrList, the shown one active
+  Newer buttons either side of its heading. Modelled on DayTimeline in vigilant-harvest-app. It adds
+  nothing to the library's stylesheet, so the look is Vuetify's: the days are a nav FrList, the shown one active
   in the theme's primary, and heights are inline styles. The caller's attributes fall through
   onto the FrRow at the root
 -->

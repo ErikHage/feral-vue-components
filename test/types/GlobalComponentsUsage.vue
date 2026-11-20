@@ -53,6 +53,7 @@
   <fr-toggle :model-value="true" label="Global" />
   <fr-tooltip text="Global" location="end" />
   <fr-tree :items="[{ title: 'Global', value: 1 }]" />
+  <fr-field-group label="Global" size="small"><input /></fr-field-group>
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -138,6 +139,8 @@
   <fr-tooltip :disabled="'yes'" />
   <!-- @vue-expect-error not one of VTreeview's densities -->
   <fr-tree density="tight" />
+  <!-- @vue-expect-error size is 'default' or 'small' -->
+  <fr-field-group size="large" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

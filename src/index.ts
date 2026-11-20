@@ -40,6 +40,7 @@ import type { FrSnackbarQueue } from './components/FrSnackbarQueue';
 import type { FrToggle } from './components/FrToggle';
 import type { FrTooltip } from './components/FrTooltip';
 import type { FrTree } from './components/FrTree';
+import type { FrFieldGroup } from './components/FrFieldGroup';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
 export {
@@ -114,6 +115,7 @@ export { FrSnackbarQueue, frSnackbarQueueDefaults } from './components/FrSnackba
 export { FrToggle, frToggleDefaults, type FrToggleSlots } from './components/FrToggle';
 export { FrTooltip } from './components/FrTooltip';
 export { FrTree, frTreeDefaults } from './components/FrTree';
+export { FrFieldGroup, type FrFieldGroupSize } from './components/FrFieldGroup';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
 
@@ -162,5 +164,6 @@ declare module 'vue' {
     FrToggle: typeof FrToggle;
     FrTooltip: typeof FrTooltip;
     FrTree: typeof FrTree;
+    FrFieldGroup: typeof FrFieldGroup;
   }
 }

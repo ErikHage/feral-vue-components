@@ -10,8 +10,8 @@ defineSlots<{
 </script>
 
 <!--
-  A plain <pre>: no Vuetify component. Its look is an inline style, so the library still ships no
-  CSS of its own: the background is the theme's text colour at low opacity, which suits dark and
+  A plain <pre>: no Vuetify component. Its look is an inline style, not a rule in the library's
+  stylesheet: the background is the theme's text colour at low opacity, which suits dark and
   light alike. A caller changes it with `style`, which merges in after this one and wins. Not with
   a Vuetify utility class: Vuetify 4's classes sit in CSS layers without !important, and an
   inline style beats any layered rule (as classes, pa-4 would still beat a caller's pa-2, which

@@ -84,6 +84,7 @@ import {
   FrToggle,
   FrTooltip,
   FrTree,
+  FrFieldGroup,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -411,6 +412,12 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-tree .v-list-item-title').text()).toBe('Global');
   });
 
+  it('registers FrFieldGroup globally, so <fr-field-group> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-field-group label="Global"><input /></fr-field-group>');
+
+    expect(wrapper.find('.field-group > label').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -454,6 +461,7 @@ describe('FeralComponents', () => {
     ['FrToggle', FrToggle],
     ['FrTooltip', FrTooltip],
     ['FrTree', FrTree],
+    ['FrFieldGroup', FrFieldGroup],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
