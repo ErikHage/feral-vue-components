@@ -50,6 +50,7 @@
     <template #day="{ records }">{{ records.join(', ') }}</template>
   </fr-timeline>
   <fr-snackbar-queue :model-value="['Global']" timeout="2000" />
+  <fr-toggle :model-value="true" label="Global" />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -129,6 +130,8 @@
   <fr-timeline :records="[1]" :date-of="(n) => n > 0" />
   <!-- @vue-expect-error displayStrategy is 'hold' or 'overflow' -->
   <fr-snackbar-queue display-strategy="stack" />
+  <!-- @vue-expect-error not one of VSwitch's densities -->
+  <fr-toggle density="tight" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

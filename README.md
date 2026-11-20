@@ -91,6 +91,7 @@ caller passes wins.
 | `FrTable`          | `VTable`            | `top`, `caption`, default, the rows, `bottom`             | `density="compact"`                                   |
 | `FrTabs`           | `VTabs`             | default, below the tabs, given the selected `tab`         | `color="primary"`, `fixed-tabs`                       |
 | `FrTimeline`       | built from Fr parts | `day`, `actions`, `empty`                                 | none                                                  |
+| `FrToggle`         | `VSwitch`           | `label`, `prepend`, `append`, `thumb`, `track-true`...    | `density="compact"`                                   |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -108,7 +109,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frToggleDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -483,6 +484,18 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   ```vue
   <fr-snackbar-queue v-model="messages" timeout="2000" />
   <!-- then, in a handler: messages.value.push({ text: 'Saved', color: 'success' }) -->
+  ```
+
+- **`FrToggle`**: an on/off switch, compact by default, as `FrCheckbox` is. Its slots are passed
+  on only when given: `label` in place of the `label` prop, `prepend` and `append` either side,
+  `thumb` in place of the thumb's icon, and `track-true` and `track-false` on the track (with
+  `inset`), each given the switch's state. `color`, `base-color`, `inset`, `hide-details` and the
+  rest pass through.
+
+  ```vue
+  <fr-toggle v-model="enableEdit" color="success" base-color="error">
+    <template #label><fr-icon>{{ enableEdit ? 'mdi-lock-open' : 'mdi-lock' }}</fr-icon></template>
+  </fr-toggle>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand

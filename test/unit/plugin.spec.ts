@@ -37,6 +37,7 @@ import {
   VTable,
   VTabs,
   VSnackbarQueue,
+  VSwitch,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -78,6 +79,7 @@ import {
   FrTabs,
   FrTimeline,
   FrSnackbarQueue,
+  FrToggle,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -382,6 +384,13 @@ describe('FeralComponents', () => {
     expect(wrapper.findComponent(VSnackbarQueue).props('closable')).toBe(true);
   });
 
+  it('registers FrToggle globally, so <fr-toggle> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-toggle label="Global" />');
+
+    expect(wrapper.findComponent(VSwitch).exists()).toBe(true);
+    expect(wrapper.find('.fr-toggle label').text()).toBe('Global');
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -422,6 +431,7 @@ describe('FeralComponents', () => {
     ['FrTabs', FrTabs],
     ['FrTimeline', FrTimeline],
     ['FrSnackbarQueue', FrSnackbarQueue],
+    ['FrToggle', FrToggle],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 
