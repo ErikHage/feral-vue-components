@@ -45,6 +45,7 @@
       </tr>
     </tbody>
   </fr-table>
+  <fr-tabs :options="['Details', 'History']" grow />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -118,6 +119,8 @@
   <fr-sheet padding="large" />
   <!-- @vue-expect-error striped is 'even' or 'odd' -->
   <fr-table striped="all" />
+  <!-- @vue-expect-error an option object needs a value -->
+  <fr-tabs :options="[{ title: 'No value' }]" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

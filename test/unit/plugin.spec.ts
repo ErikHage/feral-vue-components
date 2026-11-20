@@ -35,6 +35,7 @@ import {
   VProgressCircular,
   VSheet,
   VTable,
+  VTabs,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -73,6 +74,7 @@ import {
   FrSpinner,
   FrSheet,
   FrTable,
+  FrTabs,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -353,6 +355,16 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-table table td').text()).toBe('Global');
   });
 
+  it('registers FrTabs globally, so <fr-tabs> resolves in templates', () => {
+    const wrapper = mountGlobal(`<fr-tabs :options="['Details', 'History']" />`);
+
+    expect(wrapper.findComponent(VTabs).exists()).toBe(true);
+    expect(wrapper.findAll('.fr-tabs .v-tab').map((tab) => tab.text())).toEqual([
+      'Details',
+      'History',
+    ]);
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -390,6 +402,7 @@ describe('FeralComponents', () => {
     ['FrSpinner', FrSpinner],
     ['FrSheet', FrSheet],
     ['FrTable', FrTable],
+    ['FrTabs', FrTabs],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

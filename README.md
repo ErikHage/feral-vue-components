@@ -88,6 +88,7 @@ caller passes wins.
 | `FrSheet`          | `VSheet`            | default, the content                                      | `rounded="lg"`, `padding="default"` (16px)            |
 | `FrSpinner`        | `VProgressCircular` | default, in the middle, given `value`                     | `indeterminate`, unless given a value                 |
 | `FrTable`          | `VTable`            | `top`, `caption`, default, the rows, `bottom`             | `density="compact"`                                   |
+| `FrTabs`           | `VTabs`             | default, below the tabs, given the selected `tab`         | `color="primary"`, `fixed-tabs`                       |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -105,7 +106,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frTableDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frTableDefaults`, `frTabsDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
@@ -431,6 +432,22 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
       <tr v-for="row in harvest" :key="row.plant"><td>{{ row.plant }}</td><td>{{ row.kilos }}</td></tr>
     </tbody>
   </fr-table>
+  ```
+
+- **`FrTabs`**: tabs built from `options`, each a string (its title and value) or
+  `{ title, value }`, optionally with `prependIcon` or `disabled`. `v-model` holds the selected
+  tab's value; with none, the first tab is selected. The default slot sits below the tabs, given
+  the selected value as `tab`, so show each tab's content with `v-if` there. By default the tabs
+  stretch across the row, up to 300px each (`fixed-tabs`), in the theme's primary. `class` and `style` land on the div
+  around it all; every other attribute (`align-tabs`, `grow`, `bg-color`...) goes to the tabs.
+
+  ```vue
+  <fr-tabs v-model="tab" :options="[{ title: 'To Start', value: 'planning' }, 'History']">
+    <template #default="{ tab }">
+      <planning-table v-if="tab === 'planning'" :items="toStart" />
+      <history-list v-else :history="history" />
+    </template>
+  </fr-tabs>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
