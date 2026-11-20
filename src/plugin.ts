@@ -31,6 +31,7 @@ import { FrRow } from './components/FrRow';
 import { FrSelect } from './components/FrSelect';
 import { FrSkeleton } from './components/FrSkeleton';
 import { FrSlider } from './components/FrSlider';
+import { FrSpacer } from './components/FrSpacer';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
   return {
@@ -79,4 +80,5 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrSelect,
   FrSkeleton,
   FrSlider,
+  FrSpacer,
 });

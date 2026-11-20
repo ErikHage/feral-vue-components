@@ -31,6 +31,7 @@ import {
   VSelect,
   VSkeletonLoader,
   VSlider,
+  VSpacer,
 } from 'vuetify/components';
 import {
   FrAccordion,
@@ -65,6 +66,7 @@ import {
   FrSelect,
   FrSkeleton,
   FrSlider,
+  FrSpacer,
 } from '../../src';
 import { createComponentsPlugin, FeralComponents } from '../../src/plugin';
 import { mountWithVuetify } from './helpers/mount';
@@ -317,6 +319,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-slider .v-slider__label').text()).toBe('Global');
   });
 
+  it('registers FrSpacer globally, so <fr-spacer> resolves in templates', () => {
+    const wrapper = mountGlobal('<div class="d-flex"><fr-spacer /></div>');
+
+    expect(wrapper.findComponent(VSpacer).exists()).toBe(true);
+    expect(wrapper.find('.d-flex > .fr-spacer.v-spacer').exists()).toBe(true);
+  });
+
   it.each([
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
@@ -350,6 +359,7 @@ describe('FeralComponents', () => {
     ['FrSelect', FrSelect],
     ['FrSkeleton', FrSkeleton],
     ['FrSlider', FrSlider],
+    ['FrSpacer', FrSpacer],
   ])('registers it under the name %s', (name, component) => {
     const app = createApp({ render: () => null }).use(FeralComponents);
 

@@ -35,6 +35,7 @@
   <fr-select :items="['Weekly']" label="Global" />
   <fr-skeleton type="heading, paragraph" />
   <fr-slider :model-value="40" label="Global" />
+  <fr-spacer tag="span" />
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -100,6 +101,8 @@
   <fr-skeleton :loading="'yes'" />
   <!-- @vue-expect-error not one of VSlider's densities -->
   <fr-slider density="tight" />
+  <!-- @vue-expect-error tag is an element's name -->
+  <fr-spacer :tag="3" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

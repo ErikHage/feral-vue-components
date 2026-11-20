@@ -84,6 +84,7 @@ caller passes wins.
 | `FrSelect`         | `VSelect`           | `item`, `no-data`                                         | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 | `FrSkeleton`       | `VSkeletonLoader`   | default, shown once not `loading`                         | none                                                  |
 | `FrSlider`         | `VSlider`           | `label`, `prepend`, `append`, `thumb-label`, `tick-label` | `density="compact"`                                   |
+| `FrSpacer`         | `VSpacer`           | default, rarely used                                      | none                                                  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -377,6 +378,17 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   <fr-slider v-model="spacing" :min="10" :max="90" :step="5" label="Spacing" thumb-label>
     <template #thumb-label="{ modelValue }">{{ modelValue }} cm</template>
   </fr-slider>
+  ```
+
+- **`FrSpacer`**: an empty element that grows to fill the free space in a flex row, pushing what
+  follows it to the far end. It sets no defaults; `tag` passes through.
+
+  ```vue
+  <div class="d-flex">
+    <fr-btn text="Back" />
+    <fr-spacer />
+    <fr-btn color="primary" text="Save" />
+  </div>
   ```
 
 - **`FrAccordionPanel`**: `title` falls back to the `title` prop, `actions` replaces the expand
