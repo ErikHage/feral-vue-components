@@ -15,10 +15,14 @@ const work = mkdtempSync(join(tmpdir(), 'vue-components-'));
 // Run from an npm script, npm's own CLI is in npm_execpath and runs under this Node. Run
 // directly, fall back to `npm`, which on Windows is a .cmd and needs a shell
 const npmCli = process.env.npm_execpath;
+// Under `npm publish --dry-run`, npm passes npm_config_dry_run down to this script, and the pack
+// and install below would inherit it, writing and installing nothing
+const env = { ...process.env };
+delete env.npm_config_dry_run;
 const npm = (args, cwd) =>
   npmCli === undefined
-    ? execFileSync('npm', args, { cwd, encoding: 'utf8', shell: process.platform === 'win32' })
-    : execFileSync(process.execPath, [npmCli, ...args], { cwd, encoding: 'utf8' });
+    ? execFileSync('npm', args, { cwd, env, encoding: 'utf8', shell: process.platform === 'win32' })
+    : execFileSync(process.execPath, [npmCli, ...args], { cwd, env, encoding: 'utf8' });
 
 // The peers the app installs: the versions this repo develops and tests against
 const installed = (name) =>
