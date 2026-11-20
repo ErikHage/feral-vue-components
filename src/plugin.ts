@@ -20,6 +20,7 @@ import { FrDivider } from './components/FrDivider';
 import { FrFadeIn } from './components/FrFadeIn';
 import { FrFileField } from './components/FrFileField';
 import { FrForm } from './components/FrForm';
+import { FrIcon } from './components/FrIcon';
 import { FrRow } from './components/FrRow';
 
 export function createComponentsPlugin(components: Record<string, Component>): Plugin {
@@ -58,5 +59,6 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrFadeIn,
   FrFileField,
   FrForm,
+  FrIcon,
   FrRow,
 });

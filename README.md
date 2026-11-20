@@ -73,6 +73,7 @@ caller passes wins.
 | `FrFadeIn`         | `VFadeTransition`   | default, what fades                                | `appear`: it fades in on first render too             |
 | `FrFileField`      | `VFileInput`        | `selection`                                        | `variant="solo"`, `density="compact"`, `rounded="lg"` |
 | `FrForm`           | `VForm`             | default, the fields, given the form's state        | none: it never submits the page                       |
+| `FrIcon`           | `VIcon`             | default, the icon's name                           | none                                                  |
 | `FrRow`            | `VRow`              | default, the columns                               | `spacing="default"`: gutters, and the `fr-row` class  |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
@@ -227,6 +228,11 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
     <fr-btn type="submit" text="Save" :disabled="valid === false" />
   </fr-form>
   ```
+
+- **`FrIcon`**: an icon, named in its default slot (`<fr-icon>mdi-sprout</fr-icon>`), as the apps
+  write it, or by `icon`. It sets no defaults; `size`, `color`, `start`, `end` and the rest pass
+  through, and with `@click` it becomes a focusable button. Vuetify 2's `small` and `left` are
+  gone: use `size="small"` and `start`.
 
 - **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
   `'none'` removes the gutters between columns (`no-gutters`) and leaves off the `fr-row` class,

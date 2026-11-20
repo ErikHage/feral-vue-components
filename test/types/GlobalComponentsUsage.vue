@@ -25,6 +25,7 @@
   <fr-divider>or</fr-divider>
   <fr-fade-in><p>Fading</p></fr-fade-in>
   <fr-file-field label="Global" accept=".csv" />
+  <fr-icon size="small">mdi-sprout</fr-icon>
   <fr-form validate-on="submit"><fr-file-field label="In a form" /></fr-form>
   <fr-accordion rounded="xl" variant="inset">
     <fr-accordion-panel title="Global" text="Body" :value="2" />
@@ -70,6 +71,8 @@
   <fr-file-field variant="not-a-variant" />
   <!-- @vue-expect-error v-model is the form's validity: a boolean or null -->
   <fr-form :model-value="'yes'" />
+  <!-- @vue-expect-error start is a boolean -->
+  <fr-icon :start="'yes'" />
   <!-- @vue-expect-error disabled is a boolean -->
   <fr-accordion-panel :disabled="'yes'" />
 </template>

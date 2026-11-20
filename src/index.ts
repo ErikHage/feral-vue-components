@@ -19,6 +19,7 @@ import type { FrDivider } from './components/FrDivider';
 import type { FrFadeIn } from './components/FrFadeIn';
 import type { FrFileField } from './components/FrFileField';
 import type { FrForm } from './components/FrForm';
+import type { FrIcon } from './components/FrIcon';
 import type { FrRow } from './components/FrRow';
 
 export { FrAccordion, frAccordionDefaults } from './components/FrAccordion';
@@ -61,6 +62,7 @@ export {
   type FrFileFieldSlots,
 } from './components/FrFileField';
 export { FrForm, type FrFormSlotScope, type FrFormValidationResult } from './components/FrForm';
+export { FrIcon } from './components/FrIcon';
 export { FrRow, type FrRowSpacing } from './components/FrRow';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
@@ -89,6 +91,7 @@ declare module 'vue' {
     FrFadeIn: typeof FrFadeIn;
     FrFileField: typeof FrFileField;
     FrForm: typeof FrForm;
+    FrIcon: typeof FrIcon;
     FrRow: typeof FrRow;
   }
 }
