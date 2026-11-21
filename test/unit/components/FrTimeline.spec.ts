@@ -195,18 +195,11 @@ describe('FrTimeline', () => {
 });
 
 describe('FrTimeline days', () => {
-  // West of Greenwich, as here, new Date('2026-05-01') falls on 30 April locally. Set, so the
-  // test means the same on a machine in UTC
+  // vitest.config.ts runs the specs in Los Angeles time, where new Date('2026-05-01') falls on
+  // 30 April locally
   it('keeps a date-only string as the day it names, even west of Greenwich', () => {
-    const tz = process.env.TZ;
-    process.env.TZ = 'America/Los_Angeles';
-    try {
-      expect(new Date('2026-05-01').getDate()).toBe(30);
-      expect(dayOf('2026-05-01')).toBe('2026-05-01');
-    } finally {
-      if (tz === undefined) delete process.env.TZ;
-      else process.env.TZ = tz;
-    }
+    expect(new Date('2026-05-01').getDate()).toBe(30);
+    expect(dayOf('2026-05-01')).toBe('2026-05-01');
   });
 
   it("reads anything else in local time, and gives undefined for what it can't read", () => {

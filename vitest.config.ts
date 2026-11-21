@@ -1,6 +1,12 @@
 import vue from '@vitejs/plugin-vue';
 import { defineConfig } from 'vitest/config';
 
+// One timezone for every run, on any machine: west of Greenwich, where reading a date-only string
+// as UTC midnight lands on the day before, so FrTimeline's specs catch that whether the machine is
+// in New York or on CI's UTC. Set here, before Vitest starts its workers: a spec setting TZ itself
+// reaches no clock inside them
+process.env.TZ = 'America/Los_Angeles';
+
 export default defineConfig({
   plugins: [vue()],
   test: {
