@@ -68,7 +68,7 @@ caller passes wins.
 | `FrBadge`          | `VBadge`              | default, `badge`                                          | none                                                  |
 | `FrBreadcrumbs`    | `VBreadcrumbs`        | `divider`                                                 | dividers are chevrons, not `/`                        |
 | `FrBtn`            | `VBtn`                | default, `prepend`, `append`                              | `rounded="lg"`, except icon buttons, which stay round |
-| `FrCard`           | `VCard`               | `title`, default, `actions`                               | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
+| `FrCard`           | `VCard`               | `title`, `prepend`, `append`, default, `actions`          | `variant="elevated"`, `elevation="2"`, `rounded="lg"` |
 | `FrCheckbox`       | `VCheckbox`           | `label`                                                   | `density="compact"`                                   |
 | `FrChip`           | `VChip`               | default, `prepend`, `append`                              | none: it stays Vuetify's pill                         |
 | `FrChipGroup`      | `VChipGroup`          | default, holding the chips                                | none                                                  |
@@ -125,8 +125,10 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, rendered as is with no padding of its own, so its spacing is
-  the caller's (`<p class="px-4 pb-4">`). `actions` lines its content up on the right. VCard's
-  own slots (`loader`, `image`, `prepend`...) are not forwarded.
+  the caller's (`<p class="px-4 pb-4">`). `prepend` and `append` sit either side of the title,
+  each passed on only when given, and replace that side's `*-icon` and `*-avatar` props, so an
+  icon there can take a colour (`<fr-icon color="primary" icon="mdi-star" />`). `actions` lines its
+  content up on the right. VCard's own slots (`loader`, `image`, `text`...) are not forwarded.
 - **`FrAlert`**: `title` falls back to the `title` prop, the message is the default slot, falling
   back to `text`, and `append` sits beside it on the right, before the close button. VAlert's
   `prepend` and `close` slots are not forwarded; its props (`type`, `icon`, `closable`,

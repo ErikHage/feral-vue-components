@@ -74,6 +74,47 @@ describe('FrCard', () => {
     expect(wrapper.find(selector).exists()).toBe(true);
   });
 
+  it.each(['prepend', 'append'])('renders the %s slot in its own item', (side) => {
+    const wrapper = mountWithVuetify(FrCard, {
+      props: { title: 'Harvest' },
+      slots: { [side]: () => h('i', { class: 'slot-icon' }) },
+    });
+
+    expect(wrapper.findAllComponents(VCardItem)).toHaveLength(1);
+    expect(wrapper.find(`.v-card-item__${side} .slot-icon`).exists()).toBe(true);
+  });
+
+  it.each(['prepend', 'append'])('renders the item for the %s slot alone', (side) => {
+    const wrapper = mountWithVuetify(FrCard, {
+      slots: { [side]: () => h('i', { class: 'slot-icon' }) },
+    });
+
+    expect(wrapper.findAllComponents(VCardItem)).toHaveLength(1);
+    expect(wrapper.find(`.v-card-item__${side} .slot-icon`).exists()).toBe(true);
+  });
+
+  it.each([
+    ['prepend', { prependIcon: 'mdi-sprout', prependAvatar: '/sprout.png' }],
+    ['append', { appendIcon: 'mdi-sprout', appendAvatar: '/sprout.png' }],
+  ])('lets the %s slot replace the icon and avatar props on its side', (side, props) => {
+    const wrapper = mountWithVuetify(FrCard, {
+      props: { title: 'Harvest', ...props },
+      slots: { [side]: () => h('i', { class: 'slot-icon' }) },
+    });
+    const area = wrapper.find(`.v-card-item__${side}`);
+
+    expect(area.find('.slot-icon').exists()).toBe(true);
+    expect(area.find('.mdi-sprout').exists()).toBe(false);
+    expect(area.find('.v-avatar').exists()).toBe(false);
+  });
+
+  it('draws no prepend or append area without their slots or props', () => {
+    const wrapper = mountWithVuetify(FrCard, { props: { title: 'Harvest' } });
+
+    expect(wrapper.find('.v-card-item__prepend').exists()).toBe(false);
+    expect(wrapper.find('.v-card-item__append').exists()).toBe(false);
+  });
+
   it('replaces the title and subtitle with the title slot', () => {
     const wrapper = mountWithVuetify(FrCard, {
       props: { title: 'Prop title', subtitle: 'Prop subtitle' },

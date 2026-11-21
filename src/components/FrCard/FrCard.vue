@@ -34,13 +34,17 @@ const props = defineProps({
 
 <!--
   The caller's other attributes fall through onto VCard after the defaults, so the caller wins.
-  Slots are FrCard's own, so content never needs a Vuetify component around it
+  Slots are FrCard's own, so content never needs a Vuetify component around it. prepend and append
+  are passed on only when given: VCardItem draws that side for any slot it is handed, and the slot
+  replaces the side's icon and avatar props
 -->
 <template>
   <v-card class="fr-card" v-bind="frCardDefaults">
     <v-card-item
       v-if="
         $slots.title ||
+        $slots.prepend ||
+        $slots.append ||
         props.title != null ||
         props.subtitle != null ||
         props.prependIcon ||
@@ -53,6 +57,12 @@ const props = defineProps({
       :prepend-avatar="props.prependAvatar"
       :append-avatar="props.appendAvatar"
     >
+      <template v-if="$slots.prepend" #prepend>
+        <slot name="prepend" />
+      </template>
+      <template v-if="$slots.append" #append>
+        <slot name="append" />
+      </template>
       <slot name="title">
         <v-card-title v-if="props.title != null">{{ props.title }}</v-card-title>
         <v-card-subtitle v-if="props.subtitle != null">{{ props.subtitle }}</v-card-subtitle>

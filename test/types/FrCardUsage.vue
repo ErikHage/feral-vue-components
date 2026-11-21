@@ -16,6 +16,8 @@ import { FrCard } from '../../src';
     @click="() => {}"
   >
     <template #title>Slot title</template>
+    <template #prepend>Star</template>
+    <template #append>Menu</template>
     Body
     <template #actions>Save</template>
   </fr-card>
