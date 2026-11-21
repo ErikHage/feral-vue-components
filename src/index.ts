@@ -64,7 +64,7 @@ export { FrCheckbox, frCheckboxDefaults, type FrCheckboxSlots } from './componen
 export { FrChip, type FrChipScope, type FrChipSlots } from './components/FrChip';
 export { FrChipGroup } from './components/FrChipGroup';
 export { FrCodeBlock } from './components/FrCodeBlock';
-export { FrCol } from './components/FrCol';
+export { FrCol, type FrColAlignSelf } from './components/FrCol';
 export { FrContainer } from './components/FrContainer';
 export {
   FrDataTable,

@@ -1,9 +1,10 @@
 <template>
   <h2 class="text-h5 mb-4">FrCol</h2>
   <p class="text-medium-emphasis mb-6">
-    Wraps <code>VCol</code>; its default slot is the column's content. No defaults: every grid prop
-    (<code>cols</code>, <code>sm</code>, <code>md</code>, <code>offset</code>,
-    <code>order</code>...) passes through. Resize the window to see the breakpoints.
+    Wraps <code>VCol</code>; its default slot is the column's content. No defaults: the grid props
+    (<code>cols</code>, <code>sm</code>, <code>md</code>, <code>offset</code>...) pass through,
+    while <code>order</code> (also <code>order-md</code>...) and <code>align-self</code> become
+    Vuetify's utility classes. Resize the window to see the breakpoints.
   </p>
   <h3 class="text-subtitle-1 mb-2">cols="12" md="6" lg="3"</h3>
   <fr-row class="mb-6">
