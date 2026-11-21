@@ -369,6 +369,11 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   </fr-container>
   ```
 
+- **`FrCol`**: takes `order` (also at a breakpoint, `order-md`...) and `align-self`, and renders
+  them as Vuetify's utility classes (`order-first`, `order-md-2`, `align-self-center`) rather than
+  passing them to VCol, which deprecates them in Vuetify 4. `order` has a class for 0 to 12,
+  `first` and `last`. Every other VCol prop (`cols`, `md`, `offset`...) passes through.
+
 - **`FrSelect`**: the feral field look and the same slots as `FrAutocomplete`: `item` fills one
   row of the list and gets your own item (typed from `items`) and its index, with FrSelect
   rendering the row around it so selecting still works; `no-data` replaces `no-data-text` when

@@ -47,6 +47,66 @@ describe('FrCol', () => {
     );
   });
 
+  it.each([
+    [2, 'order-2'],
+    ['12', 'order-12'],
+    [0, 'order-0'],
+    ['first', 'order-first'],
+    ['last', 'order-last'],
+  ])('renders order %s as the %s class, with no stray order-- class', (order, className) => {
+    const wrapper = mountWithVuetify(FrCol, { props: { order } });
+
+    expect(wrapper.classes()).toContain(className);
+    expect(wrapper.classes().filter((name) => name.startsWith('order--'))).toEqual([]);
+  });
+
+  it.each(['Sm', 'Md', 'Lg', 'Xl', 'Xxl'])('renders the %s order class', (breakpoint) => {
+    const wrapper = mountWithVuetify(FrCol, { props: { [`order${breakpoint}`]: 'last' } });
+
+    expect(wrapper.classes()).toContain(`order-${breakpoint.toLowerCase()}-last`);
+  });
+
+  it.each(['auto', 'start', 'end', 'center', 'baseline', 'stretch'] as const)(
+    'renders align-self %s as its class',
+    (alignSelf) => {
+      const wrapper = mountWithVuetify(FrCol, { props: { alignSelf } });
+
+      expect(wrapper.classes()).toContain(`align-self-${alignSelf}`);
+    },
+  );
+
+  it('gives VCol none of its deprecated order or align-self props', () => {
+    const names = ['order', 'orderSm', 'orderMd', 'orderLg', 'orderXl', 'orderXxl'];
+    const wrapper = mountWithVuetify(FrCol, {
+      props: { ...Object.fromEntries(names.map((name) => [name, 1])), alignSelf: 'end' },
+    });
+    const colProps: Record<string, unknown> = wrapper.findComponent(VCol).props();
+
+    for (const name of [...names, 'alignSelf']) expect(colProps[name], name).toBeNull();
+    expect(wrapper.classes()).toEqual(
+      expect.arrayContaining(['order-1', 'order-xxl-1', 'align-self-end']),
+    );
+  });
+
+  it('renders no order or align-self class without the props, or for an empty order', () => {
+    const bare = mountWithVuetify(FrCol);
+    const empty = mountWithVuetify(FrCol, { props: { order: '' } });
+
+    for (const wrapper of [bare, empty]) {
+      expect(wrapper.classes().filter((name) => /^(order|align-self)-/.test(name))).toEqual([]);
+    }
+  });
+
+  it('warns about an align-self Vuetify has no class for, as VCol did', () => {
+    // @ts-expect-error not one of the align-self values, on purpose
+    mountWithVuetify(FrCol, { props: { alignSelf: 'sideways' } });
+
+    const [message] = warn.mock.calls.map((call: unknown[]) => String(call[0]));
+    warn.mockClear();
+
+    expect(message).toContain('custom validator check failed for prop "alignSelf"');
+  });
+
   it('renders as another tag', () => {
     const wrapper = mountWithVuetify(FrCol, { props: { tag: 'section' } });
 
