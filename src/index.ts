@@ -96,7 +96,13 @@ export { FrListHeader } from './components/FrListHeader';
 export { FrListItem } from './components/FrListItem';
 export { FrMenu } from './components/FrMenu';
 export { FrProgressBar } from './components/FrProgressBar';
-export { FrRow, type FrRowSpacing } from './components/FrRow';
+export {
+  FrRow,
+  type FrRowAlign,
+  type FrRowAlignContent,
+  type FrRowJustify,
+  type FrRowSpacing,
+} from './components/FrRow';
 export { FrSelect, frSelectDefaults, type FrSelectSlots } from './components/FrSelect';
 export { FrSkeleton } from './components/FrSkeleton';
 export { FrSlider, frSliderDefaults, type FrSliderSlots } from './components/FrSlider';

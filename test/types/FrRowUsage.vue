@@ -1,6 +1,6 @@
 <!--
   Never run: vue-tsc checks it during `npm run typecheck`, to prove consumers get VRow's props
-  and FrRow's spacing on an imported FrRow. GlobalComponentsUsage.vue covers the global
+  and FrRow's alignment props and spacing on an imported FrRow. GlobalComponentsUsage.vue covers the global
   registration
 -->
 <script setup lang="ts">
@@ -12,9 +12,14 @@ import { FrRow } from '../../src';
     <v-col>Content</v-col>
   </fr-row>
   <fr-row spacing="none"><v-col>Flush</v-col></fr-row>
+  <fr-row align-md="baseline" justify-xxl="space-evenly" align-content="stretch">
+    <v-col>Responsive</v-col>
+  </fr-row>
 
   <!-- @vue-expect-error spacing is 'default' or 'none' -->
   <fr-row spacing="huge" />
   <!-- @vue-expect-error justify is one of VRow's justifications -->
   <fr-row justify="sideways" />
+  <!-- @vue-expect-error align-content-lg is one of VRow's align-content values -->
+  <fr-row align-content-lg="sideways" />
 </template>

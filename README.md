@@ -348,10 +348,13 @@ The defaults are exported too (`frCardDefaults`, `frAccordionDefaults`, `frAlert
   </fr-progress-bar>
   ```
 
-- **`FrRow`**: holds `FrCol`s. It takes `align` and `justify`, passed on to VRow, and `spacing`:
-  `'none'` removes the gutters between columns (`no-gutters`) and leaves off the `fr-row` class,
-  while the default, `'default'`, keeps Vuetify's gutters and adds `fr-row`. Every other VRow
-  prop (`density`, `tag`...) passes through.
+- **`FrRow`**: holds `FrCol`s. It takes `align`, `justify` and `align-content`, each also at a
+  breakpoint (`align-md`, `justify-lg`...), and renders them as Vuetify's utility classes
+  (`align-center`, `justify-md-space-between`) rather than passing them to VRow, which deprecates
+  them in Vuetify 4. It also takes `spacing`: `'none'` removes the gutters between columns
+  (`no-gutters`) and leaves off the `fr-row` class, while the default, `'default'`, keeps
+  Vuetify's gutters and adds `fr-row`. Every other VRow prop (`density`, `tag`...) passes
+  through.
 
   With `FrContainer` (a VContainer, no defaults) around them, they lay out a page:
 

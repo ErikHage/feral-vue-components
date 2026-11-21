@@ -8,9 +8,11 @@ const justify = ref<'start' | 'center' | 'end' | 'space-between' | 'space-around
 <template>
   <h2 class="text-h5 mb-4">FrRow</h2>
   <p class="text-medium-emphasis mb-6">
-    Wraps <code>VRow</code>; its default slot holds the columns. It takes <code>align</code> and
-    <code>justify</code>, and <code>spacing</code>: <code>'none'</code> removes the gutters and the
-    <code>fr-row</code> class; the default keeps both.
+    Wraps <code>VRow</code>; its default slot holds the columns. It takes <code>align</code>,
+    <code>justify</code> and <code>align-content</code>, each also at a breakpoint
+    (<code>align-md</code>...), rendered as Vuetify's utility classes, and <code>spacing</code>:
+    <code>'none'</code> removes the gutters and the <code>fr-row</code> class; the default keeps
+    both.
   </p>
   <fr-row class="mb-2" align="center">
     <fr-col cols="auto">

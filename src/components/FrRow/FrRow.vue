@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import type { PropType } from 'vue';
+import { computed, type PropType } from 'vue';
 import { VRow } from 'vuetify/components/VGrid';
+import { alignmentClasses, frRowAlignmentProps } from './alignment';
 import type { FrRowSpacing } from './spacing';
-
-type VRowProps = InstanceType<typeof VRow>['$props'];
 
 defineOptions({ name: 'FrRow' });
 
-// Runtime declarations, so align and justify keep VRow's own types without the compiler
-// resolving them; VRow checks their values itself
-const props = defineProps({
-  align: { type: String as PropType<VRowProps['align']>, default: undefined },
-  justify: { type: String as PropType<VRowProps['justify']>, default: undefined },
+// The alignment props are declared so they stop here: Vuetify 4 deprecates them on VRow, so FrRow
+// renders their utility classes itself rather than relying on VRow to
+const { spacing, ...alignment } = defineProps({
+  ...frRowAlignmentProps,
   /** 'none' removes the gutters between columns; anything else keeps them and marks fr-row */
   spacing: { type: String as PropType<FrRowSpacing>, default: 'default' },
 });
+
+const classes = computed(() => [...alignmentClasses(alignment), { 'fr-row': spacing !== 'none' }]);
 </script>
 
 <!--
@@ -22,12 +22,7 @@ const props = defineProps({
   columns
 -->
 <template>
-  <v-row
-    :align="props.align"
-    :justify="props.justify"
-    :no-gutters="props.spacing === 'none'"
-    :class="{ 'fr-row': props.spacing !== 'none' }"
-  >
+  <v-row :no-gutters="spacing === 'none'" :class="classes">
     <slot />
   </v-row>
 </template>
