@@ -10,6 +10,7 @@ import { FrTable } from '../../src';
 <template>
   <fr-table hover striped="odd" height="50vh" fixed-header aria-label="Harvest">
     <template #top><h3>This week</h3></template>
+    <template #actions><button>Add</button></template>
     <template #caption
       ><caption>
         Harvest

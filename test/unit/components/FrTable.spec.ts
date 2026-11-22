@@ -69,6 +69,45 @@ describe('FrTable', () => {
     );
   });
 
+  it('puts top on the left and actions on the right of one header bar', () => {
+    const wrapper = mountWithVuetify(FrTable, {
+      slots: {
+        default: rows,
+        top: () => h('h3', { class: 'heading' }, 'This week'),
+        actions: () => [h('button', 'Add'), h('button', 'Export')],
+      },
+    });
+
+    const header = wrapper.element.firstElementChild as HTMLElement;
+    expect(header.className).toBe('fr-table__header d-flex align-center justify-start');
+    expect(header.firstElementChild?.className).toBe('heading');
+    const actions = header.lastElementChild as HTMLElement;
+    expect(actions.className).toBe('fr-table__actions d-flex align-center ga-2 ms-auto');
+    expect([...actions.children].map((b) => b.textContent)).toEqual(['Add', 'Export']);
+    expect(wrapper.findAll('.heading')).toHaveLength(1);
+    expect(wrapper.classes()).toContain('v-table--has-top');
+  });
+
+  it('puts actions on the right of the header bar without top', () => {
+    const wrapper = mountWithVuetify(FrTable, {
+      slots: { default: rows, actions: () => h('button', 'Add') },
+    });
+
+    const header = wrapper.get('.fr-table__header');
+    expect(header.element.children).toHaveLength(1);
+    expect(header.get('.fr-table__actions').classes()).toContain('ms-auto');
+    expect(wrapper.classes()).toContain('v-table--has-top');
+  });
+
+  it('builds no header bar without actions', () => {
+    const wrapper = mountWithVuetify(FrTable, {
+      slots: { default: rows, top: () => h('h3', { class: 'heading' }, 'This week') },
+    });
+
+    expect(wrapper.find('.fr-table__header').exists()).toBe(false);
+    expect(wrapper.element.firstElementChild?.className).toBe('heading');
+  });
+
   it('is not marked as having a top or bottom without those slots', () => {
     const wrapper = mountWithVuetify(FrTable, { slots: { default: rows } });
 
