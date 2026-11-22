@@ -19,6 +19,8 @@ const applications = [{ applicationId: 'a1', applicationName: 'Harvest' }];
     <template #header.applicationName="{ column }">{{ column.title }}!</template>
     <template #no-data>No applications</template>
     <template #loading>Loading applications</template>
+    <template #top><h3>Applications</h3></template>
+    <template #actions><button>Add</button></template>
   </fr-data-table>
 
   <!-- @vue-expect-error density is one of VDataTable's densities -->

@@ -118,6 +118,48 @@ describe('FrDataTable', () => {
     expect(wrapper.find('tbody .wait').text()).toBe('Fetching plants');
   });
 
+  it('puts the top slot above the table, without a header bar', () => {
+    const wrapper = mountWithVuetify(FrDataTable, {
+      props: { headers, items: plants },
+      slots: { top: () => h('h3', { class: 'heading' }, 'Plants') },
+    });
+
+    expect(wrapper.element.firstElementChild?.className).toBe('heading');
+    expect(wrapper.find('.fr-data-table__header').exists()).toBe(false);
+    expect(wrapper.classes()).toContain('v-table--has-top');
+  });
+
+  it('puts top on the left and actions on the right of one header bar', () => {
+    const wrapper = mountWithVuetify(FrDataTable, {
+      props: { headers, items: plants },
+      slots: {
+        top: () => h('h3', { class: 'heading' }, 'Plants'),
+        actions: () => [h('button', 'Add'), h('button', 'Export')],
+      },
+    });
+
+    const header = wrapper.element.firstElementChild as HTMLElement;
+    expect(header.className).toBe('fr-data-table__header d-flex align-center justify-start');
+    expect(header.firstElementChild?.className).toBe('heading');
+    const actions = header.lastElementChild as HTMLElement;
+    expect(actions.className).toBe('fr-data-table__actions d-flex align-center ga-2 ms-auto');
+    expect([...actions.children].map((b) => b.textContent)).toEqual(['Add', 'Export']);
+    expect(wrapper.findAll('.heading')).toHaveLength(1);
+    expect(cells(wrapper)[0]).toEqual(['Tomato', 'Nightshade']);
+  });
+
+  it('puts actions on the right of the header bar without top', () => {
+    const wrapper = mountWithVuetify(FrDataTable, {
+      props: { headers, items: plants },
+      slots: { actions: () => h('button', 'Add') },
+    });
+
+    const header = wrapper.get('.fr-data-table__header');
+    expect(header.element.children).toHaveLength(1);
+    expect(header.get('.fr-data-table__actions').classes()).toContain('ms-auto');
+    expect(wrapper.classes()).toContain('v-table--has-top');
+  });
+
   it("doesn't pass on row slots, which need Vuetify markup", () => {
     const wrapper = mountWithVuetify(FrDataTable, {
       props: { headers, items: plants },

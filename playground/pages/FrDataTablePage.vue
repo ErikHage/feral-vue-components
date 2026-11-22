@@ -32,8 +32,24 @@ function reload() {
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VDataTable</code>. Defaults: <code>density="compact"</code>, <code>hover</code>. It
     passes on the slots that fill a cell or header (<code>item.&lt;key&gt;</code>,
-    <code>header.&lt;key&gt;</code>), and <code>no-data</code> and <code>loading</code>.
+    <code>header.&lt;key&gt;</code>), <code>no-data</code> and <code>loading</code>, and
+    <code>top</code>; given <code>actions</code>, <code>top</code> and the actions share one header
+    bar.
   </p>
+  <h3 class="text-subtitle-1 mb-2">top and actions slots: top on the left, actions on the right</h3>
+  <fr-data-table id="with-actions" :headers="headers" :items="users" class="mb-6">
+    <template #top><p class="text-overline px-4">Users</p></template>
+    <template #actions>
+      <fr-btn size="small">Export</fr-btn>
+      <fr-btn size="small" color="primary" class="me-4">Invite</fr-btn>
+    </template>
+  </fr-data-table>
+  <h3 class="text-subtitle-1 mb-2">actions without top</h3>
+  <fr-data-table id="actions-only" :headers="headers" :items="users.slice(0, 1)" class="mb-6">
+    <template #actions>
+      <fr-btn size="small" color="primary" class="mx-4 my-2">Invite</fr-btn>
+    </template>
+  </fr-data-table>
   <h3 class="text-subtitle-1 mb-2">
     As in the admin pages, with an actions column (last: {{ last }})
   </h3>
