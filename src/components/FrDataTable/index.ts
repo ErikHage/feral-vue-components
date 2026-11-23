@@ -23,12 +23,9 @@ export type FrDataTableSlots<Item> = {
   /** One header's content, for the column whose key follows `header.` */
   [key: `header.${string}`]: ((scope: FrDataTableHeaderScope) => VNode[]) | undefined;
 } & {
-  /** Above the table: a heading, a search field */
+  /** In the header bar above the table, after the title: a search field, a filter */
   top?: () => VNode[];
-  /**
-   * Buttons in a header bar above the table, on the right; given actions, the top content sits
-   * on the left of the same bar
-   */
+  /** Buttons on the right of the header bar above the table */
   actions?: () => VNode[];
   /** Shown in place of the rows when there are none, in place of `no-data-text` */
   'no-data'?: () => VNode[];
@@ -38,12 +35,14 @@ export type FrDataTableSlots<Item> = {
 
 type FrDataTableProps<Items extends readonly unknown[]> = Omit<VDataTableProps, 'items'> & {
   items?: Items;
+  /** The table's heading, on the left of the header bar, in a card title's type */
+  title?: string;
 };
 
 /**
  * A Vuetify VDataTable with the feral defaults, passing on the slots that fill a cell or header
- * (`item.<key>`, `header.<key>`), `no-data` and `loading`, and `top` and `actions` (right of `top`,
- * in one header bar). It accepts every VDataTable prop and
+ * (`item.<key>`, `header.<key>`), `no-data` and `loading`. A `title`, `top` and `actions` share one
+ * header bar above it, padded as a card's title is. It accepts every VDataTable prop and
  * event, and types the cell slots' item by the items given
  */
 export const FrDataTable = FrDataTableComponent as unknown as new <

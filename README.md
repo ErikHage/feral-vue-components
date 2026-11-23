@@ -58,52 +58,52 @@ root carries a class named after it (`fr-card`, `fr-accordion-panel`...) to styl
 The wrapper's defaults are structural (how it looks, never how it behaves), and anything the
 caller passes wins.
 
-| Component          | Wraps                 | Slots                                                     | Defaults                                                                                     |
-| ------------------ | --------------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `FrAccordion`      | `VExpansionPanels`    | default, holding the panels                               | `variant="default"`, `elevation="2"`, `rounded="lg"`                                         |
-| `FrAccordionPanel` | `VExpansionPanel`     | `title`, `actions`, default                               | none: it takes its look from `FrAccordion`                                                   |
-| `FrAlert`          | `VAlert`              | `title`, default, `append`                                | `variant="tonal"`, `rounded="lg"`                                                            |
-| `FrAutocomplete`   | `VAutocomplete`       | `item`, `no-data`                                         | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
-| `FrAvatar`         | `VAvatar`             | default, `badge`                                          | none: it stays Vuetify's circle                                                              |
-| `FrBadge`          | `VBadge`              | default, `badge`                                          | none                                                                                         |
-| `FrBreadcrumbs`    | `VBreadcrumbs`        | `divider`                                                 | dividers are chevrons, not `/`                                                               |
-| `FrBtn`            | `VBtn`                | default, `prepend`, `append`                              | `rounded="lg"`, except icon buttons, which stay round                                        |
-| `FrCard`           | `VCard`               | `title`, `prepend`, `append`, default, `actions`          | `variant="elevated"`, `elevation="2"`, `rounded="lg"`; a padded body; primary action buttons |
-| `FrCheckbox`       | `VCheckbox`           | `label`                                                   | `density="compact"`                                                                          |
-| `FrChip`           | `VChip`               | default, `prepend`, `append`                              | none: it stays Vuetify's pill                                                                |
-| `FrChipGroup`      | `VChipGroup`          | default, holding the chips                                | none                                                                                         |
-| `FrCodeBlock`      | a `<pre>`             | default, the code                                         | padded, rounded, faint theme background                                                      |
-| `FrCol`            | `VCol`                | default, the content                                      | none                                                                                         |
-| `FrContainer`      | `VContainer`          | default, the content                                      | none                                                                                         |
-| `FrDataTable`      | `VDataTable`          | `item.<key>`, `header.<key>`, `no-data`, `loading`        | `density="compact"`, `hover`                                                                 |
-| `FrDialog`         | `VDialog` + `VCard`   | `activator`, default, `actions`                           | `size="small"` (500px); primary action buttons                                               |
-| `FrDivider`        | `VDivider`            | default, in the middle of the line                        | none                                                                                         |
-| `FrFadeIn`         | `VFadeTransition`     | default, what fades                                       | `appear`: it fades in on first render too                                                    |
-| `FrFieldGroup`     | a `<label>` + content | `description`, default, the field(s)                      | `size="default"`                                                                             |
-| `FrFileField`      | `VFileInput`          | `selection`                                               | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
-| `FrGrid`           | a CSS grid `<div>`    | default, each child a cell                                | 240px columns, 12px gap, stretched                                                           |
-| `FrForm`           | `VForm`               | default, the fields, given the form's state               | none: it never submits the page                                                              |
-| `FrIcon`           | `VIcon`               | default, the icon's name                                  | none                                                                                         |
-| `FrImage`          | `VImg`                | default, `placeholder`, `error`, `sources`                | none                                                                                         |
-| `FrList`           | `VList`               | default; `title`, `prepend`... for `items` rows           | `density="compact"`                                                                          |
-| `FrListHeader`     | `VListSubheader`      | default, the heading's text                               | none                                                                                         |
-| `FrListItem`       | `VListItem`           | `prepend`, `title`, `subtitle`, default, `append`         | none                                                                                         |
-| `FrMenu`           | `VMenu`               | `activator`, default, the menu                            | none                                                                                         |
-| `FrProgressBar`    | `VProgressLinear`     | default, over the bar, given `value`                      | none                                                                                         |
-| `FrRow`            | `VRow`                | default, the columns                                      | `spacing="default"`: gutters, and the `fr-row` class                                         |
-| `FrSelect`         | `VSelect`             | `item`, `no-data`                                         | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
-| `FrSkeleton`       | `VSkeletonLoader`     | default, shown once not `loading`                         | none                                                                                         |
-| `FrSlider`         | `VSlider`             | `label`, `prepend`, `append`, `thumb-label`, `tick-label` | `density="compact"`                                                                          |
-| `FrSnackbarQueue`  | `VSnackbarQueue`      | `text`, `header`, `actions`, `item`, given the message    | `rounded="lg"`, `closable`                                                                   |
-| `FrSpacer`         | `VSpacer`             | default, rarely used                                      | none                                                                                         |
-| `FrSheet`          | `VSheet`              | default, the content                                      | `rounded="lg"`, `padding="default"` (16px)                                                   |
-| `FrSpinner`        | `VProgressCircular`   | default, in the middle, given `value`                     | `indeterminate`, unless given a value                                                        |
-| `FrTable`          | `VTable`              | `top`, `caption`, default, the rows, `bottom`             | `density="compact"`                                                                          |
-| `FrTabs`           | `VTabs`               | default, below the tabs, given the selected `tab`         | `color="primary"`, `fixed-tabs`                                                              |
-| `FrTimeline`       | built from Fr parts   | `day`, `actions`, `empty`                                 | none                                                                                         |
-| `FrToggle`         | `VSwitch`             | `label`, `prepend`, `append`, `thumb`, `track-true`...    | `density="compact"`                                                                          |
-| `FrTooltip`        | `VTooltip`            | `activator`, default, in place of `text`                  | none                                                                                         |
-| `FrTree`           | `VTreeview`           | `title`, `prepend`, `append`, `toggle`, `item`...         | `density="compact"`                                                                          |
+| Component          | Wraps                 | Slots                                                                | Defaults                                                                                     |
+| ------------------ | --------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `FrAccordion`      | `VExpansionPanels`    | default, holding the panels                                          | `variant="default"`, `elevation="2"`, `rounded="lg"`                                         |
+| `FrAccordionPanel` | `VExpansionPanel`     | `title`, `actions`, default                                          | none: it takes its look from `FrAccordion`                                                   |
+| `FrAlert`          | `VAlert`              | `title`, default, `append`                                           | `variant="tonal"`, `rounded="lg"`                                                            |
+| `FrAutocomplete`   | `VAutocomplete`       | `item`, `no-data`                                                    | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
+| `FrAvatar`         | `VAvatar`             | default, `badge`                                                     | none: it stays Vuetify's circle                                                              |
+| `FrBadge`          | `VBadge`              | default, `badge`                                                     | none                                                                                         |
+| `FrBreadcrumbs`    | `VBreadcrumbs`        | `divider`                                                            | dividers are chevrons, not `/`                                                               |
+| `FrBtn`            | `VBtn`                | default, `prepend`, `append`                                         | `rounded="lg"`, except icon buttons, which stay round                                        |
+| `FrCard`           | `VCard`               | `title`, `prepend`, `append`, default, `actions`                     | `variant="elevated"`, `elevation="2"`, `rounded="lg"`; a padded body; primary action buttons |
+| `FrCheckbox`       | `VCheckbox`           | `label`                                                              | `density="compact"`                                                                          |
+| `FrChip`           | `VChip`               | default, `prepend`, `append`                                         | none: it stays Vuetify's pill                                                                |
+| `FrChipGroup`      | `VChipGroup`          | default, holding the chips                                           | none                                                                                         |
+| `FrCodeBlock`      | a `<pre>`             | default, the code                                                    | padded, rounded, faint theme background                                                      |
+| `FrCol`            | `VCol`                | default, the content                                                 | none                                                                                         |
+| `FrContainer`      | `VContainer`          | default, the content                                                 | none                                                                                         |
+| `FrDataTable`      | `VDataTable`          | `top`, `actions`, `item.<key>`, `header.<key>`, `no-data`, `loading` | `density="compact"`, `hover`; a padded header bar                                            |
+| `FrDialog`         | `VDialog` + `VCard`   | `activator`, default, `actions`                                      | `size="small"` (500px); primary action buttons                                               |
+| `FrDivider`        | `VDivider`            | default, in the middle of the line                                   | none                                                                                         |
+| `FrFadeIn`         | `VFadeTransition`     | default, what fades                                                  | `appear`: it fades in on first render too                                                    |
+| `FrFieldGroup`     | a `<label>` + content | `description`, default, the field(s)                                 | `size="default"`                                                                             |
+| `FrFileField`      | `VFileInput`          | `selection`                                                          | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
+| `FrGrid`           | a CSS grid `<div>`    | default, each child a cell                                           | 240px columns, 12px gap, stretched                                                           |
+| `FrForm`           | `VForm`               | default, the fields, given the form's state                          | none: it never submits the page                                                              |
+| `FrIcon`           | `VIcon`               | default, the icon's name                                             | none                                                                                         |
+| `FrImage`          | `VImg`                | default, `placeholder`, `error`, `sources`                           | none                                                                                         |
+| `FrList`           | `VList`               | default; `title`, `prepend`... for `items` rows                      | `density="compact"`                                                                          |
+| `FrListHeader`     | `VListSubheader`      | default, the heading's text                                          | none                                                                                         |
+| `FrListItem`       | `VListItem`           | `prepend`, `title`, `subtitle`, default, `append`                    | none                                                                                         |
+| `FrMenu`           | `VMenu`               | `activator`, default, the menu                                       | none                                                                                         |
+| `FrProgressBar`    | `VProgressLinear`     | default, over the bar, given `value`                                 | none                                                                                         |
+| `FrRow`            | `VRow`                | default, the columns                                                 | `spacing="default"`: gutters, and the `fr-row` class                                         |
+| `FrSelect`         | `VSelect`             | `item`, `no-data`                                                    | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
+| `FrSkeleton`       | `VSkeletonLoader`     | default, shown once not `loading`                                    | none                                                                                         |
+| `FrSlider`         | `VSlider`             | `label`, `prepend`, `append`, `thumb-label`, `tick-label`            | `density="compact"`                                                                          |
+| `FrSnackbarQueue`  | `VSnackbarQueue`      | `text`, `header`, `actions`, `item`, given the message               | `rounded="lg"`, `closable`                                                                   |
+| `FrSpacer`         | `VSpacer`             | default, rarely used                                                 | none                                                                                         |
+| `FrSheet`          | `VSheet`              | default, the content                                                 | `rounded="lg"`, `padding="default"` (16px)                                                   |
+| `FrSpinner`        | `VProgressCircular`   | default, in the middle, given `value`                                | `indeterminate`, unless given a value                                                        |
+| `FrTable`          | `VTable`              | `top`, `actions`, `caption`, default, the rows, `bottom`             | `density="compact"`; a padded header bar                                                     |
+| `FrTabs`           | `VTabs`               | default, below the tabs, given the selected `tab`                    | `color="primary"`, `fixed-tabs`                                                              |
+| `FrTimeline`       | built from Fr parts   | `day`, `actions`, `empty`                                            | none                                                                                         |
+| `FrToggle`         | `VSwitch`             | `label`, `prepend`, `append`, `thumb`, `track-true`...               | `density="compact"`                                                                          |
+| `FrTooltip`        | `VTooltip`            | `activator`, default, in place of `text`                             | none                                                                                         |
+| `FrTree`           | `VTreeview`           | `title`, `prepend`, `append`, `toggle`, `item`...                    | `density="compact"`                                                                          |
 
 Use them by name, or everywhere once `FeralComponents` is installed:
 
@@ -196,13 +196,23 @@ The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAcc
 - **`FrDataTable`**: passes on the slots that fill a cell or a header, `item.<key>` and
   `header.<key>` for the column whose `key` follows the dot, plus `no-data` and `loading`. A cell
   slot gets your own item (typed from `items`), the cell's `value`, its `index` and `column`. Row
-  and body slots (`item`, `body`, `headers`, `top`...) are not passed on: they need Vuetify
-  markup. Its defaults are `density="compact"` and `hover`; a shadow is yours to add, e.g.
-  `class="elevation-1"`. Note Vuetify 3+ identifies rows with `item-value`, not Vuetify 2's
+  and body slots (`item`, `body`, `headers`...) are not passed on: they need Vuetify
+  markup. Above the table, a header bar holds the `title` prop (a card title's type), then the
+  `top` slot (a search field, a filter), then the `actions` slot, on the right. It is padded as a
+  card's title is, so the heading lines up with the cells below and with the cards around it, and
+  it is built only when one of the three is given. Its defaults are `density="compact"` and
+  `hover`. Inside an `FrCard`, give the card `flush` so the table runs to its edges. Note Vuetify 3+ identifies rows with `item-value`, not Vuetify 2's
   `item-key`.
 
   ```vue
-  <fr-data-table :headers="headers" :items="users" item-value="userId" :loading="loading">
+  <fr-data-table
+    title="Users"
+    :headers="headers"
+    :items="users"
+    item-value="userId"
+    :loading="loading"
+  >
+    <template #actions><fr-btn color="primary" text="Add" @click="add" /></template>
     <template #item.actions="{ item }">
       <fr-btn icon="mdi-pencil" variant="text" size="small" @click="edit(item)" />
     </template>
@@ -445,7 +455,8 @@ The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAcc
   ```
 
 - **`FrTable`**: a plain HTML table styled to the theme, compact by default. Write its rows
-  (`<thead>`, `<tbody>`) in the default slot; `top` and `bottom` sit above and below the table and
+  (`<thead>`, `<tbody>`) in the default slot. Above it, the `title` prop, the `top` slot and the
+  `actions` slot share a padded header bar, as on `FrDataTable`; `bottom` sits below the table and
   `caption` goes first inside it, each passed on only when given. `aria-label` lands on the inner
   `<table>`. `hover`, `striped`, `height`, `fixed-header` and the rest pass through. For a table
   built from `items`, with sorting and paging, use `FrDataTable`.

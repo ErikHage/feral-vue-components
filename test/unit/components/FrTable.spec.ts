@@ -62,7 +62,7 @@ describe('FrTable', () => {
     expect(wrapper.find('table').element.firstElementChild?.outerHTML).toBe(
       '<caption>Harvest</caption>',
     );
-    expect(wrapper.element.firstElementChild?.className).toBe('heading');
+    expect(wrapper.get('.fr-table__header').element.firstElementChild?.className).toBe('heading');
     expect(wrapper.element.lastElementChild?.className).toBe('total');
     expect(wrapper.classes()).toEqual(
       expect.arrayContaining(['v-table--has-top', 'v-table--has-bottom']),
@@ -99,13 +99,45 @@ describe('FrTable', () => {
     expect(wrapper.classes()).toContain('v-table--has-top');
   });
 
-  it('builds no header bar without actions', () => {
+  it('puts top alone in the header bar, with no actions area', () => {
     const wrapper = mountWithVuetify(FrTable, {
       slots: { default: rows, top: () => h('h3', { class: 'heading' }, 'This week') },
     });
 
-    expect(wrapper.find('.fr-table__header').exists()).toBe(false);
-    expect(wrapper.element.firstElementChild?.className).toBe('heading');
+    const header = wrapper.element.firstElementChild as HTMLElement;
+    expect(header.className).toBe('fr-table__header d-flex align-center justify-start');
+    expect([...header.children].map((c) => c.className)).toEqual(['heading']);
+  });
+
+  it("shows the title on the left of the header bar in a card title's type, before top", () => {
+    const wrapper = mountWithVuetify(FrTable, {
+      props: { title: 'Harvest' },
+      slots: {
+        default: rows,
+        top: () => h('input', { class: 'search' }),
+        actions: () => h('button', 'Add'),
+      },
+    });
+
+    const header = wrapper.get('.fr-table__header');
+    expect([...header.element.children].map((c) => c.className)).toEqual([
+      'fr-table__title text-title-large',
+      'search',
+      'fr-table__actions d-flex align-center ga-2 ms-auto',
+    ]);
+    expect(header.get('.fr-table__title').text()).toBe('Harvest');
+    expect(wrapper.attributes('title')).toBeUndefined();
+    expect(wrapper.find('table').attributes('title')).toBeUndefined();
+  });
+
+  it('builds a header bar for the title alone', () => {
+    const wrapper = mountWithVuetify(FrTable, {
+      props: { title: 'Harvest' },
+      slots: { default: rows },
+    });
+
+    expect(wrapper.get('.fr-table__header').text()).toBe('Harvest');
+    expect(wrapper.classes()).toContain('v-table--has-top');
   });
 
   it('is not marked as having a top or bottom without those slots', () => {

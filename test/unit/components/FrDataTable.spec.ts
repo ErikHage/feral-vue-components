@@ -118,15 +118,46 @@ describe('FrDataTable', () => {
     expect(wrapper.find('tbody .wait').text()).toBe('Fetching plants');
   });
 
-  it('puts the top slot above the table, without a header bar', () => {
+  it('puts top alone in the header bar above the table, with no actions area', () => {
     const wrapper = mountWithVuetify(FrDataTable, {
       props: { headers, items: plants },
       slots: { top: () => h('h3', { class: 'heading' }, 'Plants') },
     });
 
-    expect(wrapper.element.firstElementChild?.className).toBe('heading');
-    expect(wrapper.find('.fr-data-table__header').exists()).toBe(false);
+    const header = wrapper.element.firstElementChild as HTMLElement;
+    expect(header.className).toBe('fr-data-table__header d-flex align-center justify-start');
+    expect([...header.children].map((c) => c.className)).toEqual(['heading']);
     expect(wrapper.classes()).toContain('v-table--has-top');
+  });
+
+  it("shows the title on the left of the header bar in a card title's type, before top", () => {
+    const wrapper = mountWithVuetify(FrDataTable, {
+      props: { headers, items: plants, title: 'Plants' },
+      slots: {
+        top: () => h('input', { class: 'search' }),
+        actions: () => h('button', 'Add'),
+      },
+    });
+
+    const header = wrapper.get('.fr-data-table__header');
+    expect([...header.element.children].map((c) => c.className)).toEqual([
+      'fr-data-table__title text-title-large',
+      'search',
+      'fr-data-table__actions d-flex align-center ga-2 ms-auto',
+    ]);
+    expect(header.get('.fr-data-table__title').text()).toBe('Plants');
+    expect(wrapper.attributes('title')).toBeUndefined();
+  });
+
+  it('builds a header bar for the title alone, and none without a title, top or actions', () => {
+    const titled = mountWithVuetify(FrDataTable, {
+      props: { headers, items: plants, title: 'Plants' },
+    });
+    const plain = mountWithVuetify(FrDataTable, { props: { headers, items: plants } });
+
+    expect(titled.get('.fr-data-table__header').text()).toBe('Plants');
+    expect(titled.classes()).toContain('v-table--has-top');
+    expect(plain.find('.fr-data-table__header').exists()).toBe(false);
   });
 
   it('puts top on the left and actions on the right of one header bar', () => {

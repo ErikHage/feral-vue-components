@@ -14,7 +14,13 @@ const applications = [{ applicationId: 'a1', applicationName: 'Harvest' }];
 </script>
 
 <template>
-  <fr-data-table :headers="headers" :items="applications" item-value="applicationId" loading>
+  <fr-data-table
+    title="Applications"
+    :headers="headers"
+    :items="applications"
+    item-value="applicationId"
+    loading
+  >
     <template #item.actions="{ item, index }">{{ index }}: {{ item.applicationName }}</template>
     <template #header.applicationName="{ column }">{{ column.title }}!</template>
     <template #no-data>No applications</template>
@@ -23,6 +29,8 @@ const applications = [{ applicationId: 'a1', applicationName: 'Harvest' }];
     <template #actions><button>Add</button></template>
   </fr-data-table>
 
+  <!-- @vue-expect-error the title is text -->
+  <fr-data-table :title="3" />
   <!-- @vue-expect-error density is one of VDataTable's densities -->
   <fr-data-table density="not-a-density" />
   <fr-data-table :items="applications">
