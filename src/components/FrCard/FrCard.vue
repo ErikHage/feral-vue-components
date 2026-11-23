@@ -5,10 +5,12 @@ import {
   VCardActions,
   VCardItem,
   VCardSubtitle,
+  VCardText,
   VCardTitle,
 } from 'vuetify/components/VCard';
+import { VDefaultsProvider } from 'vuetify/components/VDefaultsProvider';
 import { VSpacer } from 'vuetify/components/VGrid';
-import { frCardDefaults } from './defaults';
+import { frCardActionsDefaults, frCardDefaults } from './defaults';
 
 type VCardItemProps = InstanceType<typeof VCardItem>['$props'];
 
@@ -29,6 +31,8 @@ const props = defineProps({
   },
   prependAvatar: { type: String, default: undefined },
   appendAvatar: { type: String, default: undefined },
+  /** Puts the body against the card's edges, for a table or a list; otherwise it is padded */
+  flush: { type: Boolean, default: false },
 });
 </script>
 
@@ -36,7 +40,8 @@ const props = defineProps({
   The caller's other attributes fall through onto VCard after the defaults, so the caller wins.
   Slots are FrCard's own, so content never needs a Vuetify component around it. prepend and append
   are passed on only when given: VCardItem draws that side for any slot it is handed, and the slot
-  replaces the side's icon and avatar props
+  replaces the side's icon and avatar props. The body goes in a VCardText, padded to line up with
+  the title, unless flush. Buttons in actions are primary unless they say otherwise
 -->
 <template>
   <v-card class="fr-card" v-bind="frCardDefaults">
@@ -68,10 +73,15 @@ const props = defineProps({
         <v-card-subtitle v-if="props.subtitle != null">{{ props.subtitle }}</v-card-subtitle>
       </slot>
     </v-card-item>
-    <slot />
+    <slot v-if="props.flush" />
+    <v-card-text v-else-if="$slots.default">
+      <slot />
+    </v-card-text>
     <v-card-actions v-if="$slots.actions">
       <v-spacer />
-      <slot name="actions" />
+      <v-defaults-provider :defaults="frCardActionsDefaults">
+        <slot name="actions" />
+      </v-defaults-provider>
     </v-card-actions>
   </v-card>
 </template>

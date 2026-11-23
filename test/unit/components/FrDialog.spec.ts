@@ -98,6 +98,19 @@ describe('FrDialog', () => {
     expect(card()?.querySelector('.v-card-actions')).toBeNull();
   });
 
+  it('makes the buttons in actions primary text buttons, unless they say otherwise', async () => {
+    const wrapper = await mountOpen(
+      {},
+      {
+        actions: () => [h(FrBtn, () => 'Save'), h(FrBtn, { color: 'error' }, () => 'Delete')],
+      },
+    );
+    const [save, remove] = wrapper.findAllComponents(VBtn).map((b) => b.classes());
+
+    expect(save).toEqual(expect.arrayContaining(['text-primary', 'v-btn--variant-text']));
+    expect(remove).toEqual(expect.arrayContaining(['text-error', 'v-btn--variant-text']));
+  });
+
   it('has a close FrBtn when closable, which closes it through v-model', async () => {
     const onUpdate = vi.fn();
     const wrapper = await mountOpen(

@@ -9,10 +9,12 @@ import {
   VCardText,
   VCardTitle,
 } from 'vuetify/components/VCard';
+import { VDefaultsProvider } from 'vuetify/components/VDefaultsProvider';
 import { VDialog } from 'vuetify/components/VDialog';
 import { VDivider } from 'vuetify/components/VDivider';
 import { VSpacer } from 'vuetify/components/VGrid';
 import { FrBtn } from '../FrBtn';
+import { frCardActionsDefaults } from '../FrCard/defaults';
 import { frDialogWidths, type FrDialogSize } from './size';
 
 defineOptions({ name: 'FrDialog' });
@@ -56,7 +58,7 @@ defineSlots<{
   activator?: (scope: { isActive: boolean; props: Record<string, unknown> }) => VNode[];
   /** The body, inside the card's text */
   default?: () => VNode[];
-  /** Buttons along the bottom, pushed to the right */
+  /** Buttons along the bottom, pushed to the right: primary text buttons unless they say otherwise */
   actions?: () => VNode[];
 }>();
 
@@ -104,7 +106,9 @@ const hasHeader = computed(() => props.title != null || props.subtitle != null |
         <v-divider v-if="props.dividers" />
         <v-card-actions>
           <v-spacer />
-          <slot name="actions" />
+          <v-defaults-provider :defaults="frCardActionsDefaults">
+            <slot name="actions" />
+          </v-defaults-provider>
         </v-card-actions>
       </template>
     </v-card>

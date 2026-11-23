@@ -59,7 +59,12 @@ export { FrAvatar, type FrAvatarSlots } from './components/FrAvatar';
 export { FrBadge, type FrBadgeSlots } from './components/FrBadge';
 export { FrBreadcrumbs, type FrBreadcrumbsSlots } from './components/FrBreadcrumbs';
 export { FrBtn, frBtnDefaults, type FrBtnSlots } from './components/FrBtn';
-export { FrCard, frCardDefaults, type FrCardSlots } from './components/FrCard';
+export {
+  FrCard,
+  frCardActionsDefaults,
+  frCardDefaults,
+  type FrCardSlots,
+} from './components/FrCard';
 export { FrCheckbox, frCheckboxDefaults, type FrCheckboxSlots } from './components/FrCheckbox';
 export { FrChip, type FrChipScope, type FrChipSlots } from './components/FrChip';
 export { FrChipGroup } from './components/FrChipGroup';

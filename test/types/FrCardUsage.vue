@@ -13,6 +13,7 @@ import { FrCard } from '../../src';
     prepend-icon="mdi-sprout"
     variant="outlined"
     :elevation="4"
+    flush
     @click="() => {}"
   >
     <template #title>Slot title</template>
@@ -22,6 +23,8 @@ import { FrCard } from '../../src';
     <template #actions>Save</template>
   </fr-card>
 
+  <!-- @vue-expect-error flush is on or off -->
+  <fr-card flush="edges" />
   <!-- @vue-expect-error not one of VCard's variants -->
   <fr-card variant="not-a-variant" />
   <fr-card>

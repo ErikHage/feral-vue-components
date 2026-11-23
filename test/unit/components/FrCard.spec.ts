@@ -1,6 +1,6 @@
 import { h } from 'vue';
-import { VCard, VCardItem } from 'vuetify/components';
-import { FrCard, frCardDefaults } from '../../../src';
+import { VBtn, VCard, VCardItem } from 'vuetify/components';
+import { FrBtn, FrCard, frCardActionsDefaults, frCardDefaults } from '../../../src';
 import { mountWithVuetify } from '../helpers/mount';
 
 describe('FrCard', () => {
@@ -125,13 +125,30 @@ describe('FrCard', () => {
     expect(wrapper.text()).not.toContain('Prop');
   });
 
-  it('renders the default slot as the body, with no wrapper of its own', () => {
+  it('puts the default slot in a card text, padded to line up with the title', () => {
     const wrapper = mountWithVuetify(FrCard, {
       props: { title: 'Harvest' },
       slots: { default: () => h('p', { class: 'body' }, 'Body') },
     });
 
-    expect(wrapper.find('.v-card > .body').text()).toBe('Body');
+    expect(wrapper.find('.v-card > .v-card-item + .v-card-text > .body').text()).toBe('Body');
+  });
+
+  it('puts the default slot straight in the card when flush', () => {
+    const wrapper = mountWithVuetify(FrCard, {
+      props: { title: 'Harvest', flush: true },
+      slots: { default: () => h('table', { class: 'body' }) },
+    });
+
+    expect(wrapper.find('.v-card > .body').exists()).toBe(true);
+    expect(wrapper.find('.v-card-text').exists()).toBe(false);
+    expect(wrapper.attributes('flush')).toBeUndefined();
+  });
+
+  it('renders no card text without a default slot', () => {
+    const wrapper = mountWithVuetify(FrCard, { props: { title: 'Harvest' } });
+
+    expect(wrapper.find('.v-card-text').exists()).toBe(false);
   });
 
   it('puts the actions slot after a spacer in the card actions', () => {
@@ -142,6 +159,32 @@ describe('FrCard', () => {
 
     expect(actions.element.firstElementChild?.classList).toContain('v-spacer');
     expect(actions.find('button').text()).toBe('Save');
+  });
+
+  it('makes the buttons in actions primary text buttons, unless they say otherwise', () => {
+    const wrapper = mountWithVuetify(FrCard, {
+      slots: {
+        actions: () => [
+          h(FrBtn, { class: 'save' }, () => 'Save'),
+          h(FrBtn, { class: 'delete', color: 'error', variant: 'flat' }, () => 'Delete'),
+        ],
+      },
+    });
+    const [save, remove] = wrapper.findAllComponents(VBtn).map((b) => b.classes());
+
+    expect(save).toEqual(expect.arrayContaining(['text-primary', 'v-btn--variant-text']));
+    expect(remove).toEqual(expect.arrayContaining(['bg-error', 'v-btn--variant-flat']));
+    expect(remove).not.toContain('text-primary');
+    expect(frCardActionsDefaults).toEqual({ VBtn: { color: 'primary' } });
+  });
+
+  it("leaves buttons in the body to Vuetify's defaults", () => {
+    const wrapper = mountWithVuetify(FrCard, { slots: { default: () => h(FrBtn, () => 'Go') } });
+
+    const button = wrapper.findComponent(VBtn).classes();
+
+    expect(button).toContain('v-btn--variant-elevated');
+    expect(button.filter((c) => c.endsWith('-primary'))).toEqual([]);
   });
 
   it('renders no card actions without the actions slot', () => {
