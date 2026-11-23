@@ -85,6 +85,7 @@ caller passes wins.
 | `FrGrid`           | a CSS grid `<div>`    | default, each child a cell                                           | 240px columns, 12px gap, stretched                                                           |
 | `FrForm`           | `VForm`               | default, the fields, given the form's state                          | none: it never submits the page                                                              |
 | `FrIcon`           | `VIcon`               | default, the icon's name                                             | none                                                                                         |
+| `FrIconBtn`        | `VBtn` with `icon`    | none                                                                 | `variant="text"`, `size="small"`                                                             |
 | `FrImage`          | `VImg`                | default, `placeholder`, `error`, `sources`                           | none                                                                                         |
 | `FrList`           | `VList`               | default; `title`, `prepend`... for `items` rows                      | `density="compact"`                                                                          |
 | `FrListHeader`     | `VListSubheader`      | default, the heading's text                                          | none                                                                                         |
@@ -122,7 +123,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frToggleDefaults`, `frTreeDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frIconBtnDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frToggleDefaults`, `frTreeDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, inside a `VCardText`, so it is padded to line up with the
@@ -277,8 +278,21 @@ The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAcc
 
 - **`FrIcon`**: an icon, named in its default slot (`<fr-icon>mdi-sprout</fr-icon>`), as the apps
   write it, or by `icon`. It sets no defaults; `size`, `color`, `start`, `end` and the rest pass
-  through, and with `@click` it becomes a focusable button. Vuetify 2's `small` and `left` are
-  gone: use `size="small"` and `start`.
+  through. With `@click` it takes focus, but Enter and Space don't press it: for an icon that does
+  something, use `FrIconBtn`. Vuetify 2's `small` and `left` are gone: use `size="small"` and
+  `start`.
+
+- **`FrIconBtn`**: a button showing only an icon, as an edit or delete in a table's row. `icon`
+  and `label` are both required: `label` names the button for screen readers (`Edit Tomato`), since
+  the icon says nothing to them. It is small, text and neutral by default, a real button that
+  Enter and Space press, and takes VBtn's other props (`color`, `disabled`, `to`...) and `@click`.
+
+  ```vue
+  <template #item.actions="{ item }">
+    <fr-icon-btn icon="mdi-pencil" :label="`Edit ${item.name}`" @click="edit(item)" />
+    <fr-icon-btn icon="mdi-delete" :label="`Delete ${item.name}`" @click="remove(item)" />
+  </template>
+  ```
 
 - **`FrImage`**: an image, sized to its `max-width` (or `width`, `aspect-ratio`...) and shown
   whole, as Vuetify 2's `contain` did; `cover` fills and crops instead. It sets no defaults, so

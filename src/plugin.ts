@@ -21,6 +21,7 @@ import { FrFadeIn } from './components/FrFadeIn';
 import { FrFileField } from './components/FrFileField';
 import { FrForm } from './components/FrForm';
 import { FrIcon } from './components/FrIcon';
+import { FrIconBtn } from './components/FrIconBtn';
 import { FrImage } from './components/FrImage';
 import { FrList } from './components/FrList';
 import { FrListHeader } from './components/FrListHeader';
@@ -81,6 +82,7 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrFileField,
   FrForm,
   FrIcon,
+  FrIconBtn,
   FrImage,
   FrList,
   FrListHeader,

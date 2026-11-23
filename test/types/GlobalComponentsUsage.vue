@@ -26,6 +26,7 @@
   <fr-fade-in><p>Fading</p></fr-fade-in>
   <fr-file-field label="Global" accept=".csv" />
   <fr-icon size="small">mdi-sprout</fr-icon>
+  <fr-icon-btn icon="mdi-pencil" label="Edit" />
   <fr-image src="/logo.png" alt="Logo" max-width="250" />
   <fr-list lines="two">Rows</fr-list>
   <fr-list-header sticky>Herbs</fr-list-header>

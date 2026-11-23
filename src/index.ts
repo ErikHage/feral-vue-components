@@ -20,6 +20,7 @@ import type { FrFadeIn } from './components/FrFadeIn';
 import type { FrFileField } from './components/FrFileField';
 import type { FrForm } from './components/FrForm';
 import type { FrIcon } from './components/FrIcon';
+import type { FrIconBtn } from './components/FrIconBtn';
 import type { FrImage } from './components/FrImage';
 import type { FrList } from './components/FrList';
 import type { FrListHeader } from './components/FrListHeader';
@@ -89,6 +90,7 @@ export {
 } from './components/FrFileField';
 export { FrForm, type FrFormSlotScope, type FrFormValidationResult } from './components/FrForm';
 export { FrIcon } from './components/FrIcon';
+export { FrIconBtn, frIconBtnDefaults } from './components/FrIconBtn';
 export { FrImage } from './components/FrImage';
 export {
   FrList,
@@ -157,6 +159,7 @@ declare module 'vue' {
     FrFileField: typeof FrFileField;
     FrForm: typeof FrForm;
     FrIcon: typeof FrIcon;
+    FrIconBtn: typeof FrIconBtn;
     FrImage: typeof FrImage;
     FrList: typeof FrList;
     FrListHeader: typeof FrListHeader;

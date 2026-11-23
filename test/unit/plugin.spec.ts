@@ -64,6 +64,7 @@ import {
   FrFileField,
   FrForm,
   FrIcon,
+  FrIconBtn,
   FrImage,
   FrList,
   FrListHeader,
@@ -276,6 +277,13 @@ describe('FeralComponents', () => {
     expect(wrapper.find('.fr-icon').classes()).toContain('mdi-sprout');
   });
 
+  it('registers FrIconBtn globally, so <fr-icon-btn> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-icon-btn icon="mdi-pencil" label="Edit" />');
+
+    expect(wrapper.findComponent(VBtn).exists()).toBe(true);
+    expect(wrapper.find('.fr-icon-btn').attributes('aria-label')).toBe('Edit');
+  });
+
   it('registers FrImage globally, so <fr-image> resolves in templates', () => {
     const wrapper = mountGlobal('<fr-image src="/logo.png" alt="Logo" eager />');
 
@@ -448,6 +456,7 @@ describe('FeralComponents', () => {
     ['FrFileField', FrFileField],
     ['FrForm', FrForm],
     ['FrIcon', FrIcon],
+    ['FrIconBtn', FrIconBtn],
     ['FrImage', FrImage],
     ['FrList', FrList],
     ['FrListHeader', FrListHeader],
