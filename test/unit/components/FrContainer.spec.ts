@@ -1,6 +1,6 @@
 import { h } from 'vue';
 import { VContainer } from 'vuetify/components';
-import { FrCol, FrContainer, FrRow } from '../../../src';
+import { FrCol, FrContainer, frContainerDefaults, FrRow } from '../../../src';
 import { mountWithVuetify } from '../helpers/mount';
 
 describe('FrContainer', () => {
@@ -30,16 +30,23 @@ describe('FrContainer', () => {
     expect(wrapper.find('.fr-container > .body').text()).toBe('Plantings');
   });
 
-  it("sets no defaults, so it keeps Vuetify's width", () => {
+  it('is fluid by default, so a page fills the width', () => {
     const wrapper = mountWithVuetify(FrContainer);
 
-    expect(wrapper.findComponent(VContainer).props('fluid')).toBe(false);
+    expect(wrapper.findComponent(VContainer).props('fluid')).toBe(true);
+    expect(wrapper.classes()).toContain('v-container--fluid');
+    expect(frContainerDefaults).toEqual({ fluid: true });
+  });
+
+  it('keeps Vuetify\'s width for the breakpoint given :fluid="false"', () => {
+    const wrapper = mountWithVuetify(FrContainer, { props: { fluid: false } });
+
     expect(wrapper.classes()).not.toContain('v-container--fluid');
   });
 
   it('passes VContainer props through', () => {
     const wrapper = mountWithVuetify(FrContainer, {
-      props: { fluid: true, maxWidth: 600, tag: 'main' },
+      props: { maxWidth: 600, tag: 'main' },
     });
 
     expect(wrapper.element.tagName).toBe('MAIN');

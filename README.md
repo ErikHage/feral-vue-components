@@ -75,7 +75,7 @@ caller passes wins.
 | `FrChipGroup`      | `VChipGroup`          | default, holding the chips                                           | none                                                                                         |
 | `FrCodeBlock`      | a `<pre>`             | default, the code                                                    | padded, rounded, faint theme background                                                      |
 | `FrCol`            | `VCol`                | default, the content                                                 | none                                                                                         |
-| `FrContainer`      | `VContainer`          | default, the content                                                 | none                                                                                         |
+| `FrContainer`      | `VContainer`          | default, the content                                                 | `fluid`                                                                                      |
 | `FrDataTable`      | `VDataTable`          | `top`, `actions`, `item.<key>`, `header.<key>`, `no-data`, `loading` | `density="compact"`, `hover`; a padded header bar                                            |
 | `FrDialog`         | `VDialog` + `VCard`   | `activator`, default, `actions`                                      | `size="small"` (500px); primary action buttons                                               |
 | `FrDivider`        | `VDivider`            | default, in the middle of the line                                   | none                                                                                         |
@@ -123,7 +123,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frIconBtnDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frToggleDefaults`, `frTreeDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frContainerDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frIconBtnDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frToggleDefaults`, `frTreeDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, inside a `VCardText`, so it is padded to line up with the
@@ -387,7 +387,9 @@ The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAcc
   Vuetify's gutters and adds `fr-row`. Every other VRow prop (`density`, `tag`...) passes
   through.
 
-  With `FrContainer` (a VContainer, no defaults) around them, they lay out a page:
+  With `FrContainer` around them, they lay out a page. `FrContainer` is a VContainer that is fluid
+  by default, so the page fills the width at every breakpoint rather than stopping at Vuetify 4's
+  cap (1000px at `lg`); `:fluid="false"` brings the cap back, and `max-width` sets one of your own:
 
   ```vue
   <fr-container>
