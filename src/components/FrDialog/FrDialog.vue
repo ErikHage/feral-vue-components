@@ -39,7 +39,10 @@ const props = withDefaults(
     scrollable?: boolean;
     /** Set on the card */
     id?: string;
-    /** Adds a Cancel button, in the theme's error colour, that closes the dialog and emits cancel */
+    /**
+     * Adds a Cancel button that closes the dialog and emits cancel. It is in the theme's error
+     * colour, or neutral when the confirm button already is, so a dialog never has two red buttons
+     */
     cancelText?: string;
     /** Adds a confirm button, last on the right, that emits confirm */
     confirmText?: string;
@@ -140,7 +143,7 @@ function cancel() {
             <fr-btn
               v-if="props.cancelText != null"
               class="fr-dialog__cancel"
-              color="error"
+              :color="props.confirmColor === 'error' ? 'default' : 'error'"
               :text="props.cancelText"
               @click="cancel"
             />

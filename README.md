@@ -235,8 +235,8 @@ The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAcc
     overrides it.
   - `dividers` puts a divider under the header and above the actions.
   - `persistent` and `scrollable` go to the dialog, both off by default; `id` goes on the card.
-  - `cancel-text` adds a Cancel button in the theme's error colour, which closes the dialog and
-    emits `cancel`. `confirm-text` adds a confirm button, last on the right, which emits
+  - `cancel-text` adds a Cancel button in the theme's error colour, neutral when the confirm
+    button is already `error`, which closes the dialog and emits `cancel`. `confirm-text` adds a confirm button, last on the right, which emits
     `confirm` and leaves the dialog open for you to close once the work is done. It is primary
     unless `confirm-color` says otherwise (`error` to delete), and takes `confirm-disabled` and
     `confirm-loading`. Every feral dialog's buttons then look the same.

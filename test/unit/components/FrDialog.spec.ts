@@ -182,6 +182,15 @@ describe('FrDialog', () => {
     expect(card()?.querySelector('.fr-dialog__confirm')?.classList).toContain('v-btn--loading');
   });
 
+  it('makes Cancel neutral when the confirm button is red', async () => {
+    await mountOpen({ cancelText: 'Cancel', confirmText: 'Delete', confirmColor: 'error' });
+    const cancel = card()?.querySelector('.fr-dialog__cancel');
+
+    expect(cancel?.classList).not.toContain('text-error');
+    expect(cancel?.className).not.toMatch(/\btext-(primary|secondary|success|warning|info)\b/);
+    expect(card()?.querySelector('.fr-dialog__confirm')?.classList).toContain('text-error');
+  });
+
   it('has a close FrBtn when closable, which closes it through v-model', async () => {
     const onUpdate = vi.fn();
     const wrapper = await mountOpen(
