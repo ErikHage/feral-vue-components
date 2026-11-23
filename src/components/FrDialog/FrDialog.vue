@@ -39,6 +39,16 @@ const props = withDefaults(
     scrollable?: boolean;
     /** Set on the card */
     id?: string;
+    /** Adds a Cancel button, in the theme's error colour, that closes the dialog and emits cancel */
+    cancelText?: string;
+    /** Adds a confirm button, last on the right, that emits confirm */
+    confirmText?: string;
+    /** The confirm button's colour: the theme's primary unless, say, it deletes (`error`) */
+    confirmColor?: string;
+    /** Disables the confirm button, until the form is valid, say */
+    confirmDisabled?: boolean;
+    /** Shows the confirm button loading, while it saves */
+    confirmLoading?: boolean;
   }>(),
   {
     title: undefined,
@@ -46,14 +56,24 @@ const props = withDefaults(
     size: 'small',
     maxWidth: undefined,
     id: undefined,
+    cancelText: undefined,
+    confirmText: undefined,
+    confirmColor: 'primary',
   },
 );
+
+const emit = defineEmits<{
+  /** The confirm button was pressed. The dialog stays open: close it once the work is done */
+  confirm: [];
+  /** The Cancel button was pressed, and the dialog closed */
+  cancel: [];
+}>();
 
 // Open or closed. Without a v-model from the caller it is FrDialog's own, so the activator
 // alone opens it and the close button still closes it
 const model = defineModel<boolean>({ default: false });
 
-defineSlots<{
+const slots = defineSlots<{
   /** What opens the dialog: bind `props` onto it */
   activator?: (scope: { isActive: boolean; props: Record<string, unknown> }) => VNode[];
   /** The body, inside the card's text */
@@ -66,11 +86,20 @@ const { t } = useLocale();
 
 const width = computed(() => props.maxWidth ?? frDialogWidths[props.size]);
 const hasHeader = computed(() => props.title != null || props.subtitle != null || props.closable);
+const hasActions = computed(
+  () => !!slots.actions || props.cancelText != null || props.confirmText != null,
+);
+
+function cancel() {
+  model.value = false;
+  emit('cancel');
+}
 </script>
 
 <!--
   A VDialog laid out as a VCard: header, body, actions. The caller's other attributes
-  (fullscreen, transition...) fall through onto VDialog. The close button is an FrBtn
+  (fullscreen, transition...) fall through onto VDialog. The close button is an FrBtn, and so are
+  Cancel and the confirm button, after the actions slot's own buttons
 -->
 <template>
   <v-dialog
@@ -102,12 +131,28 @@ const hasHeader = computed(() => props.title != null || props.subtitle != null |
       <v-card-text>
         <slot />
       </v-card-text>
-      <template v-if="$slots.actions">
+      <template v-if="hasActions">
         <v-divider v-if="props.dividers" />
         <v-card-actions>
           <v-spacer />
           <v-defaults-provider :defaults="frCardActionsDefaults">
             <slot name="actions" />
+            <fr-btn
+              v-if="props.cancelText != null"
+              class="fr-dialog__cancel"
+              color="error"
+              :text="props.cancelText"
+              @click="cancel"
+            />
+            <fr-btn
+              v-if="props.confirmText != null"
+              class="fr-dialog__confirm"
+              :color="props.confirmColor"
+              :text="props.confirmText"
+              :disabled="props.confirmDisabled"
+              :loading="props.confirmLoading"
+              @click="emit('confirm')"
+            />
           </v-defaults-provider>
         </v-card-actions>
       </template>

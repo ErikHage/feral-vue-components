@@ -111,6 +111,77 @@ describe('FrDialog', () => {
     expect(remove).toEqual(expect.arrayContaining(['text-error', 'v-btn--variant-text']));
   });
 
+  it('builds a red Cancel and a primary confirm button, in that order, after the slot', async () => {
+    await mountOpen(
+      { cancelText: 'Cancel', confirmText: 'Save' },
+      { actions: () => h(FrBtn, { class: 'extra' }, () => 'Reset') },
+    );
+    const buttons = [...(card()?.querySelectorAll('.v-card-actions .v-btn') ?? [])];
+
+    expect(buttons.map((b) => b.textContent)).toEqual(['Reset', 'Cancel', 'Save']);
+    expect(buttons[1]?.classList).toContain('fr-dialog__cancel');
+    expect(buttons[1]?.classList).toContain('text-error');
+    expect(buttons[2]?.classList).toContain('fr-dialog__confirm');
+    expect(buttons[2]?.classList).toContain('text-primary');
+    expect(buttons[2]?.classList).toContain('v-btn--variant-text');
+  });
+
+  it('builds the actions for either button alone, without the slot', async () => {
+    await mountOpen({ confirmText: 'OK' });
+    expect(
+      [...(card()?.querySelectorAll('.v-card-actions .v-btn') ?? [])].map((b) => b.textContent),
+    ).toEqual(['OK']);
+
+    document.body.innerHTML = '';
+    await mountOpen({ cancelText: 'Close' });
+    expect(
+      [...(card()?.querySelectorAll('.v-card-actions .v-btn') ?? [])].map((b) => b.textContent),
+    ).toEqual(['Close']);
+  });
+
+  it('closes on Cancel and emits cancel', async () => {
+    const onUpdate = vi.fn();
+    const onCancel = vi.fn();
+    await mountOpen({ cancelText: 'Cancel' }, {}, { 'onUpdate:modelValue': onUpdate, onCancel });
+
+    (card()?.querySelector('.fr-dialog__cancel') as HTMLElement).click();
+    await nextTick();
+
+    expect(onUpdate).toHaveBeenLastCalledWith(false);
+    expect(onCancel).toHaveBeenCalledTimes(1);
+  });
+
+  it('emits confirm and stays open, leaving the caller to close it', async () => {
+    const onUpdate = vi.fn();
+    const onConfirm = vi.fn();
+    await mountOpen({ confirmText: 'Save' }, {}, { 'onUpdate:modelValue': onUpdate, onConfirm });
+
+    (card()?.querySelector('.fr-dialog__confirm') as HTMLElement).click();
+    await nextTick();
+
+    expect(onConfirm).toHaveBeenCalledTimes(1);
+    expect(onUpdate).not.toHaveBeenCalled();
+  });
+
+  it('colours, disables and loads the confirm button as told', async () => {
+    const onConfirm = vi.fn();
+    await mountOpen(
+      { confirmText: 'Delete', confirmColor: 'error', confirmDisabled: true },
+      {},
+      { onConfirm },
+    );
+    const confirm = card()?.querySelector('.fr-dialog__confirm') as HTMLButtonElement;
+
+    expect(confirm.classList).toContain('text-error');
+    expect(confirm.disabled).toBe(true);
+    confirm.click();
+    expect(onConfirm).not.toHaveBeenCalled();
+
+    document.body.innerHTML = '';
+    await mountOpen({ confirmText: 'Save', confirmLoading: true });
+    expect(card()?.querySelector('.fr-dialog__confirm')?.classList).toContain('v-btn--loading');
+  });
+
   it('has a close FrBtn when closable, which closes it through v-model', async () => {
     const onUpdate = vi.fn();
     const wrapper = await mountOpen(

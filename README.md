@@ -235,20 +235,30 @@ The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAcc
     overrides it.
   - `dividers` puts a divider under the header and above the actions.
   - `persistent` and `scrollable` go to the dialog, both off by default; `id` goes on the card.
+  - `cancel-text` adds a Cancel button in the theme's error colour, which closes the dialog and
+    emits `cancel`. `confirm-text` adds a confirm button, last on the right, which emits
+    `confirm` and leaves the dialog open for you to close once the work is done. It is primary
+    unless `confirm-color` says otherwise (`error` to delete), and takes `confirm-disabled` and
+    `confirm-loading`. Every feral dialog's buttons then look the same.
 
   Its slots: `activator` (bind its `props` onto your button), the body as the default slot,
-  inside the card's text, and `actions`, pushed to the right, whose buttons are primary text
-  buttons unless they say otherwise. Other `VDialog` props
+  inside the card's text, and `actions`, pushed to the right, before Cancel and the confirm
+  button. Its buttons are primary text buttons unless they say otherwise. Other `VDialog` props
   (`fullscreen`, `transition`...) pass through.
 
   ```vue
-  <fr-dialog v-model="open" title="Edit planting" closable persistent>
+  <fr-dialog
+    v-model="open"
+    title="Edit planting"
+    cancel-text="Cancel"
+    confirm-text="Save"
+    :confirm-disabled="!plantId"
+    persistent
+    @confirm="save().then(() => (open = false))"
+  >
     <template #activator="{ props }"><fr-btn v-bind="props" text="Edit" /></template>
     <fr-autocomplete v-model="plantId" :items="plants" label="Plant" />
-    <template #actions>
-      <fr-btn text="Cancel" @click="open = false" />
-      <fr-btn text="Save" @click="save" />
-    </template>
+    <template #actions><fr-btn text="Reset" @click="reset" /></template>
   </fr-dialog>
   ```
 

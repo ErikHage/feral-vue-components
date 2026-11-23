@@ -30,8 +30,22 @@ const open = ref(false);
     <template #actions><fr-btn text="Save" @click="open = false" /></template>
   </fr-dialog>
 
+  <fr-dialog
+    v-model="open"
+    title="Delete planting"
+    cancel-text="Cancel"
+    confirm-text="Delete"
+    confirm-color="error"
+    :confirm-disabled="false"
+    :confirm-loading="false"
+    @cancel="() => {}"
+    @confirm="open = false"
+  />
+
   <!-- @vue-expect-error size is small, medium or large -->
   <fr-dialog size="huge" />
   <!-- @vue-expect-error closable is a boolean -->
   <fr-dialog :closable="'yes'" />
+  <!-- @vue-expect-error confirm-disabled is a boolean -->
+  <fr-dialog confirm-text="Save" :confirm-disabled="'yes'" />
 </template>

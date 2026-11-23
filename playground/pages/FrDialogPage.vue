@@ -31,6 +31,9 @@ function save() {
       closable
       persistent
       dividers
+      cancel-text="Cancel"
+      confirm-text="Save"
+      @confirm="save"
     >
       <template #activator="{ props }">
         <fr-btn v-bind="props" color="primary" :text="`Edit planting (saved: ${saved})`" />
@@ -42,10 +45,6 @@ function save() {
         item-value="plantId"
         label="Plant"
       />
-      <template #actions>
-        <fr-btn variant="text" text="Cancel" @click="editing = false" />
-        <fr-btn color="primary" text="Save" @click="save" />
-      </template>
     </fr-dialog>
 
     <fr-dialog title="No v-model" closable>
