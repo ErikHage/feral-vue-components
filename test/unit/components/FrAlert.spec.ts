@@ -25,12 +25,13 @@ describe('FrAlert', () => {
   it('applies the feral defaults', () => {
     const alert = mountWithVuetify(FrAlert).findComponent(VAlert);
 
-    expect(alert.props()).toMatchObject({ variant: 'tonal', rounded: 'lg' });
-    expect(frAlertDefaults).toEqual({ variant: 'tonal', rounded: 'lg' });
+    expect(alert.props()).toMatchObject({ variant: 'tonal', density: 'compact', rounded: 'lg' });
+    expect(frAlertDefaults).toEqual({ variant: 'tonal', density: 'compact', rounded: 'lg' });
   });
 
   it.each([
     ['variant', 'outlined'],
+    ['density', 'default'],
     ['rounded', 0],
   ] as const)('lets the caller override %s', (prop, value) => {
     const alert = mountWithVuetify(FrAlert, { props: { [prop]: value } }).findComponent(VAlert);

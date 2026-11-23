@@ -62,7 +62,7 @@ caller passes wins.
 | ------------------ | --------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `FrAccordion`      | `VExpansionPanels`    | default, holding the panels                                          | `variant="default"`, `elevation="2"`, `rounded="lg"`                                         |
 | `FrAccordionPanel` | `VExpansionPanel`     | `title`, `actions`, default                                          | none: it takes its look from `FrAccordion`                                                   |
-| `FrAlert`          | `VAlert`              | `title`, default, `append`                                           | `variant="tonal"`, `rounded="lg"`                                                            |
+| `FrAlert`          | `VAlert`              | `title`, default, `append`                                           | `variant="tonal"`, `density="compact"`, `rounded="lg"`                                       |
 | `FrAutocomplete`   | `VAutocomplete`       | `item`, `no-data`                                                    | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
 | `FrAvatar`         | `VAvatar`             | default, `badge`                                                     | none: it stays Vuetify's circle                                                              |
 | `FrBadge`          | `VBadge`              | default, `badge`                                                     | none                                                                                         |
