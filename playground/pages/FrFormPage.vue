@@ -11,7 +11,7 @@ const form = useTemplateRef<InstanceType<typeof FrForm>>('form');
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrForm</h2>
+  <h2 class="text-headline-small mb-4">FrForm</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VForm</code>. It never submits the page: submitting validates the fields and emits
     <code>submit</code> with <code>{ valid, errors }</code>. <code>v-model</code> is whether every
@@ -20,7 +20,7 @@ const form = useTemplateRef<InstanceType<typeof FrForm>>('form');
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Submit and v-model (valid: <span id="valid">{{ String(valid) }}</span>)
       </h3>
       <fr-form ref="form" v-model="valid" @submit="(result) => (lastSubmit = result)">
@@ -35,7 +35,7 @@ const form = useTemplateRef<InstanceType<typeof FrForm>>('form');
       </p>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Default slot scope, validate-on="submit"</h3>
+      <h3 class="text-body-large mb-2">Default slot scope, validate-on="submit"</h3>
       <fr-form validate-on="submit">
         <template #default="{ isValid, errors }">
           <fr-autocomplete :items="['Bed 1', 'Bed 2']" label="Plot" :rules="[required]" />

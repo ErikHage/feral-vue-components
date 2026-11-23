@@ -1,5 +1,5 @@
 <template>
-  <h2 class="text-h5 mb-4">FrCard</h2>
+  <h2 class="text-headline-small mb-4">FrCard</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VCard</code>. Defaults: <code>variant="elevated"</code>, <code>elevation="2"</code>,
     <code>rounded="lg"</code>. Its slots are its own: <code>title</code>, <code>prepend</code> and

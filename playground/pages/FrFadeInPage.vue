@@ -6,7 +6,7 @@ const key = ref(0);
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrFadeIn</h2>
+  <h2 class="text-headline-small mb-4">FrFadeIn</h2>
   <p class="text-medium-emphasis mb-6">
     Vuetify's <code>VFadeTransition</code> with <code>appear</code>: its content fades in when it
     first renders, as well as when it toggles.

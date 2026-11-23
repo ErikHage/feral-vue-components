@@ -11,7 +11,7 @@ function load() {
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrBtn</h2>
+  <h2 class="text-headline-small mb-4">FrBtn</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VBtn</code>. Default: <code>rounded="lg"</code>; it stays Vuetify's elevated button.
     Its slots are its own: the label as the default slot, in place of <code>text</code>, and
@@ -33,7 +33,7 @@ function load() {
       Default slot: <strong class="ml-1">{{ clicks }} clicks</strong>
     </fr-btn>
     <fr-btn color="secondary" text="Prepend slot">
-      <template #prepend><span class="text-h6">🌱</span></template>
+      <template #prepend><span class="text-title-large">🌱</span></template>
     </fr-btn>
     <fr-btn icon="mdi-sprout" color="primary" aria-label="Sprout" />
     <fr-btn color="primary" :loading="loading" text="Loading" @click="load" />

@@ -22,7 +22,7 @@ const grouped = [
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrList</h2>
+  <h2 class="text-headline-small mb-4">FrList</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VList</code>. Default: <code>density="compact"</code>. Rows are written in its
     default slot, or built from <code>items</code> and customised with the <code>title</code>,
@@ -30,7 +30,7 @@ const grouped = [
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Written rows, lines="two" (as the apps use it)</h3>
+      <h3 class="text-body-large mb-2">Written rows, lines="two" (as the apps use it)</h3>
       <fr-list id="written" lines="two">
         <fr-list-item title="Activity type" subtitle="Watering" />
         <fr-list-item title="Recurrence" subtitle="Every 3 days" />
@@ -38,7 +38,7 @@ const grouped = [
       </fr-list>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">From items, with prepend and append slots</h3>
+      <h3 class="text-body-large mb-2">From items, with prepend and append slots</h3>
       <fr-list id="from-items" :items="plants" item-title="name" item-value="plantId">
         <template #prepend="{ item }">
           <fr-icon :icon="item.icon" color="primary" start />
@@ -49,11 +49,11 @@ const grouped = [
       </fr-list>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Groups, subheaders, dividers: Vuetify's own</h3>
+      <h3 class="text-body-large mb-2">Groups, subheaders, dividers: Vuetify's own</h3>
       <fr-list id="grouped-plain" :items="grouped" />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">The same, with subheader and title slots</h3>
+      <h3 class="text-body-large mb-2">The same, with subheader and title slots</h3>
       <fr-list id="grouped-slots" :items="grouped">
         <template #subheader="{ props }">
           <fr-list-header v-bind="props" color="primary">{{ props.title }} ⟶</fr-list-header>
@@ -64,7 +64,7 @@ const grouped = [
       </fr-list>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Overridden: density="default", nav</h3>
+      <h3 class="text-body-large mb-2">Overridden: density="default", nav</h3>
       <fr-list id="nav" density="default" nav>
         <fr-list-item prepend-icon="mdi-sprout" title="Garden" />
         <fr-list-item prepend-icon="mdi-calendar" title="Years" />

@@ -15,7 +15,7 @@ const selected = ref<string[]>([]);
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrListItem</h2>
+  <h2 class="text-headline-small mb-4">FrListItem</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VListItem</code>. No defaults. Its slots are VListItem's (<code>prepend</code>,
     <code>title</code>, <code>subtitle</code>, default, <code>append</code>), each passed on only
@@ -23,14 +23,14 @@ const selected = ref<string[]>([]);
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Props only: title, subtitle, prepend-icon</h3>
+      <h3 class="text-body-large mb-2">Props only: title, subtitle, prepend-icon</h3>
       <fr-list id="props" lines="two">
         <fr-list-item title="Activity type" subtitle="Watering" prepend-icon="mdi-water" />
         <fr-list-item title="Recurrence" subtitle="Every 3 days" prepend-icon="mdi-repeat" />
       </fr-list>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Title, subtitle and append slots (schedule dialog)</h3>
+      <h3 class="text-body-large mb-2">Title, subtitle and append slots (schedule dialog)</h3>
       <fr-list id="schedules" lines="two">
         <fr-list-item v-for="item in schedules" :key="item.id" rounded="lg">
           <template #title>
@@ -53,20 +53,22 @@ const selected = ref<string[]>([]);
       </fr-list>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Prepend and append slots (year details)</h3>
+      <h3 class="text-body-large mb-2">Prepend and append slots (year details)</h3>
       <fr-list id="statuses">
         <fr-list-item v-for="status in statuses" :key="status.label" :title="status.label">
           <template #prepend>
             <fr-avatar :color="status.color" size="8" class="mr-4" />
           </template>
           <template #append>
-            <span class="text-h5" :class="`text-${status.color}`">{{ status.value }}</span>
+            <span class="text-headline-small" :class="`text-${status.color}`">{{
+              status.value
+            }}</span>
           </template>
         </fr-list-item>
       </fr-list>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Selectable, the slot showing isSelected (selected:
         <span id="selected">{{ selected }}</span>)
       </h3>

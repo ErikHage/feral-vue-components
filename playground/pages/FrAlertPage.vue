@@ -5,7 +5,7 @@ const shown = ref(true);
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrAlert</h2>
+  <h2 class="text-headline-small mb-4">FrAlert</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VAlert</code>. Defaults: <code>variant="tonal"</code>, <code>rounded="lg"</code>.
     Its slots are its own: <code>title</code>, falling back to the <code>title</code> prop, and the

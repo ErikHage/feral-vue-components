@@ -8,7 +8,7 @@ const sunTicks = { 0: 'Shade', 1: 'Part sun', 2: 'Full sun' };
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrSlider</h2>
+  <h2 class="text-headline-small mb-4">FrSlider</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VSlider</code>. Default: <code>density="compact"</code>. Its slots are passed on
     only when given: <code>label</code>, <code>prepend</code>, <code>append</code>,
@@ -16,13 +16,13 @@ const sunTicks = { 0: 'Shade', 1: 'Part sun', 2: 'Full sun' };
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Label prop, step 1 (value: <span id="volume">{{ volume }}</span>)
       </h3>
       <fr-slider id="plain" v-model="volume" :step="1" label="Water" />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Prepend and append buttons, thumb-label slot (spacing:
         <span id="spacing">{{ spacing }}</span> cm)
       </h3>
@@ -57,7 +57,7 @@ const sunTicks = { 0: 'Shade', 1: 'Part sun', 2: 'Full sun' };
       </fr-slider>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Ticks with the tick-label and label slots (sun: <span id="sun">{{ sun }}</span>)
       </h3>
       <fr-slider
@@ -78,7 +78,7 @@ const sunTicks = { 0: 'Shade', 1: 'Part sun', 2: 'Full sun' };
       </fr-slider>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Overridden: density="default", disabled</h3>
+      <h3 class="text-body-large mb-2">Overridden: density="default", disabled</h3>
       <fr-slider id="disabled" :model-value="60" density="default" label="Locked" disabled />
     </fr-col>
   </fr-row>

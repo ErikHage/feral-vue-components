@@ -10,7 +10,7 @@ const weeks = Array.from({ length: 20 }, (_, i) => ({ week: i + 1, kilos: (i * 7
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrTable</h2>
+  <h2 class="text-headline-small mb-4">FrTable</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VTable</code>. Default: <code>density="compact"</code>. Rows go in the default slot;
     <code>top</code>, <code>caption</code> and <code>bottom</code> are passed on only when given.
@@ -18,7 +18,7 @@ const weeks = Array.from({ length: 20 }, (_, i) => ({ week: i + 1, kilos: (i * 7
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">As the plant tabs use it: key and value</h3>
+      <h3 class="text-body-large mb-2">As the plant tabs use it: key and value</h3>
       <fr-table id="details" aria-label="Plant details">
         <tbody>
           <tr>
@@ -37,11 +37,13 @@ const weeks = Array.from({ length: 20 }, (_, i) => ({ week: i + 1, kilos: (i * 7
       </fr-table>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">top, caption and bottom slots; hover, striped</h3>
+      <h3 class="text-body-large mb-2">top, caption and bottom slots; hover, striped</h3>
       <fr-table id="harvest" hover striped="even">
-        <template #top><p class="text-overline px-4 pt-2">This season</p></template>
+        <template #top
+          ><p class="text-label-small text-uppercase px-4 pt-2">This season</p></template
+        >
         <template #caption>
-          <caption class="text-caption text-medium-emphasis">
+          <caption class="text-body-small text-medium-emphasis">
             Kilos harvested per plant
           </caption>
         </template>
@@ -63,7 +65,7 @@ const weeks = Array.from({ length: 20 }, (_, i) => ({ week: i + 1, kilos: (i * 7
       </fr-table>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">As the plantings table uses it: height and fixed header</h3>
+      <h3 class="text-body-large mb-2">As the plantings table uses it: height and fixed header</h3>
       <fr-table id="weeks" height="200" fixed-header>
         <thead>
           <tr>
@@ -80,9 +82,9 @@ const weeks = Array.from({ length: 20 }, (_, i) => ({ week: i + 1, kilos: (i * 7
       </fr-table>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">actions slot: top on the left, actions on the right</h3>
+      <h3 class="text-body-large mb-2">actions slot: top on the left, actions on the right</h3>
       <fr-table id="with-actions" class="px-4">
-        <template #top><p class="text-overline">Plants</p></template>
+        <template #top><p class="text-label-small text-uppercase">Plants</p></template>
         <template #actions>
           <fr-btn size="small">Export</fr-btn>
           <fr-btn size="small" color="primary">Add</fr-btn>
@@ -102,7 +104,7 @@ const weeks = Array.from({ length: 20 }, (_, i) => ({ week: i + 1, kilos: (i * 7
       </fr-table>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">actions without top</h3>
+      <h3 class="text-body-large mb-2">actions without top</h3>
       <fr-table id="actions-only">
         <template #actions>
           <fr-btn size="small" color="primary" class="mx-4 my-2">Add</fr-btn>
@@ -116,7 +118,7 @@ const weeks = Array.from({ length: 20 }, (_, i) => ({ week: i + 1, kilos: (i * 7
       </fr-table>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Overridden: density="default", gridlines="all"</h3>
+      <h3 class="text-body-large mb-2">Overridden: density="default", gridlines="all"</h3>
       <fr-table id="roomy" density="default" gridlines="all">
         <tbody>
           <tr>

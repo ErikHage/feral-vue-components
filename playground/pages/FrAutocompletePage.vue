@@ -13,7 +13,7 @@ const several = ref<number[]>([1, 2]);
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrAutocomplete</h2>
+  <h2 class="text-headline-small mb-4">FrAutocomplete</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VAutocomplete</code>. Defaults: <code>variant="solo"</code>,
     <code>density="compact"</code>, <code>rounded="lg"</code>. Its slots are its own:
@@ -22,7 +22,7 @@ const several = ref<number[]>([1, 2]);
   </p>
   <v-row>
     <v-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Props only (selected: {{ plantId ?? 'none' }})</h3>
+      <h3 class="text-body-large mb-2">Props only (selected: {{ plantId ?? 'none' }})</h3>
       <fr-autocomplete
         v-model="plantId"
         :items="plants"
@@ -33,7 +33,7 @@ const several = ref<number[]>([1, 2]);
       />
     </v-col>
     <v-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Item slot (selected: {{ slotted ?? 'none' }})</h3>
+      <h3 class="text-body-large mb-2">Item slot (selected: {{ slotted ?? 'none' }})</h3>
       <fr-autocomplete
         v-model="slotted"
         :items="plants"
@@ -48,7 +48,7 @@ const several = ref<number[]>([1, 2]);
       </fr-autocomplete>
     </v-col>
     <v-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">No-data slot (type anything)</h3>
+      <h3 class="text-body-large mb-2">No-data slot (type anything)</h3>
       <fr-autocomplete :items="[]" label="Nothing to find">
         <template #no-data>
           <span class="text-medium-emphasis">No plants yet. Add one first.</span>
@@ -56,7 +56,7 @@ const several = ref<number[]>([1, 2]);
       </fr-autocomplete>
     </v-col>
     <v-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Overridden: outlined, comfortable, multiple chips</h3>
+      <h3 class="text-body-large mb-2">Overridden: outlined, comfortable, multiple chips</h3>
       <fr-autocomplete
         v-model="several"
         :items="plants"

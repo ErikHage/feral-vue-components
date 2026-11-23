@@ -24,14 +24,14 @@ function remove() {
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrSnackbarQueue</h2>
+  <h2 class="text-headline-small mb-4">FrSnackbarQueue</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VSnackbarQueue</code>. Defaults: <code>rounded="lg"</code>, <code>closable</code>.
     Push messages onto its <code>v-model</code>; they show one after another.
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Strings and objects, 2s timeout (waiting: <span id="waiting">{{ messages.length }}</span>)
       </h3>
       <fr-btn id="save" class="mr-2 mb-2" text="Save" @click="save" />
@@ -40,7 +40,7 @@ function remove() {
       <fr-snackbar-queue ref="queue" v-model="messages" timeout="2000" />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         An actions slot in place of Dismiss, at the top (log:
         <span id="log">{{ log.join(', ') }}</span>)
       </h3>

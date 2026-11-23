@@ -5,14 +5,14 @@ const loading = ref(true);
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrSkeleton</h2>
+  <h2 class="text-headline-small mb-4">FrSkeleton</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VSkeletonLoader</code>. No defaults. Given a default slot, it shows that content
     once <code>loading</code> is false.
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">As the recipe page uses it</h3>
+      <h3 class="text-body-large mb-2">As the recipe page uses it</h3>
       <fr-skeleton
         id="recipe"
         type="heading, paragraph, paragraph"
@@ -22,7 +22,7 @@ const loading = ref(true);
       />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Wrapping content (loading: <span id="loading">{{ loading }}</span>)
         <fr-btn
           size="small"
@@ -38,12 +38,12 @@ const loading = ref(true);
       </fr-skeleton>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">A table, and a list item with avatar</h3>
+      <h3 class="text-body-large mb-2">A table, and a list item with avatar</h3>
       <fr-skeleton id="table" type="table-heading, table-thead, table-row@2" />
       <fr-skeleton id="list" type="list-item-avatar-two-line" class="mt-4" />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">boilerplate: still, and not announced</h3>
+      <h3 class="text-body-large mb-2">boilerplate: still, and not announced</h3>
       <fr-skeleton id="boilerplate" type="article" boilerplate />
     </fr-col>
   </fr-row>

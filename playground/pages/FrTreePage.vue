@@ -29,14 +29,14 @@ const search = ref('');
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrTree</h2>
+  <h2 class="text-headline-small mb-4">FrTree</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VTreeview</code>. Default: <code>density="compact"</code>. Its slots are passed on
     only when given, and get the item.
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Plots, open-on-click, append slot (opened: <span id="opened">{{ opened.join(', ') }}</span>)
       </h3>
       <fr-tree
@@ -60,7 +60,7 @@ const search = ref('');
       />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         A second tree, the same ids: overridden density="default"
       </h3>
       <fr-tree id="tasks" :items="tasks" item-value="id" density="default" />

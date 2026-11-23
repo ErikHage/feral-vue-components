@@ -28,7 +28,7 @@ function reload() {
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrDataTable</h2>
+  <h2 class="text-headline-small mb-4">FrDataTable</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VDataTable</code>. Defaults: <code>density="compact"</code>, <code>hover</code>. It
     passes on the slots that fill a cell or header (<code>item.&lt;key&gt;</code>,
@@ -36,21 +36,21 @@ function reload() {
     <code>top</code>; given <code>actions</code>, <code>top</code> and the actions share one header
     bar.
   </p>
-  <h3 class="text-subtitle-1 mb-2">top and actions slots: top on the left, actions on the right</h3>
+  <h3 class="text-body-large mb-2">top and actions slots: top on the left, actions on the right</h3>
   <fr-data-table id="with-actions" :headers="headers" :items="users" class="mb-6">
-    <template #top><p class="text-overline px-4">Users</p></template>
+    <template #top><p class="text-label-small text-uppercase px-4">Users</p></template>
     <template #actions>
       <fr-btn size="small">Export</fr-btn>
       <fr-btn size="small" color="primary" class="me-4">Invite</fr-btn>
     </template>
   </fr-data-table>
-  <h3 class="text-subtitle-1 mb-2">actions without top</h3>
+  <h3 class="text-body-large mb-2">actions without top</h3>
   <fr-data-table id="actions-only" :headers="headers" :items="users.slice(0, 1)" class="mb-6">
     <template #actions>
       <fr-btn size="small" color="primary" class="mx-4 my-2">Invite</fr-btn>
     </template>
   </fr-data-table>
-  <h3 class="text-subtitle-1 mb-2">
+  <h3 class="text-body-large mb-2">
     As in the admin pages, with an actions column (last: {{ last }})
   </h3>
   <fr-data-table
@@ -83,7 +83,7 @@ function reload() {
     <template #loading>Fetching users…</template>
   </fr-data-table>
   <fr-btn class="mb-6" size="small" text="Reload (shows the loading slot)" @click="reload" />
-  <h3 class="text-subtitle-1 mb-2">No items: the no-data slot</h3>
+  <h3 class="text-body-large mb-2">No items: the no-data slot</h3>
   <fr-data-table :headers="headers" :items="[]">
     <template #no-data>No users yet. Invite one first.</template>
   </fr-data-table>

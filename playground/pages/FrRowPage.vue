@@ -6,7 +6,7 @@ const justify = ref<'start' | 'center' | 'end' | 'space-between' | 'space-around
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrRow</h2>
+  <h2 class="text-headline-small mb-4">FrRow</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VRow</code>; its default slot holds the columns. It takes <code>align</code>,
     <code>justify</code> and <code>align-content</code>, each also at a breakpoint
@@ -37,7 +37,7 @@ const justify = ref<'start' | 'center' | 'end' | 'space-between' | 'space-around
       <fr-code-block class="ma-0">col {{ n }}</fr-code-block>
     </fr-col>
   </fr-row>
-  <h3 class="text-subtitle-1 mb-2">align="end", columns of different heights</h3>
+  <h3 class="text-body-large mb-2">align="end", columns of different heights</h3>
   <fr-row align="end" style="min-height: 160px">
     <fr-col><fr-code-block class="ma-0">short</fr-code-block></fr-col>
     <fr-col

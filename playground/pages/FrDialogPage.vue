@@ -16,7 +16,7 @@ function save() {
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrDialog</h2>
+  <h2 class="text-headline-small mb-4">FrDialog</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VDialog</code>, laid out as a card: <code>title</code>, <code>subtitle</code> and a
     <code>closable</code> button in the header, the default slot as the body,

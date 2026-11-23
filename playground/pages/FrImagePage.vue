@@ -16,18 +16,18 @@ const clicks = ref(0);
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrImage</h2>
+  <h2 class="text-headline-small mb-4">FrImage</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VImg</code>. No defaults: centre it with <code>class="mx-auto"</code>, as the apps
     do. Its slots are VImg's, passed on only when given.
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">A logo, as the apps use it</h3>
+      <h3 class="text-body-large mb-2">A logo, as the apps use it</h3>
       <fr-image id="logo" :src="logo" alt="Logo" max-width="250" class="mx-auto" />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         cover, 1:1, clickable (clicked <span id="clicks">{{ clicks }}</span> times)
       </h3>
       <fr-image
@@ -42,7 +42,7 @@ const clicks = ref(0);
       />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Default slot over the image</h3>
+      <h3 class="text-body-large mb-2">Default slot over the image</h3>
       <fr-image id="overlay" :src="logo" alt="Logo" max-width="250">
         <div class="d-flex fill-height align-end pa-2">
           <fr-chip size="small" color="primary" text="Bed 3" />
@@ -50,7 +50,7 @@ const clicks = ref(0);
       </fr-image>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">A missing image: error slot</h3>
+      <h3 class="text-body-large mb-2">A missing image: error slot</h3>
       <fr-image id="broken" src="/missing.png" alt="Missing" max-width="250" :aspect-ratio="2">
         <template #placeholder>
           <div class="d-flex fill-height align-center justify-center">Loading</div>

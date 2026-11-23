@@ -7,14 +7,14 @@ const hovered = ref(false);
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrMenu</h2>
+  <h2 class="text-headline-small mb-4">FrMenu</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VMenu</code>. No defaults. Bind the <code>activator</code> slot's
     <code>props</code> onto what opens it; the default slot is the menu.
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Actions menu (last action: <span id="last-action">{{ lastAction }}</span>)
       </h3>
       <fr-menu id="actions">
@@ -28,7 +28,7 @@ const hovered = ref(false);
       </fr-menu>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         v-model, stays open on click, closes from inside (open: <span id="open">{{ open }}</span>)
       </h3>
       <fr-menu v-model="open" :close-on-content-click="false" location="end">
@@ -46,7 +46,7 @@ const hovered = ref(false);
       </fr-menu>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         open-on-hover (open: <span id="hovered">{{ hovered }}</span>)
       </h3>
       <fr-menu v-model="hovered" open-on-hover>

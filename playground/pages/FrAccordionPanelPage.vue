@@ -1,5 +1,5 @@
 <template>
-  <h2 class="text-h5 mb-4">FrAccordionPanel</h2>
+  <h2 class="text-headline-small mb-4">FrAccordionPanel</h2>
   <p class="text-medium-emphasis mb-6">
     A <code>VExpansionPanel</code> built from a <code>VExpansionPanelTitle</code> and a
     <code>VExpansionPanelText</code>. The title slot falls back to the <code>title</code> prop, the

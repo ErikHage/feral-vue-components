@@ -16,7 +16,7 @@ const stepOptions: FrTabsOption[] = [
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrTabs</h2>
+  <h2 class="text-headline-small mb-4">FrTabs</h2>
   <p class="text-medium-emphasis mb-6">
     Wraps <code>VTabs</code>, building a tab per entry in <code>options</code>. Defaults:
     <code>color="primary"</code>, <code>fixed-tabs</code>. The default slot sits below the tabs,
@@ -24,7 +24,7 @@ const stepOptions: FrTabsOption[] = [
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         As the planning page uses it: { title, value } (tab:
         <span id="planning">{{ planning }}</span>)
       </h3>
@@ -39,7 +39,7 @@ const stepOptions: FrTabsOption[] = [
       </fr-card>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Strings, v-model starts empty, first tab selected (tab:
         <span id="plant">{{ plantTab }}</span>)
       </h3>
@@ -57,11 +57,11 @@ const stepOptions: FrTabsOption[] = [
       </fr-card>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Number values, icons, a disabled tab, no slot</h3>
+      <h3 class="text-body-large mb-2">Number values, icons, a disabled tab, no slot</h3>
       <fr-tabs id="steps" :options="stepOptions" />
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         Overridden: color="success", :fixed-tabs="false", grow, bg-color; class on the div
       </h3>
       <fr-tabs

@@ -9,14 +9,14 @@ const name = ref('');
 </script>
 
 <template>
-  <h2 class="text-h5 mb-4">FrFieldGroup</h2>
+  <h2 class="text-headline-small mb-4">FrFieldGroup</h2>
   <p class="text-medium-emphasis mb-6">
     Custom: a label above a field, with an optional icon, required mark and description. Used
     directly only to label a group of fields.
   </p>
   <fr-row>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">
+      <h3 class="text-body-large mb-2">
         An hour and minute picker, fields sharing the row (time:
         <span id="time">{{ hour }}:{{ String(minute).padStart(2, '0') }}</span
         >)
@@ -36,7 +36,7 @@ const name = ref('');
       </fr-field-group>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">One field, labelled through field-id; small</h3>
+      <h3 class="text-body-large mb-2">One field, labelled through field-id; small</h3>
       <fr-field-group id="name-group" label="Plant name" field-id="plant-name" size="small">
         <input
           id="plant-name"
@@ -47,7 +47,7 @@ const name = ref('');
       </fr-field-group>
     </fr-col>
     <fr-col cols="12" md="6">
-      <h3 class="text-subtitle-1 mb-2">Description slot, with a link</h3>
+      <h3 class="text-body-large mb-2">Description slot, with a link</h3>
       <fr-field-group id="slot-group" label="Spacing">
         <template #description> See the <a href="#/fr-slider">slider</a> for finer steps </template>
         <fr-slider :model-value="30" />
