@@ -72,6 +72,8 @@ import {
   FrListHeader,
   FrListItem,
   FrMenu,
+  FrPage,
+  FrPageTitle,
   FrProgressBar,
   FrRow,
   FrSelect,
@@ -322,6 +324,19 @@ describe('FeralComponents', () => {
     expect(wrapper.findComponent(VMenu).exists()).toBe(true);
   });
 
+  it('registers FrPage globally, so <fr-page> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-page title="Global">Content</fr-page>');
+
+    expect(wrapper.findComponent(VContainer).exists()).toBe(true);
+    expect(wrapper.find('.fr-page h1').text()).toBe('Global');
+  });
+
+  it('registers FrPageTitle globally, so <fr-page-title> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-page-title title="Global" />');
+
+    expect(wrapper.find('.fr-page-title h1').text()).toBe('Global');
+  });
+
   it('registers FrProgressBar globally, so <fr-progress-bar> resolves in templates', () => {
     const wrapper = mountGlobal('<fr-progress-bar :model-value="40" />');
 
@@ -480,6 +495,8 @@ describe('FeralComponents', () => {
     ['FrListHeader', FrListHeader],
     ['FrListItem', FrListItem],
     ['FrMenu', FrMenu],
+    ['FrPage', FrPage],
+    ['FrPageTitle', FrPageTitle],
     ['FrProgressBar', FrProgressBar],
     ['FrRow', FrRow],
     ['FrSelect', FrSelect],

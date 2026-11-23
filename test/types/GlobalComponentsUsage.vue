@@ -32,6 +32,8 @@
   <fr-list-header sticky>Herbs</fr-list-header>
   <fr-list-item title="Basil" prepend-icon="mdi-leaf" to="/plants/2" />
   <fr-menu location="end" open-on-hover>Menu</fr-menu>
+  <fr-page title="Global" :max-width="1200">Content</fr-page>
+  <fr-page-title title="Global" tag="h2" />
   <fr-progress-bar :model-value="40" color="success" />
   <fr-select :items="['Weekly']" label="Global" />
   <fr-skeleton type="heading, paragraph" />

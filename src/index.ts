@@ -26,6 +26,8 @@ import type { FrList } from './components/FrList';
 import type { FrListHeader } from './components/FrListHeader';
 import type { FrListItem } from './components/FrListItem';
 import type { FrMenu } from './components/FrMenu';
+import type { FrPage } from './components/FrPage';
+import type { FrPageTitle } from './components/FrPageTitle';
 import type { FrProgressBar } from './components/FrProgressBar';
 import type { FrRow } from './components/FrRow';
 import type { FrSelect } from './components/FrSelect';
@@ -104,6 +106,12 @@ export {
 export { FrListHeader } from './components/FrListHeader';
 export { FrListItem } from './components/FrListItem';
 export { FrMenu } from './components/FrMenu';
+export { FrPage, type FrPageSlots } from './components/FrPage';
+export {
+  FrPageTitle,
+  type FrPageTitleProps,
+  type FrPageTitleSlots,
+} from './components/FrPageTitle';
 export { FrProgressBar } from './components/FrProgressBar';
 export {
   FrRow,
@@ -169,6 +177,8 @@ declare module 'vue' {
     FrListHeader: typeof FrListHeader;
     FrListItem: typeof FrListItem;
     FrMenu: typeof FrMenu;
+    FrPage: typeof FrPage;
+    FrPageTitle: typeof FrPageTitle;
     FrProgressBar: typeof FrProgressBar;
     FrRow: typeof FrRow;
     FrSelect: typeof FrSelect;

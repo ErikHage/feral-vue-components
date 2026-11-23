@@ -27,6 +27,8 @@ import { FrList } from './components/FrList';
 import { FrListHeader } from './components/FrListHeader';
 import { FrListItem } from './components/FrListItem';
 import { FrMenu } from './components/FrMenu';
+import { FrPage } from './components/FrPage';
+import { FrPageTitle } from './components/FrPageTitle';
 import { FrProgressBar } from './components/FrProgressBar';
 import { FrRow } from './components/FrRow';
 import { FrSelect } from './components/FrSelect';
@@ -90,6 +92,8 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrListHeader,
   FrListItem,
   FrMenu,
+  FrPage,
+  FrPageTitle,
   FrProgressBar,
   FrRow,
   FrSelect,
