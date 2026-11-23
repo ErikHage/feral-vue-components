@@ -32,7 +32,10 @@ describe('createFeralVuetifyOptions', () => {
 
     expect(options.theme).toEqual({
       defaultTheme: 'feralLight',
-      themes: { feralDark, feralLight: { dark: false, colors: { primary: '#123456' } } },
+      themes: {
+        feralDark,
+        feralLight: { dark: false, colors: { ...feralLight.colors, primary: '#123456' } },
+      },
     });
     expect(options.icons).toEqual(createFeralVuetifyOptions().icons);
   });
@@ -50,7 +53,7 @@ describe('createFeralVuetifyOptions', () => {
       theme: { themes: { feralDark: { colors: { primary: '#000' } } } },
     });
 
-    expect(feralDark).toEqual({ dark: true, colors: {} });
+    expect(feralDark.colors?.primary).toBe('#2196F3');
   });
 });
 
@@ -66,7 +69,16 @@ describe('a Vuetify app built from the feral options', () => {
     expect(mountWithVuetify(ThemeProbe).text()).toBe('feralDark true');
   });
 
-  it('fills unset colours from Vuetify’s own dark theme', () => {
+  it('names the palette itself, so a Vuetify upgrade cannot change it', () => {
+    const named = ['background', 'surface', 'primary', 'secondary', 'error', 'info', 'success'];
+
+    expect(Object.keys(feralDark.colors ?? {})).toEqual(
+      expect.arrayContaining([...named, 'warning']),
+    );
+    expect(Object.keys(feralLight.colors ?? {})).toEqual(Object.keys(feralDark.colors ?? {}));
+  });
+
+  it('matches Vuetify’s own dark theme today', () => {
     const wrapper = mountWithVuetify(
       defineComponent({
         setup() {

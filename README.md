@@ -42,8 +42,9 @@ parts they use themselves, so they work either way.
 
 `createFeralVuetifyOptions(overrides?)` returns Vuetify options holding:
 
-- two themes, `feralDark` (the default) and `feralLight`. Their colours are Vuetify's own dark and
-  light colours until the feral palette is designed;
+- two themes, `feralDark` (the default) and `feralLight`. Their colours are Vuetify 4.3's own dark
+  and light colours, written out in the library so every app gets the same palette and a Vuetify
+  upgrade can't change it;
 - the mdi icon set.
 
 Overrides are merged in deeply, so an app changes only what it names, e.g.
