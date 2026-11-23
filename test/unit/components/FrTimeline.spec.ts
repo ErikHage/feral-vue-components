@@ -117,6 +117,14 @@ describe('FrTimeline', () => {
     expect(shown(wrapper)).toBe('2026-05-01');
   });
 
+  it('keeps Older and Newer neutral, not the primary of other buttons', () => {
+    const wrapper = mountTimeline();
+
+    for (const text of ['Older', 'Newer']) {
+      expect(button(wrapper, text).classes()).not.toContain('text-primary');
+    }
+  });
+
   it("heads the shown day in a card title's type", () => {
     expect(mountTimeline().find('h2').classes()).toContain('text-title-large');
   });

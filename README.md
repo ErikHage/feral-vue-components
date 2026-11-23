@@ -68,7 +68,7 @@ caller passes wins.
 | `FrAvatar`         | `VAvatar`             | default, `badge`                                                     | none: it stays Vuetify's circle                                                              |
 | `FrBadge`          | `VBadge`              | default, `badge`                                                     | none                                                                                         |
 | `FrBreadcrumbs`    | `VBreadcrumbs`        | `divider`                                                            | dividers are chevrons, not `/`                                                               |
-| `FrBtn`            | `VBtn`                | default, `prepend`, `append`                                         | `rounded="lg"`, except icon buttons, which stay round                                        |
+| `FrBtn`            | `VBtn`                | default, `prepend`, `append`                                         | `color="primary"`, `rounded="lg"`, except icon buttons, which stay round and neutral         |
 | `FrCard`           | `VCard`               | `title`, `prepend`, `append`, default, `actions`                     | `variant="elevated"`, `elevation="2"`, `rounded="lg"`; a padded body; primary action buttons |
 | `FrCheckbox`       | `VCheckbox`           | `label`                                                              | `density="compact"`                                                                          |
 | `FrChip`           | `VChip`               | default, `prepend`, `append`                                         | none: it stays Vuetify's pill                                                                |
@@ -159,8 +159,10 @@ The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAcc
   forwarded; `icon` still adds a leading icon.
 
 - **`FrBtn`**: the label is the default slot, in place of `text` (or `icon`), and `prepend` and
-  `append` replace `prepend-icon` and `append-icon`. Its only default is `rounded="lg"`: it stays
-  Vuetify's elevated button, and an icon button (`icon` set) stays a circle. VBtn's `loader` slot is not forwarded; `loading` still works.
+  `append` replace `prepend-icon` and `append-icon`. Its defaults are `color="primary"` and
+  `rounded="lg"`: it stays Vuetify's elevated button, in the theme's primary. Give it another colour
+  for another job (`color="error"` to delete), or `color="default"` for a neutral one, as in an app
+  bar. An icon button (`icon` set) skips both and stays a neutral circle. VBtn's `loader` slot is not forwarded; `loading` still works.
 
 - **`FrCheckbox`**: the `label` slot is the label's content, in place of the `label` prop (a link,
   say); it still sits in the checkbox's own `<label>`, so clicking it still toggles. Its only

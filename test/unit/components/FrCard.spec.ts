@@ -178,8 +178,10 @@ describe('FrCard', () => {
     expect(frCardActionsDefaults).toEqual({ VBtn: { color: 'primary' } });
   });
 
+  // A plain VBtn, since an FrBtn is primary anywhere: what's checked is that the actions' defaults
+  // stay in the actions
   it("leaves buttons in the body to Vuetify's defaults", () => {
-    const wrapper = mountWithVuetify(FrCard, { slots: { default: () => h(FrBtn, () => 'Go') } });
+    const wrapper = mountWithVuetify(FrCard, { slots: { default: () => h(VBtn, () => 'Go') } });
 
     const button = wrapper.findComponent(VBtn).classes();
 

@@ -112,6 +112,7 @@ watch(
         <div class="d-flex flex-wrap justify-space-between align-center ga-2">
           <fr-btn
             variant="tonal"
+            color="default"
             prepend-icon="mdi-chevron-left"
             text="Older"
             :disabled="!olderDay"
@@ -123,6 +124,7 @@ watch(
           </div>
           <fr-btn
             variant="tonal"
+            color="default"
             append-icon="mdi-chevron-right"
             text="Newer"
             :disabled="!newerDay"

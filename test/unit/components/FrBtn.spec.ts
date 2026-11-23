@@ -25,8 +25,23 @@ describe('FrBtn', () => {
   it("applies the feral defaults, keeping Vuetify's elevated variant", () => {
     const btn = mountWithVuetify(FrBtn).findComponent(VBtn);
 
-    expect(btn.props()).toMatchObject({ rounded: 'lg', variant: 'elevated' });
-    expect(frBtnDefaults).toEqual({ rounded: 'lg' });
+    expect(btn.props()).toMatchObject({ color: 'primary', rounded: 'lg', variant: 'elevated' });
+    expect(btn.classes()).toContain('bg-primary');
+    expect(frBtnDefaults).toEqual({ color: 'primary', rounded: 'lg' });
+  });
+
+  it('lets the caller override color', () => {
+    const btn = mountWithVuetify(FrBtn, { props: { color: 'error' } }).findComponent(VBtn);
+
+    expect(btn.classes()).toContain('bg-error');
+    expect(btn.classes()).not.toContain('bg-primary');
+  });
+
+  it('is neutral given color="default", which names no theme colour', () => {
+    const btn = mountWithVuetify(FrBtn, { props: { color: 'default' } }).findComponent(VBtn);
+
+    expect(btn.classes()).not.toContain('bg-primary');
+    expect(btn.attributes('style') ?? '').not.toContain('background');
   });
 
   it.each([
@@ -37,6 +52,7 @@ describe('FrBtn', () => {
     const btn = mountWithVuetify(FrBtn, { attrs: { icon } }).findComponent(VBtn);
 
     expect(btn.props('rounded')).toBeUndefined();
+    expect(btn.props('color')).toBeUndefined();
     expect(btn.classes()).toContain('v-btn--icon');
   });
 

@@ -4,9 +4,11 @@ type VBtnProps = InstanceType<typeof VBtn>['$props'];
 
 /**
  * How every feral button looks unless the caller says otherwise. Structural only: no behaviour.
- * Only the corners change, to match the other components; buttons stay Vuetify's elevated. Icon
- * buttons skip it and stay round
+ * The theme's primary, as the feral apps set on nearly every button, with the corners of the
+ * other components; buttons stay Vuetify's elevated. `color="default"` gives a neutral button.
+ * Icon buttons skip it: they stay round and neutral
  */
 export const frBtnDefaults = {
+  color: 'primary',
   rounded: 'lg',
 } as const satisfies Partial<VBtnProps>;
