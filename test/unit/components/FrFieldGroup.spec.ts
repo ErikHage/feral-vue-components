@@ -114,6 +114,16 @@ describe('FrFieldGroup', () => {
     expect(wrapper.find('label').classes()).toContain('mb-1');
   });
 
+  it('sets the description in small, medium-emphasis type', () => {
+    const wrapper = mountWithVuetify(FrFieldGroup, {
+      props: { label: 'Time', description: 'Help' },
+    });
+
+    expect(wrapper.find('p').classes()).toEqual(
+      expect.arrayContaining(['text-body-small', 'text-medium-emphasis']),
+    );
+  });
+
   it('draws no description without the prop or the slot', () => {
     const wrapper = mountWithVuetify(FrFieldGroup, { props: { label: 'Time' } });
 
@@ -121,10 +131,10 @@ describe('FrFieldGroup', () => {
   });
 
   it.each([
-    ['default', false, ['text-body-2', 'font-weight-semibold', 'mb-2']],
-    ['default', true, ['text-body-2', 'font-weight-semibold', 'mb-1']],
-    ['small', false, ['text-caption', 'font-weight-medium', 'mb-1']],
-    ['small', true, ['text-caption', 'font-weight-medium', 'mb-1']],
+    ['default', false, ['text-body-medium', 'font-weight-semibold', 'mb-2']],
+    ['default', true, ['text-body-medium', 'font-weight-semibold', 'mb-1']],
+    ['small', false, ['text-body-small', 'font-weight-medium', 'mb-1']],
+    ['small', true, ['text-body-small', 'font-weight-medium', 'mb-1']],
   ] as const)('styles a %s label, with description %s, as %j', (size, described, classes) => {
     const wrapper = mountWithVuetify(FrFieldGroup, {
       props: { label: 'Time', size, description: described ? 'Help' : undefined },
@@ -141,7 +151,7 @@ describe('FrFieldGroup', () => {
   it('is default-sized unless told otherwise', () => {
     const wrapper = mountWithVuetify(FrFieldGroup, { props: { label: 'Time' } });
 
-    expect(wrapper.find('label').classes()).toContain('text-body-2');
+    expect(wrapper.find('label').classes()).toContain('text-body-medium');
   });
 
   it('wraps the content in a div with box-id, given one, and not otherwise', () => {

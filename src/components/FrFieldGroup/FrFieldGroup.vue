@@ -61,18 +61,16 @@ const hasDescription = computed(() => !!props.description || !!slots.description
       :for="fieldId"
       class="d-flex align-center text-high-emphasis"
       :class="[
-        size === 'small' ? 'text-caption font-weight-medium' : 'text-body-2 font-weight-semibold',
+        size === 'small'
+          ? 'text-body-small font-weight-medium'
+          : 'text-body-medium font-weight-semibold',
         size === 'small' || hasDescription ? 'mb-1' : 'mb-2',
       ]"
     >
       <v-icon v-if="icon" :icon="icon" size="small" class="mr-2" />
       {{ label }}<span v-if="required" aria-hidden="true">&nbsp;*</span>
     </label>
-    <p
-      v-if="hasDescription"
-      :id="descriptionId"
-      class="text-caption text-medium-emphasis mb-2 lh-sm"
-    >
+    <p v-if="hasDescription" :id="descriptionId" class="text-body-small text-medium-emphasis mb-2">
       <slot name="description">{{ description }}</slot>
     </p>
     <div v-if="boxId" :id="boxId">

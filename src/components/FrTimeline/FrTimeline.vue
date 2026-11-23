@@ -118,7 +118,7 @@ watch(
             @click="model = olderDay"
           />
           <div class="d-flex align-center ga-3">
-            <h2 class="text-h6">{{ shownDay }}</h2>
+            <h2 class="text-title-large">{{ shownDay }}</h2>
             <slot name="actions" :day="shownDay" :records="recordsByDay[shownDay]!" />
           </div>
           <fr-btn

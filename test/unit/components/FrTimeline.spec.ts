@@ -117,6 +117,10 @@ describe('FrTimeline', () => {
     expect(shown(wrapper)).toBe('2026-05-01');
   });
 
+  it("heads the shown day in a card title's type", () => {
+    expect(mountTimeline().find('h2').classes()).toContain('text-title-large');
+  });
+
   it('steps between days with Older and Newer, each disabled at its end', async () => {
     const wrapper = mountTimeline();
     await nextTick();
