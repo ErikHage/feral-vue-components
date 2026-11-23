@@ -37,6 +37,8 @@ import { FrSpinner } from './components/FrSpinner';
 import { FrSheet } from './components/FrSheet';
 import { FrTable } from './components/FrTable';
 import { FrTabs } from './components/FrTabs';
+import { FrTextarea } from './components/FrTextarea';
+import { FrTextField } from './components/FrTextField';
 import { FrTimeline } from './components/FrTimeline';
 import { FrSnackbarQueue } from './components/FrSnackbarQueue';
 import { FrToggle } from './components/FrToggle';
@@ -98,6 +100,8 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrSheet,
   FrTable,
   FrTabs,
+  FrTextarea,
+  FrTextField,
   FrTimeline,
   FrSnackbarQueue,
   FrToggle,

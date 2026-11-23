@@ -36,6 +36,8 @@ import {
   VSheet,
   VTable,
   VTabs,
+  VTextarea,
+  VTextField,
   VSnackbarQueue,
   VSwitch,
   VTooltip,
@@ -80,6 +82,8 @@ import {
   FrSheet,
   FrTable,
   FrTabs,
+  FrTextarea,
+  FrTextField,
   FrTimeline,
   FrSnackbarQueue,
   FrToggle,
@@ -384,6 +388,20 @@ describe('FeralComponents', () => {
     ]);
   });
 
+  it('registers FrTextField globally, so <fr-text-field> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-text-field label="Global" />');
+
+    expect(wrapper.findComponent(VTextField).exists()).toBe(true);
+    expect(wrapper.find('.fr-text-field label').text()).toBe('Global');
+  });
+
+  it('registers FrTextarea globally, so <fr-textarea> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-textarea label="Global" />');
+
+    expect(wrapper.findComponent(VTextarea).exists()).toBe(true);
+    expect(wrapper.find('.fr-textarea textarea').exists()).toBe(true);
+  });
+
   it('registers FrTimeline globally, so <fr-timeline> resolves in templates', () => {
     const wrapper = mountGlobal(
       `<fr-timeline :records="['2026-05-01']" :date-of="(day) => day" />`,
@@ -472,6 +490,8 @@ describe('FeralComponents', () => {
     ['FrSheet', FrSheet],
     ['FrTable', FrTable],
     ['FrTabs', FrTabs],
+    ['FrTextarea', FrTextarea],
+    ['FrTextField', FrTextField],
     ['FrTimeline', FrTimeline],
     ['FrSnackbarQueue', FrSnackbarQueue],
     ['FrToggle', FrToggle],

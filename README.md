@@ -102,6 +102,8 @@ caller passes wins.
 | `FrSpinner`        | `VProgressCircular`   | default, in the middle, given `value`                                | `indeterminate`, unless given a value                                                        |
 | `FrTable`          | `VTable`              | `top`, `actions`, `caption`, default, the rows, `bottom`             | `density="compact"`; a padded header bar                                                     |
 | `FrTabs`           | `VTabs`               | default, below the tabs, given the selected `tab`                    | `color="primary"`, `fixed-tabs`                                                              |
+| `FrTextField`      | `VTextField`          | none                                                                 | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
+| `FrTextarea`       | `VTextarea`           | none                                                                 | `variant="solo"`, `density="compact"`, `rounded="lg"`                                        |
 | `FrTimeline`       | built from Fr parts   | `day`, `actions`, `empty`                                            | none                                                                                         |
 | `FrToggle`         | `VSwitch`             | `label`, `prepend`, `append`, `thumb`, `track-true`...               | `density="compact"`                                                                          |
 | `FrTooltip`        | `VTooltip`            | `activator`, default, in place of `text`                             | none                                                                                         |
@@ -123,7 +125,7 @@ import { FrCard } from '@feral-auth/vue-components';
 ```
 
 The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAccordionDefaults`, `frAlertDefaults`,
-`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frContainerDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frIconBtnDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frToggleDefaults`, `frTreeDefaults`), for anything that needs to match them.
+`frAutocompleteDefaults`, `frBtnDefaults`, `frCheckboxDefaults`, `frContainerDefaults`, `frDataTableDefaults`, `frFileFieldDefaults`, `frIconBtnDefaults`, `frListDefaults`, `frSelectDefaults`, `frSheetDefaults`, `frSliderDefaults`, `frSnackbarQueueDefaults`, `frTableDefaults`, `frTabsDefaults`, `frTextareaDefaults`, `frTextFieldDefaults`, `frToggleDefaults`, `frTreeDefaults`), for anything that needs to match them.
 
 - **`FrCard`**: the `title` slot replaces the title and subtitle, which otherwise come from their
   props. The body is the default slot, inside a `VCardText`, so it is padded to line up with the
@@ -506,6 +508,24 @@ The defaults are exported too (`frCardDefaults`, `frCardActionsDefaults`, `frAcc
     </template>
   </fr-tabs>
   ```
+
+- **`FrTextField`**: a one-line field in the feral field look, as `FrSelect`'s: solo, compact,
+  rounded. Every VTextField prop and event passes through (`type`, `rules`, `clearable`,
+  `counter`, `@click:append`...). Its icons come from props (`prepend-inner-icon`,
+  `append-inner-icon`, `append-icon`); VTextField's slots are not passed on.
+
+  ```vue
+  <fr-text-field
+    v-model="password"
+    label="Password"
+    :type="shown ? 'text' : 'password'"
+    :append-inner-icon="shown ? 'mdi-eye' : 'mdi-eye-off'"
+    @click:append-inner="shown = !shown"
+  />
+  ```
+
+- **`FrTextarea`**: a field of several lines, in the same look as `FrTextField`. `rows`,
+  `auto-grow`, `counter` and VTextarea's other props pass through; its slots are not passed on.
 
 - **`FrTimeline`**: a column of the days that have records, newest first, beside the shown
   day's records, with Older and Newer buttons either side of its heading. Modelled on

@@ -47,6 +47,8 @@
     </tbody>
   </fr-table>
   <fr-tabs :options="['Details', 'History']" grow />
+  <fr-text-field label="Global" clearable />
+  <fr-textarea label="Global" :rows="4" auto-grow />
   <fr-timeline :records="['2026-05-01']" :date-of="(day) => day">
     <template #day="{ records }">{{ records.join(', ') }}</template>
   </fr-timeline>
