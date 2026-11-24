@@ -2,6 +2,7 @@ import type { FrAccordion } from './components/FrAccordion';
 import type { FrAccordionPanel } from './components/FrAccordionPanel';
 import type { FrAlert } from './components/FrAlert';
 import type { FrAppLogo } from './components/FrAppLogo';
+import type { FrAppNavigationDrawer } from './components/FrAppNavigationDrawer';
 import type { FrAppSettingsMenu } from './components/FrAppSettingsMenu';
 import type { FrAppUserMenu } from './components/FrAppUserMenu';
 import type { FrAutocomplete } from './components/FrAutocomplete';
@@ -60,6 +61,13 @@ export {
 } from './components/FrAccordionPanel';
 export { FrAlert, frAlertDefaults, type FrAlertSlots } from './components/FrAlert';
 export { FrAppLogo, type FrAppLogoProps } from './components/FrAppLogo';
+export {
+  FrAppNavigationDrawer,
+  type FrAppNavigationDrawerProps,
+  type FrAppNavigationDrawerSlots,
+  type FrAppNavigationItem,
+  type FrAppNavigationSection,
+} from './components/FrAppNavigationDrawer';
 export { FrAppSettingsMenu, type FrAppSettingsMenuSlots } from './components/FrAppSettingsMenu';
 export {
   FrAppUserMenu,
@@ -171,6 +179,7 @@ declare module 'vue' {
     FrAccordionPanel: typeof FrAccordionPanel;
     FrAlert: typeof FrAlert;
     FrAppLogo: typeof FrAppLogo;
+    FrAppNavigationDrawer: typeof FrAppNavigationDrawer;
     FrAppSettingsMenu: typeof FrAppSettingsMenu;
     FrAppUserMenu: typeof FrAppUserMenu;
     FrAutocomplete: typeof FrAutocomplete;

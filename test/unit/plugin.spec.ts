@@ -23,6 +23,7 @@ import {
   VForm,
   VIcon,
   VImg,
+  VLayout,
   VList,
   VListSubheader,
   VListItem,
@@ -48,6 +49,7 @@ import {
   FrAccordionPanel,
   FrAlert,
   FrAppLogo,
+  FrAppNavigationDrawer,
   FrAppSettingsMenu,
   FrAppUserMenu,
   FrAutocomplete,
@@ -115,9 +117,12 @@ describe('createComponentsPlugin', () => {
 describe('FeralComponents', () => {
   function mountGlobal(template: string) {
     // Only the Fr* components come from the plugin; Vuetify's are declared locally, as in an app
-    return mountWithVuetify(defineComponent({ components: { VExpansionPanels }, template }), {
-      global: { plugins: [FeralComponents] },
-    });
+    return mountWithVuetify(
+      defineComponent({ components: { VExpansionPanels, VLayout }, template }),
+      {
+        global: { plugins: [FeralComponents] },
+      },
+    );
   }
 
   it('registers FrCard globally, so <fr-card> resolves in templates', () => {
@@ -156,6 +161,20 @@ describe('FeralComponents', () => {
     const wrapper = mountGlobal('<fr-app-logo :size="22" />');
 
     expect(wrapper.find('svg.fr-app-logo').attributes('width')).toBe('22');
+  });
+
+  it('registers FrAppNavigationDrawer globally, so <fr-app-navigation-drawer> resolves', () => {
+    const wrapper = mountGlobal(
+      `<v-layout>
+        <fr-app-navigation-drawer
+          title="Global"
+          active-view="home"
+          :sections="[{ items: [{ value: 'home', title: 'Home' }] }]"
+        />
+      </v-layout>`,
+    );
+
+    expect(wrapper.find('nav#app-nav #nav-home').attributes('aria-current')).toBe('page');
   });
 
   it('registers FrAppSettingsMenu globally, so <fr-app-settings-menu> resolves', () => {
@@ -501,6 +520,7 @@ describe('FeralComponents', () => {
     ['FrAccordionPanel', FrAccordionPanel],
     ['FrAlert', FrAlert],
     ['FrAppLogo', FrAppLogo],
+    ['FrAppNavigationDrawer', FrAppNavigationDrawer],
     ['FrAppSettingsMenu', FrAppSettingsMenu],
     ['FrAppUserMenu', FrAppUserMenu],
     ['FrAutocomplete', FrAutocomplete],

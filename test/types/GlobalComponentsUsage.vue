@@ -7,6 +7,12 @@
   <fr-card title="Global" rounded="xl" />
   <fr-alert title="Global" type="info" />
   <fr-app-logo :size="22" />
+  <fr-app-navigation-drawer
+    title="Global"
+    active-view="home"
+    :sections="[{ items: [{ value: 'home', title: 'Home' }] }]"
+    rail
+  />
   <fr-app-settings-menu id="settings"><fr-list-item title="Global" /></fr-app-settings-menu>
   <fr-app-user-menu name="Ada Lovelace" detail="Admin" />
   <fr-theme-menu id="theme" model-value="system" />
@@ -79,6 +85,8 @@
   <fr-app-user-menu detail="Admin" />
   <!-- @vue-expect-error not one of the themes -->
   <fr-theme-menu model-value="sepia" />
+  <!-- @vue-expect-error sections is required -->
+  <fr-app-navigation-drawer title="Global" active-view="home" />
   <!-- @vue-expect-error not one of VAlert's types -->
   <fr-alert type="not-a-type" />
   <!-- @vue-expect-error not one of VAutocomplete's variants -->

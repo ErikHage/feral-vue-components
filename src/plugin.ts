@@ -3,6 +3,7 @@ import { FrAccordion } from './components/FrAccordion';
 import { FrAccordionPanel } from './components/FrAccordionPanel';
 import { FrAlert } from './components/FrAlert';
 import { FrAppLogo } from './components/FrAppLogo';
+import { FrAppNavigationDrawer } from './components/FrAppNavigationDrawer';
 import { FrAppSettingsMenu } from './components/FrAppSettingsMenu';
 import { FrAppUserMenu } from './components/FrAppUserMenu';
 import { FrAutocomplete } from './components/FrAutocomplete';
@@ -72,6 +73,7 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrAccordionPanel,
   FrAlert,
   FrAppLogo,
+  FrAppNavigationDrawer,
   FrAppSettingsMenu,
   FrAppUserMenu,
   FrAutocomplete,
