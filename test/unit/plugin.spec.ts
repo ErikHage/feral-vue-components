@@ -48,6 +48,7 @@ import {
   FrAccordionPanel,
   FrAlert,
   FrAppLogo,
+  FrAppSettingsMenu,
   FrAutocomplete,
   FrAvatar,
   FrBadge,
@@ -153,6 +154,12 @@ describe('FeralComponents', () => {
     const wrapper = mountGlobal('<fr-app-logo :size="22" />');
 
     expect(wrapper.find('svg.fr-app-logo').attributes('width')).toBe('22');
+  });
+
+  it('registers FrAppSettingsMenu globally, so <fr-app-settings-menu> resolves', () => {
+    const wrapper = mountGlobal('<fr-app-settings-menu id="settings" />');
+
+    expect(wrapper.find('button#settings').attributes('aria-label')).toBe('Settings');
   });
 
   it('registers FrAutocomplete globally, so <fr-autocomplete> resolves in templates', () => {
@@ -478,6 +485,7 @@ describe('FeralComponents', () => {
     ['FrAccordionPanel', FrAccordionPanel],
     ['FrAlert', FrAlert],
     ['FrAppLogo', FrAppLogo],
+    ['FrAppSettingsMenu', FrAppSettingsMenu],
     ['FrAutocomplete', FrAutocomplete],
     ['FrAvatar', FrAvatar],
     ['FrBadge', FrBadge],

@@ -7,6 +7,7 @@
   <fr-card title="Global" rounded="xl" />
   <fr-alert title="Global" type="info" />
   <fr-app-logo :size="22" />
+  <fr-app-settings-menu id="settings"><fr-list-item title="Global" /></fr-app-settings-menu>
   <fr-autocomplete :items="['Tomato', 'Basil']" label="Global" />
   <fr-avatar text="EH" size="small" />
   <fr-badge :content="3">Inbox</fr-badge>
