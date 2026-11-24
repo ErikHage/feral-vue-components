@@ -43,6 +43,7 @@ import type { FrTable } from './components/FrTable';
 import type { FrTabs } from './components/FrTabs';
 import type { FrTextarea } from './components/FrTextarea';
 import type { FrTextField } from './components/FrTextField';
+import type { FrThemeMenu } from './components/FrThemeMenu';
 import type { FrTimeline } from './components/FrTimeline';
 import type { FrSnackbarQueue } from './components/FrSnackbarQueue';
 import type { FrToggle } from './components/FrToggle';
@@ -146,6 +147,13 @@ export {
 } from './components/FrTabs';
 export { FrTextarea, frTextareaDefaults } from './components/FrTextarea';
 export { FrTextField, frTextFieldDefaults } from './components/FrTextField';
+export {
+  FrThemeMenu,
+  frThemeMenuOptions,
+  type FrThemeMenuOption,
+  type FrThemeMenuProps,
+  type FrThemeMenuValue,
+} from './components/FrThemeMenu';
 export { FrTimeline, type FrTimelineDate, type FrTimelineDayScope } from './components/FrTimeline';
 export { FrSnackbarQueue, frSnackbarQueueDefaults } from './components/FrSnackbarQueue';
 export { FrToggle, frToggleDefaults, type FrToggleSlots } from './components/FrToggle';
@@ -204,6 +212,7 @@ declare module 'vue' {
     FrTabs: typeof FrTabs;
     FrTextarea: typeof FrTextarea;
     FrTextField: typeof FrTextField;
+    FrThemeMenu: typeof FrThemeMenu;
     FrTimeline: typeof FrTimeline;
     FrSnackbarQueue: typeof FrSnackbarQueue;
     FrToggle: typeof FrToggle;

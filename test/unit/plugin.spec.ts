@@ -89,6 +89,7 @@ import {
   FrTabs,
   FrTextarea,
   FrTextField,
+  FrThemeMenu,
   FrTimeline,
   FrSnackbarQueue,
   FrToggle,
@@ -167,6 +168,14 @@ describe('FeralComponents', () => {
     const wrapper = mountGlobal('<fr-app-user-menu name="Ada Lovelace" />');
 
     expect(wrapper.find('button').attributes('aria-label')).toBe('Account: Ada Lovelace');
+  });
+
+  it('registers FrThemeMenu globally, so <fr-theme-menu> resolves', () => {
+    const wrapper = mountGlobal('<fr-theme-menu model-value="dark" />');
+
+    expect(wrapper.find('button[aria-label="Theme"] .mdi-moon-waning-crescent').exists()).toBe(
+      true,
+    );
   });
 
   it('registers FrAutocomplete globally, so <fr-autocomplete> resolves in templates', () => {
@@ -533,6 +542,7 @@ describe('FeralComponents', () => {
     ['FrTabs', FrTabs],
     ['FrTextarea', FrTextarea],
     ['FrTextField', FrTextField],
+    ['FrThemeMenu', FrThemeMenu],
     ['FrTimeline', FrTimeline],
     ['FrSnackbarQueue', FrSnackbarQueue],
     ['FrToggle', FrToggle],
