@@ -47,6 +47,7 @@ import {
   FrAccordion,
   FrAccordionPanel,
   FrAlert,
+  FrAppLogo,
   FrAutocomplete,
   FrAvatar,
   FrBadge,
@@ -146,6 +147,12 @@ describe('FeralComponents', () => {
 
     expect(wrapper.findComponent(VAlert).exists()).toBe(true);
     expect(wrapper.find('.v-alert-title').text()).toBe('Global');
+  });
+
+  it('registers FrAppLogo globally, so <fr-app-logo> resolves in templates', () => {
+    const wrapper = mountGlobal('<fr-app-logo :size="22" />');
+
+    expect(wrapper.find('svg.fr-app-logo').attributes('width')).toBe('22');
   });
 
   it('registers FrAutocomplete globally, so <fr-autocomplete> resolves in templates', () => {
@@ -470,6 +477,7 @@ describe('FeralComponents', () => {
     ['FrAccordion', FrAccordion],
     ['FrAccordionPanel', FrAccordionPanel],
     ['FrAlert', FrAlert],
+    ['FrAppLogo', FrAppLogo],
     ['FrAutocomplete', FrAutocomplete],
     ['FrAvatar', FrAvatar],
     ['FrBadge', FrBadge],

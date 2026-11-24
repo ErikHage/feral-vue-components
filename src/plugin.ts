@@ -2,6 +2,7 @@ import type { Component, Plugin } from 'vue';
 import { FrAccordion } from './components/FrAccordion';
 import { FrAccordionPanel } from './components/FrAccordionPanel';
 import { FrAlert } from './components/FrAlert';
+import { FrAppLogo } from './components/FrAppLogo';
 import { FrAutocomplete } from './components/FrAutocomplete';
 import { FrAvatar } from './components/FrAvatar';
 import { FrBadge } from './components/FrBadge';
@@ -67,6 +68,7 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrAccordion,
   FrAccordionPanel,
   FrAlert,
+  FrAppLogo,
   FrAutocomplete,
   FrAvatar,
   FrBadge,
