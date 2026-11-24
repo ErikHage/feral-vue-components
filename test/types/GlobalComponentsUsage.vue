@@ -8,6 +8,7 @@
   <fr-alert title="Global" type="info" />
   <fr-app-logo :size="22" />
   <fr-app-settings-menu id="settings"><fr-list-item title="Global" /></fr-app-settings-menu>
+  <fr-app-user-menu name="Ada Lovelace" detail="Admin" />
   <fr-autocomplete :items="['Tomato', 'Basil']" label="Global" />
   <fr-avatar text="EH" size="small" />
   <fr-badge :content="3">Inbox</fr-badge>
@@ -73,6 +74,8 @@
   <fr-accordion variant="not-a-variant" />
   <!-- @vue-expect-error size is a number of pixels -->
   <fr-app-logo size="large" />
+  <!-- @vue-expect-error name is required -->
+  <fr-app-user-menu detail="Admin" />
   <!-- @vue-expect-error not one of VAlert's types -->
   <fr-alert type="not-a-type" />
   <!-- @vue-expect-error not one of VAutocomplete's variants -->

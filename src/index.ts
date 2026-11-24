@@ -3,6 +3,7 @@ import type { FrAccordionPanel } from './components/FrAccordionPanel';
 import type { FrAlert } from './components/FrAlert';
 import type { FrAppLogo } from './components/FrAppLogo';
 import type { FrAppSettingsMenu } from './components/FrAppSettingsMenu';
+import type { FrAppUserMenu } from './components/FrAppUserMenu';
 import type { FrAutocomplete } from './components/FrAutocomplete';
 import type { FrAvatar } from './components/FrAvatar';
 import type { FrBadge } from './components/FrBadge';
@@ -59,6 +60,11 @@ export {
 export { FrAlert, frAlertDefaults, type FrAlertSlots } from './components/FrAlert';
 export { FrAppLogo, type FrAppLogoProps } from './components/FrAppLogo';
 export { FrAppSettingsMenu, type FrAppSettingsMenuSlots } from './components/FrAppSettingsMenu';
+export {
+  FrAppUserMenu,
+  type FrAppUserMenuProps,
+  type FrAppUserMenuSlots,
+} from './components/FrAppUserMenu';
 export {
   FrAutocomplete,
   frAutocompleteDefaults,
@@ -158,6 +164,7 @@ declare module 'vue' {
     FrAlert: typeof FrAlert;
     FrAppLogo: typeof FrAppLogo;
     FrAppSettingsMenu: typeof FrAppSettingsMenu;
+    FrAppUserMenu: typeof FrAppUserMenu;
     FrAutocomplete: typeof FrAutocomplete;
     FrAvatar: typeof FrAvatar;
     FrBadge: typeof FrBadge;

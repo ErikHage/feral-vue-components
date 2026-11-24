@@ -49,6 +49,7 @@ import {
   FrAlert,
   FrAppLogo,
   FrAppSettingsMenu,
+  FrAppUserMenu,
   FrAutocomplete,
   FrAvatar,
   FrBadge,
@@ -160,6 +161,12 @@ describe('FeralComponents', () => {
     const wrapper = mountGlobal('<fr-app-settings-menu id="settings" />');
 
     expect(wrapper.find('button#settings').attributes('aria-label')).toBe('Settings');
+  });
+
+  it('registers FrAppUserMenu globally, so <fr-app-user-menu> resolves', () => {
+    const wrapper = mountGlobal('<fr-app-user-menu name="Ada Lovelace" />');
+
+    expect(wrapper.find('button').attributes('aria-label')).toBe('Account: Ada Lovelace');
   });
 
   it('registers FrAutocomplete globally, so <fr-autocomplete> resolves in templates', () => {
@@ -486,6 +493,7 @@ describe('FeralComponents', () => {
     ['FrAlert', FrAlert],
     ['FrAppLogo', FrAppLogo],
     ['FrAppSettingsMenu', FrAppSettingsMenu],
+    ['FrAppUserMenu', FrAppUserMenu],
     ['FrAutocomplete', FrAutocomplete],
     ['FrAvatar', FrAvatar],
     ['FrBadge', FrBadge],
