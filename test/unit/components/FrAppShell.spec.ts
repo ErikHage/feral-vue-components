@@ -244,6 +244,18 @@ describe('FrAppShell', () => {
       expect(document.title).toBe('Garden');
     });
 
+    it('gives the page back its own title when unmounted, for a shell mounted after it', () => {
+      document.title = 'Garden';
+      const first = mountShell({ activeView: 'plants' });
+      first.wrapper.unmount();
+      mounted = [];
+
+      expect(document.title).toBe('Garden');
+
+      mountShell({ activeView: 'home' });
+      expect(document.title).toBe('Home - Garden');
+    });
+
     it("moves focus to a new view's heading, or the view itself without one", async () => {
       const { wrapper } = mountShell(
         {},

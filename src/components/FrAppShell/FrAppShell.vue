@@ -308,6 +308,9 @@ onMounted(() => {
 onBeforeUnmount(() => {
   systemLight?.removeEventListener('change', onSystemThemeChange);
   window.removeEventListener('keydown', onGlobalKeydown);
+  // Gives the page back its own title, so a shell mounted after this one (a hot reload, say)
+  // doesn't take the view's title as its base
+  document.title = windowTitle;
 });
 </script>
 
