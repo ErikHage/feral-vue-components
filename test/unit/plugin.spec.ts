@@ -1,4 +1,4 @@
-import { createApp, defineComponent, h } from 'vue';
+import { createApp, defineComponent, h, nextTick } from 'vue';
 import {
   VAlert,
   VAutocomplete,
@@ -63,6 +63,7 @@ import {
   FrChipGroup,
   FrCodeBlock,
   FrCol,
+  FrCommandPalette,
   FrContainer,
   FrDataTable,
   FrDialog,
@@ -175,6 +176,19 @@ describe('FeralComponents', () => {
     );
 
     expect(wrapper.find('nav#app-nav #nav-home').attributes('aria-current')).toBe('page');
+  });
+
+  it('registers FrCommandPalette globally, so <fr-command-palette> resolves', async () => {
+    const wrapper = mountGlobal(
+      `<fr-command-palette open :items="[{ value: 'home', title: 'Home' }]" />`,
+    );
+    await nextTick();
+
+    expect(wrapper.findComponent({ name: 'FrCommandPalette' }).exists()).toBe(true);
+    expect(document.querySelector('.fr-command-palette [role="option"]')?.textContent).toContain(
+      'Home',
+    );
+    wrapper.unmount();
   });
 
   it('registers FrAppSettingsMenu globally, so <fr-app-settings-menu> resolves', () => {
@@ -534,6 +548,7 @@ describe('FeralComponents', () => {
     ['FrChipGroup', FrChipGroup],
     ['FrCodeBlock', FrCodeBlock],
     ['FrCol', FrCol],
+    ['FrCommandPalette', FrCommandPalette],
     ['FrContainer', FrContainer],
     ['FrDataTable', FrDataTable],
     ['FrDialog', FrDialog],

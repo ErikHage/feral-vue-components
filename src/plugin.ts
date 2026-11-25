@@ -17,6 +17,7 @@ import { FrChip } from './components/FrChip';
 import { FrChipGroup } from './components/FrChipGroup';
 import { FrCodeBlock } from './components/FrCodeBlock';
 import { FrCol } from './components/FrCol';
+import { FrCommandPalette } from './components/FrCommandPalette';
 import { FrContainer } from './components/FrContainer';
 import { FrDataTable } from './components/FrDataTable';
 import { FrDialog } from './components/FrDialog';
@@ -87,6 +88,7 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrChipGroup,
   FrCodeBlock,
   FrCol,
+  FrCommandPalette,
   FrContainer,
   FrDataTable,
   FrDialog,

@@ -7,6 +7,7 @@
   <fr-card title="Global" rounded="xl" />
   <fr-alert title="Global" type="info" />
   <fr-app-logo :size="22" />
+  <fr-command-palette :open="false" :items="[{ value: 'home', title: 'Home' }]" />
   <fr-app-navigation-drawer
     title="Global"
     active-view="home"
@@ -87,6 +88,8 @@
   <fr-theme-menu model-value="sepia" />
   <!-- @vue-expect-error sections is required -->
   <fr-app-navigation-drawer title="Global" active-view="home" />
+  <!-- @vue-expect-error an item needs a title -->
+  <fr-command-palette :items="[{ value: 'home' }]" />
   <!-- @vue-expect-error not one of VAlert's types -->
   <fr-alert type="not-a-type" />
   <!-- @vue-expect-error not one of VAutocomplete's variants -->

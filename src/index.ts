@@ -16,6 +16,7 @@ import type { FrChip } from './components/FrChip';
 import type { FrChipGroup } from './components/FrChipGroup';
 import type { FrCodeBlock } from './components/FrCodeBlock';
 import type { FrCol } from './components/FrCol';
+import type { FrCommandPalette } from './components/FrCommandPalette';
 import type { FrContainer } from './components/FrContainer';
 import type { FrDataTable } from './components/FrDataTable';
 import type { FrDialog } from './components/FrDialog';
@@ -94,6 +95,14 @@ export { FrChip, type FrChipScope, type FrChipSlots } from './components/FrChip'
 export { FrChipGroup } from './components/FrChipGroup';
 export { FrCodeBlock } from './components/FrCodeBlock';
 export { FrCol, type FrColAlignSelf } from './components/FrCol';
+export {
+  FrCommandPalette,
+  type FrCommandPaletteItem,
+  type FrCommandPaletteProps,
+  type FrCommandPaletteResult,
+  type FrCommandPaletteSource,
+  type FrCommandPaletteSourceItem,
+} from './components/FrCommandPalette';
 export { FrContainer, frContainerDefaults } from './components/FrContainer';
 export {
   FrDataTable,
@@ -193,6 +202,7 @@ declare module 'vue' {
     FrChipGroup: typeof FrChipGroup;
     FrCodeBlock: typeof FrCodeBlock;
     FrCol: typeof FrCol;
+    FrCommandPalette: typeof FrCommandPalette;
     FrContainer: typeof FrContainer;
     FrDataTable: typeof FrDataTable;
     FrDialog: typeof FrDialog;
