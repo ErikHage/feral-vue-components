@@ -1,47 +1,104 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
-import { useTheme } from 'vuetify';
+import {
+  useToast,
+  type FrAppNavigationSection,
+  type FrAppShellCommand,
+  type FrCommandPaletteSource,
+} from '../src';
 import { componentPages } from './pages';
+import { shellOptions } from './shell';
 
-const theme = useTheme();
 const route = useRoute();
-// null lets Vuetify decide: open beside the content on wide screens, closed on narrow ones
-const drawer = ref<boolean | null>(null);
+const toast = useToast();
 
-function toggleTheme() {
-  theme.change(theme.name.value === 'feralDark' ? 'feralLight' : 'feralDark');
+/** The app-shell parts get a section of their own, ahead of the other components */
+const appShellParts = new Set([
+  'FrAppShell',
+  'FrAppLogo',
+  'FrAppNavigationDrawer',
+  'FrAppSettingsMenu',
+  'FrAppUserMenu',
+  'FrCommandPalette',
+  'FrThemeMenu',
+]);
+
+const sections: FrAppNavigationSection[] = [
+  {
+    label: 'APP SHELL',
+    items: componentPages
+      .filter((page) => appShellParts.has(page.name))
+      .map((page) => ({
+        value: page.name,
+        title: page.name,
+        icon: 'mdi-application-outline',
+        to: page.path,
+      })),
+  },
+  {
+    label: 'COMPONENTS',
+    items: componentPages
+      .filter((page) => !appShellParts.has(page.name))
+      .map((page) => ({
+        value: page.name,
+        title: page.name,
+        icon: 'mdi-puzzle-outline',
+        to: page.path,
+      })),
+  },
+];
+
+const commands: FrAppShellCommand[] = [
+  { value: 'toast', title: 'Show a toast', icon: 'mdi-message-outline' },
+];
+
+/** Finds a page by name in the command palette, as a server-backed search would */
+const pageSource: FrCommandPaletteSource = {
+  section: 'SOURCE',
+  search: (query) =>
+    componentPages
+      .filter((page) => page.name.toLowerCase().includes(query.toLowerCase()))
+      .slice(0, 3)
+      .map((page) => ({
+        value: page.name,
+        title: `${page.name} (from a source)`,
+        icon: 'mdi-database-search-outline',
+      })),
+  select: (result) => toast.info(`The source was handed ${result.value}`),
+};
+
+/** The route's name is the page's component's name, which each link's value is */
+const activeView = computed(() => String(route.name ?? ''));
+
+function onCommand(value: string) {
+  shellOptions.lastCommand = value;
+  toast.success(`Ran the "${value}" command`);
 }
 </script>
 
 <template>
-  <!-- A page with its own v-app, such as FrAppShell's, goes without the playground's frame -->
-  <router-view v-if="route.meta.bare" />
-  <v-app v-else>
-    <v-app-bar title="Feral components">
-      <template #prepend>
-        <v-app-bar-nav-icon aria-label="Toggle menu" @click="drawer = !drawer" />
-      </template>
-      <template #append>
-        <span class="text-medium-emphasis mr-2">{{ theme.name.value }}</span>
-        <v-btn icon="mdi-theme-light-dark" aria-label="Toggle theme" @click="toggleTheme" />
-      </template>
-    </v-app-bar>
-    <v-navigation-drawer v-model="drawer">
-      <v-list nav density="compact" aria-label="Components">
-        <v-list-subheader>Components</v-list-subheader>
-        <v-list-item
-          v-for="page in componentPages"
-          :key="page.path"
-          :to="page.path"
-          :title="page.name"
-        />
-      </v-list>
-    </v-navigation-drawer>
-    <v-main>
-      <v-container>
-        <router-view />
-      </v-container>
-    </v-main>
-  </v-app>
+  <fr-app-shell
+    title="Feral components"
+    subtitle="Playground"
+    storage-prefix="feral-playground"
+    :sections="sections"
+    :active-view="activeView"
+    :commands="commands"
+    :search-sources="[pageSource]"
+    :search="shellOptions.searchBox ? shellOptions.search : undefined"
+    search-label="Search the page..."
+    :pinned-footer="shellOptions.pinnedFooter"
+    :rail-locked="shellOptions.railLocked"
+    :fixed-drawer="shellOptions.fixedDrawer"
+    @update:search="(value: string) => (shellOptions.search = value)"
+    @command="onCommand"
+  >
+    <router-view />
+    <template #footer>
+      <div class="px-8 py-3 text-body-small text-medium-emphasis">
+        @feral-auth/vue-components playground
+      </div>
+    </template>
+  </fr-app-shell>
 </template>

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { nextTick, ref } from 'vue';
+import { ref } from 'vue';
 import { FrSnackbarQueue, useToast } from '../../src';
 
 type Message = string | { text: string; color?: string; timeout?: number; onDismiss?: () => void };
 
 const toast = useToast();
-const sharedMounted = ref(true);
 const messages = ref<Message[]>([]);
 const undoMessages = ref<Message[]>([]);
 const log = ref<string[]>([]);
@@ -16,14 +15,6 @@ function deleteBasil() {
   toast.show('Deleted the basil', {
     action: { label: 'Undo', onClick: () => log.value.push('undo: basil') },
   });
-}
-
-/** Unmounts the app's queue, puts a toast on it, and mounts it again: the toast still shows */
-async function remount() {
-  sharedMounted.value = false;
-  await nextTick();
-  toast.danger('Lost connection while the queue was away');
-  sharedMounted.value = true;
 }
 
 function save() {
@@ -49,7 +40,8 @@ function remove() {
   <fr-row>
     <fr-col cols="12">
       <h3 class="text-body-large mb-2">
-        The app's toasts, useToast() (log: <span id="log">{{ log.join(', ') }}</span>)
+        The app's toasts, useToast(), shown by the shell's queue (log:
+        <span id="log">{{ log.join(', ') }}</span>)
       </h3>
       <fr-btn
         id="toast-success"
@@ -85,15 +77,8 @@ function remove() {
         text="Plain"
         @click="toast.show('Watered the beds')"
       />
-      <fr-btn id="toast-action" class="mr-2 mb-2" text="With Undo" @click="deleteBasil" />
-      <fr-btn
-        id="toast-remount"
-        class="mb-2"
-        variant="text"
-        text="Toast before mount"
-        @click="remount"
-      />
-      <fr-snackbar-queue v-if="sharedMounted" />
+      <fr-btn id="toast-action" class="mb-2" text="With Undo" @click="deleteBasil" />
+      <!-- No queue here: the playground's FrAppShell holds the app's one unbound queue -->
     </fr-col>
     <fr-col cols="12" md="6">
       <h3 class="text-body-large mb-2">
