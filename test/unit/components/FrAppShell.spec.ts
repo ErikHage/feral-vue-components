@@ -1,6 +1,7 @@
 import { flushPromises } from '@vue/test-utils';
 import { h, nextTick } from 'vue';
 import { createMemoryHistory, createRouter } from 'vue-router';
+import { VFooter } from 'vuetify/components';
 import {
   FrAppShell,
   useToast,
@@ -194,12 +195,15 @@ describe('FrAppShell', () => {
       const footer = { footer: () => h('span', 'Footer') };
       const inline = mountShell({}, footer);
       expect(inline.wrapper.find('#app-main #app-footer').text()).toBe('Footer');
+      // Only a layout item (app) is fixed to the window
+      expect(inline.wrapper.findComponent(VFooter).props('app')).toBe(false);
       inline.wrapper.unmount();
       mounted = [];
 
       const pinned = mountShell({ pinnedFooter: true }, footer);
       expect(pinned.wrapper.find('#app-main #app-footer').exists()).toBe(false);
       expect(pinned.wrapper.find('#app-footer').text()).toBe('Footer');
+      expect(pinned.wrapper.findComponent(VFooter).props('app')).toBe(true);
     });
 
     it("shows the app's toasts", async () => {

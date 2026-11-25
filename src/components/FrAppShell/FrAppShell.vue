@@ -431,7 +431,6 @@ onBeforeUnmount(() => {
       <v-footer
         v-if="slots.footer && !pinnedFooter"
         id="app-footer"
-        app
         color="background"
         class="pa-0 flex-column align-stretch"
       >
