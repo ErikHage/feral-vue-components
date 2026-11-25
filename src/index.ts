@@ -180,6 +180,7 @@ export { FrFieldGroup, type FrFieldGroupSize } from './components/FrFieldGroup';
 export { FrGrid, type FrGridAlign, type FrGridGap } from './components/FrGrid';
 export { FeralComponents } from './plugin';
 export { createFeralVuetifyOptions, feralDark, feralLight } from './theme';
+export { useToast, type FrToast, type FrToastAction, type FrToastOptions } from './utils/toast';
 
 // Types for the components FeralComponents registers, so `<fr-card>` type-checks in templates
 declare module 'vue' {

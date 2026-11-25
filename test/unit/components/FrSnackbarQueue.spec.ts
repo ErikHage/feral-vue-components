@@ -2,6 +2,8 @@ import { flushPromises } from '@vue/test-utils';
 import { h, nextTick } from 'vue';
 import { VSnackbar, VSnackbarQueue } from 'vuetify/components';
 import { FrSnackbarQueue, frSnackbarQueueDefaults } from '../../../src';
+import { useToast } from '../../../src';
+import { toastQueue } from '../../../src/utils/toast';
 import { mountWithVuetify } from '../helpers/mount';
 
 type Message = string | { text: string; [prop: string]: unknown };
@@ -197,5 +199,155 @@ describe('FrSnackbarQueue', () => {
     expect(snackbar().classList).toContain('saved');
     expect(snackbar().querySelector('.v-snackbar__wrapper')!.classList).toContain('notice');
     expect(document.querySelector('.lost')).toBeNull();
+  });
+});
+
+describe("FrSnackbarQueue without v-model, showing the app's toasts", () => {
+  let warn: ReturnType<typeof vi.spyOn>;
+  /** Every queue mounted, unmounted after each test: a queue left mounted would take the next test's toasts */
+  let mounted: ReturnType<typeof mountWithVuetify>[] = [];
+
+  beforeEach(() => {
+    warn = vi.spyOn(console, 'warn');
+    toastQueue().value = [];
+  });
+
+  afterEach(() => {
+    expect(warn).not.toHaveBeenCalled();
+    warn.mockRestore();
+    mounted.forEach((wrapper) => wrapper.unmount());
+    mounted = [];
+    document.body.innerHTML = '';
+  });
+
+  function mountShared(props: Record<string, unknown> = {}, slots: Record<string, unknown> = {}) {
+    const wrapper = mountWithVuetify(
+      FrSnackbarQueue as never,
+      {
+        props,
+        slots,
+        attachTo: document.body,
+      } as never,
+    );
+    mounted.push(wrapper);
+    return wrapper;
+  }
+
+  const alert = () => document.querySelector('.fr-snackbar-queue__alert')!;
+  const buttons = () =>
+    [...snackbar().querySelectorAll('.v-snackbar__actions .v-btn')].map((button) =>
+      button.textContent?.trim(),
+    );
+
+  it('shows a toast put on the queue with useToast, in its colour', async () => {
+    mountShared();
+    useToast().success('Saved');
+    await settle();
+
+    expect(shown()).toEqual(['Saved']);
+    expect(snackbar().querySelector('.v-snackbar__wrapper')!.classList).toContain('bg-success');
+    expect(buttons()).toEqual(['Dismiss']);
+    expect(snackbar().querySelector('.v-snackbar__content span')!.hasAttribute('aria-hidden')).toBe(
+      false,
+    );
+    expect(alert().textContent).toBe('');
+    expect(toastQueue().value).toEqual([]);
+  });
+
+  it('shows the toasts put on the queue before it mounted', async () => {
+    useToast().info('Synced');
+    useToast().warning('Frost tonight');
+    mountShared();
+    await settle();
+
+    expect(shown()).toEqual(['Synced']);
+    expect(toastQueue().value).toHaveLength(1);
+  });
+
+  it('draws a danger toast in the error colour, read out as an alert instead of its text', async () => {
+    mountShared();
+    useToast().danger('Could not save');
+    await settle();
+
+    expect(snackbar().querySelector('.v-snackbar__wrapper')!.classList).toContain('bg-error');
+    expect(snackbar().querySelector('.v-snackbar__content span')!.getAttribute('aria-hidden')).toBe(
+      'true',
+    );
+    expect(alert().getAttribute('role')).toBe('alert');
+    expect(alert().textContent).toBe('Could not save');
+  });
+
+  it('reads out a danger toast put on the queue before it mounted', async () => {
+    useToast().danger('Offline');
+    mountShared();
+    await settle();
+
+    expect(shown()).toEqual(['Offline']);
+    expect(alert().textContent).toBe('Offline');
+  });
+
+  it('reads out each danger toast as it is shown, not while it waits', async () => {
+    const wrapper = mountShared();
+    useToast().danger('Could not save');
+    useToast().danger('Could not sync');
+    await settle();
+
+    expect(alert().textContent).toBe('Could not save');
+
+    (snackbar().querySelector('.fr-snackbar-queue__close') as HTMLElement).click();
+    await settle();
+    // Test utils stub the leave transition, so the snackbar is told it has gone
+    wrapper.findComponent(VSnackbar).vm.$emit('afterLeave');
+    await settle();
+
+    expect(shown()).toEqual(['Could not sync']);
+    expect(alert().textContent).toBe('Could not sync');
+  });
+
+  it("puts a toast's action before the dismiss button, running it and dismissing the toast", async () => {
+    const onClick = vi.fn();
+    mountShared();
+    useToast().show('Deleted the basil', { action: { label: 'Undo', onClick } });
+    await settle();
+
+    expect(buttons()).toEqual(['Undo', 'Dismiss']);
+
+    (snackbar().querySelector('.fr-snackbar-queue__action') as HTMLElement).click();
+    await settle();
+
+    expect(onClick).toHaveBeenCalledOnce();
+    expect(document.querySelector('.v-snackbar--active')).toBeNull();
+  });
+
+  it('leaves out the dismiss button when closable is false, keeping the action', async () => {
+    mountShared({ closable: false });
+    useToast().show('Deleted the basil', { action: { label: 'Undo', onClick: () => {} } });
+    await settle();
+
+    expect(buttons()).toEqual(['Undo']);
+  });
+
+  it("gives the caller's actions slot the toast in place of its buttons", async () => {
+    mountShared(
+      {},
+      { actions: ({ item }: { item: { text: string } }) => h('span', { class: 'own' }, item.text) },
+    );
+    useToast().show('Deleted', { action: { label: 'Undo', onClick: () => {} } });
+    await settle();
+
+    expect(snackbar().querySelector('.v-snackbar__actions')!.textContent).toBe('Deleted');
+  });
+
+  it('reads out none of the toasts clear() takes off the queue unshown', async () => {
+    const wrapper = mountShared();
+    useToast().info('Saved');
+    useToast().danger('Could not sync');
+    await settle();
+
+    (wrapper.vm as unknown as { clear: () => void }).clear();
+    await settle();
+
+    expect(toastQueue().value).toEqual([]);
+    expect(alert().textContent).toBe('');
   });
 });
