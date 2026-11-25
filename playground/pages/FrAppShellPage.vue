@@ -72,7 +72,8 @@ const views = `<!-- Links without \`to\` or \`href\` are views the app switches 
       <strong>A toolbar</strong> with a search, the theme menu, and a settings menu when the
       <code>settings</code> slot is given. Slots: <code>toolbar-start</code>,
       <code>toolbar-center</code>, <code>toolbar-actions</code> (before the theme menu),
-      <code>toolbar</code> (at the end).
+      <code>toolbar</code> (at the end). This playground puts FrBreadcrumbs in
+      <code>toolbar-start</code>: the page's section, then the page.
     </li>
     <li>
       <strong>The view</strong> in the default slot, told <code>{ activeView }</code>, and an

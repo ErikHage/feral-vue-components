@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
+import { useDisplay } from 'vuetify';
 import {
   useToast,
   type FrAppNavigationSection,
@@ -12,6 +13,8 @@ import { shellOptions } from './shell';
 
 const route = useRoute();
 const toast = useToast();
+// The shell's small-screen breakpoint, where the toolbar has room for the page's name alone
+const { smAndDown } = useDisplay();
 
 /** The app-shell parts get a section of their own, ahead of the other components */
 const appShellParts = new Set([
@@ -71,6 +74,19 @@ const pageSource: FrCommandPaletteSource = {
 /** The route's name is the page's component's name, which each link's value is */
 const activeView = computed(() => String(route.name ?? ''));
 
+/** The page's section, linking to its first page, then the page itself; the page alone on a small screen */
+const crumbs = computed(() => {
+  const section = sections.find((each) =>
+    each.items.some((item) => item.value === activeView.value),
+  );
+  if (!section) return [];
+  if (smAndDown.value) return [{ title: activeView.value }];
+  return [
+    { title: section.label === 'APP SHELL' ? 'App shell' : 'Components', to: section.items[0]!.to },
+    { title: activeView.value },
+  ];
+});
+
 function onCommand(value: string) {
   shellOptions.lastCommand = value;
   toast.success(`Ran the "${value}" command`);
@@ -94,6 +110,14 @@ function onCommand(value: string) {
     @update:search="(value: string) => (shellOptions.search = value)"
     @command="onCommand"
   >
+    <template #toolbar-start>
+      <fr-breadcrumbs
+        :items="crumbs"
+        density="compact"
+        class="pa-0 text-no-wrap overflow-hidden"
+        style="min-width: 0"
+      />
+    </template>
     <router-view />
     <template #footer>
       <div class="px-8 py-3 text-body-small text-medium-emphasis">
