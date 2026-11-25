@@ -16,6 +16,7 @@ const undo: FrToastOptions = { action: { label: 'Undo', onClick: () => {} }, tim
 function save() {
   toast.show('Saved', { color: 'teal' });
   toast.danger('Deleted', undo);
+  toast.clear();
   // @ts-expect-error a toned toast takes its colour from its name
   toast.success('Saved', { color: 'red' });
   // @ts-expect-error an action needs its label

@@ -1,5 +1,5 @@
 import { useToast } from '../../src';
-import { toastAction, toastQueue, type FrToast } from '../../src/utils/toast';
+import { toastAction, toastClears, toastQueue, type FrToast } from '../../src/utils/toast';
 
 describe('useToast', () => {
   beforeEach(() => {
@@ -47,6 +47,16 @@ describe('useToast', () => {
     expect(toastAction({ ...queued()[0] })).toBe(action);
     // The action is keyed by a symbol, so it never reaches the snackbar as an attribute
     expect(Object.keys(queued()[0]!)).toEqual(['text', 'color', 'timeout']);
+  });
+
+  it('drops the toasts waiting, and counts the clear for the queue showing one', () => {
+    const before = toastClears().value;
+    useToast().show('Saved');
+    useToast().show('Synced');
+    useToast().clear();
+
+    expect(queued()).toEqual([]);
+    expect(toastClears().value).toBe(before + 1);
   });
 
   it('finds no action on a message that is not a toast object', () => {

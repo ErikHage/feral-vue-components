@@ -338,6 +338,35 @@ describe("FrSnackbarQueue without v-model, showing the app's toasts", () => {
     expect(snackbar().querySelector('.v-snackbar__actions')!.textContent).toBe('Deleted');
   });
 
+  it('dismisses the toast showing and drops those waiting on useToast().clear()', async () => {
+    const wrapper = mountShared();
+    useToast().info('Saved');
+    useToast().danger('Could not sync');
+    await settle();
+
+    useToast().clear();
+    useToast().success('Signed out');
+    await settle();
+
+    // VSnackbarQueue dismisses the one showing on a timer; test utils stub its leave transition
+    await vi.waitFor(() => expect(shown()).toEqual([]));
+    wrapper.findComponent(VSnackbar).vm.$emit('afterLeave');
+    await settle();
+
+    expect(shown()).toEqual(['Signed out']);
+    expect(alert().textContent).toBe('');
+  });
+
+  it('leaves a bound queue alone on useToast().clear()', async () => {
+    const wrapper = await mountQueue(['Saved']);
+    mounted.push(wrapper);
+
+    useToast().clear();
+    await settle();
+
+    expect(shown()).toEqual(['Saved']);
+  });
+
   it('reads out none of the toasts clear() takes off the queue unshown', async () => {
     const wrapper = mountShared();
     useToast().info('Saved');

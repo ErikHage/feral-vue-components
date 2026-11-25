@@ -32,6 +32,9 @@ const DEFAULT_TIMEOUT = 5000;
 /** The app's one queue of toasts, shown by an FrSnackbarQueue that has no v-model of its own */
 const queue = shallowRef<unknown[]>([]);
 
+/** Counts the calls to clear(), for the app's FrSnackbarQueue to dismiss what it shows */
+const clears = shallowRef(0);
+
 function show(
   text: string,
   { color, action, timeout = action ? -1 : DEFAULT_TIMEOUT }: FrToastOptions = {},
@@ -55,8 +58,15 @@ export function toastAction(toast: unknown): FrToastAction | undefined {
 
 /**
  * Puts toasts on the app's queue, for the app's FrSnackbarQueue (one with no v-model) to show:
- * `show(text, options)`, or `success`, `info`, `warning` and `danger` for those colours
+ * `show(text, options)`, or `success`, `info`, `warning` and `danger` for those colours. `clear()`
+ * dismisses the one showing and drops those waiting
  */
+/** Dismisses the toast showing and drops those waiting; toasts put on after it still show */
+function clear(): void {
+  clears.value++;
+  queue.value = [];
+}
+
 export function useToast() {
   const toned = (color: string) => (text: string, options?: Omit<FrToastOptions, 'color'>) =>
     show(text, { ...options, color });
@@ -66,10 +76,16 @@ export function useToast() {
     info: toned('info'),
     warning: toned('warning'),
     danger: toned('danger'),
+    clear,
   };
 }
 
 /** The app's queue itself, for FrSnackbarQueue */
 export function toastQueue() {
   return queue;
+}
+
+/** How many times the app's toasts have been cleared, for FrSnackbarQueue to watch */
+export function toastClears() {
+  return clears;
 }

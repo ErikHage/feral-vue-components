@@ -2,7 +2,7 @@
 import { computed, nextTick, onMounted, ref, useTemplateRef, watch, type PropType } from 'vue';
 import { VBtn } from 'vuetify/components/VBtn';
 import { VSnackbarQueue } from 'vuetify/components/VSnackbarQueue';
-import { toastAction, toastQueue } from '../../utils/toast';
+import { toastAction, toastClears, toastQueue } from '../../utils/toast';
 import { frSnackbarQueueDefaults } from './defaults';
 
 defineOptions({ name: 'FrSnackbarQueue', inheritAttrs: false });
@@ -89,13 +89,22 @@ onMounted(async () => {
   shared.value = pending;
 });
 
+/** Dismisses every snackbar, shown and waiting */
+function clear(): void {
+  // What clear() takes off the array was never shown, so none of it is read out
+  waiting = [];
+  queue.value!.clear();
+}
+
+// The app's queue is cleared with useToast().clear(): at once, so a toast put on straight after
+// isn't dismissed with the ones before it
+if (!bound.value) {
+  watch(toastClears(), clear, { flush: 'sync' });
+}
+
 defineExpose({
   /** Dismisses every snackbar, shown and waiting */
-  clear: (): void => {
-    // What clear() takes off the array was never shown, so none of it is read out
-    waiting = [];
-    queue.value!.clear();
-  },
+  clear,
 });
 </script>
 

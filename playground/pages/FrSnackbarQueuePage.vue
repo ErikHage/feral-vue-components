@@ -77,7 +77,14 @@ function remove() {
         text="Plain"
         @click="toast.show('Watered the beds')"
       />
-      <fr-btn id="toast-action" class="mb-2" text="With Undo" @click="deleteBasil" />
+      <fr-btn id="toast-action" class="mr-2 mb-2" text="With Undo" @click="deleteBasil" />
+      <fr-btn
+        id="toast-clear"
+        class="mb-2"
+        variant="text"
+        text="Clear toasts"
+        @click="toast.clear()"
+      />
       <!-- No queue here: the playground's FrAppShell holds the app's one unbound queue -->
     </fr-col>
     <fr-col cols="12" md="6">
