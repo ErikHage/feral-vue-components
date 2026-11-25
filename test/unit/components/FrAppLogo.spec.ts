@@ -38,14 +38,12 @@ describe('FrAppLogo', () => {
     const wrapper = mountWithVuetify(FrAppLogo);
 
     expect(wrapper.attributes('fill')).toBe('#FFFFFF');
-    expect(wrapper.attributes('stroke')).toBe('#FFFFFF');
   });
 
   it('is near-black on a light theme', () => {
     const wrapper = mountWithVuetify(FrAppLogo, {}, { theme: { defaultTheme: 'feralLight' } });
 
     expect(wrapper.attributes('fill')).toBe('#050606');
-    expect(wrapper.attributes('stroke')).toBe('#050606');
   });
 
   it('passes through attributes and classes', () => {

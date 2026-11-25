@@ -2,7 +2,7 @@
   <h2 class="text-headline-small mb-4">FrAppLogo</h2>
   <p class="text-medium-emphasis mb-6">
     The Feral logo, white on a dark theme and near-black on a light one; toggle the theme to see
-    both. A placeholder rooster until the real logo is drawn.
+    both.
   </p>
   <h3 class="text-body-large mb-2">Sizes</h3>
   <div class="d-flex align-end ga-6 mb-6">
