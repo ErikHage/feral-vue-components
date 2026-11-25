@@ -110,7 +110,7 @@ function onEscape() {
     @keydown.esc="onEscape"
   >
     <div v-if="!isRail" class="fr-app-navigation-drawer__brand">
-      <div class="fr-app-navigation-drawer__mark"><fr-app-logo :size="18" /></div>
+      <div class="fr-app-navigation-drawer__mark"><fr-app-logo :size="24" /></div>
       <div class="fr-app-navigation-drawer__name">
         <span class="fr-app-navigation-drawer__title">{{ props.title }}</span>
         <span v-if="props.subtitle" class="fr-app-navigation-drawer__subtitle">
@@ -139,7 +139,7 @@ function onEscape() {
       aria-expanded="false"
       @click="emit('update:rail', false)"
     >
-      <fr-app-logo :size="22" />
+      <fr-app-logo :size="28" />
     </button>
 
     <v-list

@@ -96,7 +96,7 @@ describe('FrAppNavigationDrawer', () => {
 
       expect(
         brand.find('.fr-app-navigation-drawer__mark svg.fr-app-logo').attributes('width'),
-      ).toBe('18');
+      ).toBe('24');
       expect(brand.find('.fr-app-navigation-drawer__title').text()).toBe('Vigilant Harvest');
       expect(brand.find('.fr-app-navigation-drawer__subtitle').text()).toBe('Garden planner');
     });
@@ -154,7 +154,7 @@ describe('FrAppNavigationDrawer', () => {
         'aria-label': 'Expand navigation',
         'aria-expanded': 'false',
       });
-      expect(brand.find('svg.fr-app-logo').attributes('width')).toBe('22');
+      expect(brand.find('svg.fr-app-logo').attributes('width')).toBe('28');
 
       await brand.trigger('click');
 
