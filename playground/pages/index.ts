@@ -7,6 +7,9 @@ import type { RouteRecordRaw } from 'vue-router';
 // before global ones: <fr-card> inside FrCard.vue would render the page, not the card
 const modules = import.meta.glob<Component>('./Fr*Page.vue');
 
+/** Pages that render their own v-app, shown without the playground's frame around them */
+const barePages = new Set(['FrAppShell']);
+
 export interface ComponentPage {
   name: string;
   path: string;
@@ -26,6 +29,7 @@ export const routes: RouteRecordRaw[] = [
     name,
     path,
     component: modules[file] as () => Promise<Component>,
+    meta: { bare: barePages.has(name) },
   })),
   { path: '/:pathMatch(.*)*', redirect: componentPages[0]?.path ?? '/' },
 ];

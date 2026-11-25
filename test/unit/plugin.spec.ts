@@ -51,6 +51,7 @@ import {
   FrAppLogo,
   FrAppNavigationDrawer,
   FrAppSettingsMenu,
+  FrAppShell,
   FrAppUserMenu,
   FrAutocomplete,
   FrAvatar,
@@ -188,6 +189,20 @@ describe('FeralComponents', () => {
     expect(document.querySelector('.fr-command-palette [role="option"]')?.textContent).toContain(
       'Home',
     );
+    wrapper.unmount();
+  });
+
+  it('registers FrAppShell globally, so <fr-app-shell> resolves', () => {
+    const wrapper = mountGlobal(
+      `<fr-app-shell
+        title="Global"
+        storage-prefix="global"
+        active-view="home"
+        :sections="[{ items: [{ value: 'home', title: 'Home' }] }]"
+      >View</fr-app-shell>`,
+    );
+
+    expect(wrapper.find('.fr-app-shell #app-main').text()).toBe('View');
     wrapper.unmount();
   });
 
@@ -536,6 +551,7 @@ describe('FeralComponents', () => {
     ['FrAppLogo', FrAppLogo],
     ['FrAppNavigationDrawer', FrAppNavigationDrawer],
     ['FrAppSettingsMenu', FrAppSettingsMenu],
+    ['FrAppShell', FrAppShell],
     ['FrAppUserMenu', FrAppUserMenu],
     ['FrAutocomplete', FrAutocomplete],
     ['FrAvatar', FrAvatar],

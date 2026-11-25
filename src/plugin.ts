@@ -5,6 +5,7 @@ import { FrAlert } from './components/FrAlert';
 import { FrAppLogo } from './components/FrAppLogo';
 import { FrAppNavigationDrawer } from './components/FrAppNavigationDrawer';
 import { FrAppSettingsMenu } from './components/FrAppSettingsMenu';
+import { FrAppShell } from './components/FrAppShell';
 import { FrAppUserMenu } from './components/FrAppUserMenu';
 import { FrAutocomplete } from './components/FrAutocomplete';
 import { FrAvatar } from './components/FrAvatar';
@@ -76,6 +77,7 @@ export const FeralComponents: Plugin = createComponentsPlugin({
   FrAppLogo,
   FrAppNavigationDrawer,
   FrAppSettingsMenu,
+  FrAppShell,
   FrAppUserMenu,
   FrAutocomplete,
   FrAvatar,

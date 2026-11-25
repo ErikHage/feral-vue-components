@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import { useTheme } from 'vuetify';
 import { componentPages } from './pages';
 
 const theme = useTheme();
+const route = useRoute();
 // null lets Vuetify decide: open beside the content on wide screens, closed on narrow ones
 const drawer = ref<boolean | null>(null);
 
@@ -13,7 +15,9 @@ function toggleTheme() {
 </script>
 
 <template>
-  <v-app>
+  <!-- A page with its own v-app, such as FrAppShell's, goes without the playground's frame -->
+  <router-view v-if="route.meta.bare" />
+  <v-app v-else>
     <v-app-bar title="Feral components">
       <template #prepend>
         <v-app-bar-nav-icon aria-label="Toggle menu" @click="drawer = !drawer" />

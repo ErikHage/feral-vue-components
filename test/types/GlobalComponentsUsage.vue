@@ -14,6 +14,14 @@
     :sections="[{ items: [{ value: 'home', title: 'Home' }] }]"
     rail
   />
+  <fr-app-shell
+    title="Global"
+    storage-prefix="global"
+    active-view="home"
+    :sections="[{ items: [{ value: 'home', title: 'Home' }] }]"
+  >
+    <template #default="{ activeView }">{{ activeView }}</template>
+  </fr-app-shell>
   <fr-app-settings-menu id="settings"><fr-list-item title="Global" /></fr-app-settings-menu>
   <fr-app-user-menu name="Ada Lovelace" detail="Admin" />
   <fr-theme-menu id="theme" model-value="system" />
@@ -88,6 +96,8 @@
   <fr-theme-menu model-value="sepia" />
   <!-- @vue-expect-error sections is required -->
   <fr-app-navigation-drawer title="Global" active-view="home" />
+  <!-- @vue-expect-error storagePrefix is required -->
+  <fr-app-shell title="Global" active-view="home" :sections="[]" />
   <!-- @vue-expect-error an item needs a title -->
   <fr-command-palette :items="[{ value: 'home' }]" />
   <!-- @vue-expect-error not one of VAlert's types -->
