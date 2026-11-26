@@ -192,6 +192,7 @@ function onEscape() {
               :active="props.activeView === item.value || undefined"
               :prepend-icon="item.icon"
               :to="item.to"
+              :exact="Boolean(item.to)"
               :href="item.href"
               :target="item.href ? '_blank' : undefined"
               :rel="item.href ? 'noopener noreferrer' : undefined"

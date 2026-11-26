@@ -12,7 +12,10 @@ export interface FrAppNavigationItem {
   subtitle?: string;
   /** Its icon, the only thing shown on the rail: `mdi-leaf` */
   icon?: string;
-  /** A route to go to, as RouterLink's `to` */
+  /**
+   * A route to go to, as RouterLink's `to`. The router marks the item on that route alone, not on
+   * the routes under it: mark those with the drawer's `activeView`
+   */
   to?: VListItemProps['to'];
   /** An outside address, opened in a new tab */
   href?: string;

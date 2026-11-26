@@ -1,6 +1,6 @@
 import { flushPromises } from '@vue/test-utils';
 import { defineComponent, h, nextTick } from 'vue';
-import { createMemoryHistory, createRouter } from 'vue-router';
+import { RouterView, createMemoryHistory, createRouter } from 'vue-router';
 import { VLayout, VNavigationDrawer, VTooltip } from 'vuetify/components';
 import { FrAppNavigationDrawer, type FrAppNavigationSection } from '../../../src';
 import { mountWithVuetify } from '../helpers/mount';
@@ -333,6 +333,50 @@ describe('FrAppNavigationDrawer', () => {
       expect(router.currentRoute.value.path).toBe('/plots');
       expect(drawer().emitted('update:activeView')).toBeUndefined();
       expect(wrapper.find('#nav-plots').classes()).toContain('v-list-item--active');
+    });
+
+    it("doesn't mark an item with to on the routes under it, unless it's the active view", async () => {
+      // A home page that is its parent route's empty child: Vue Router counts
+      // a link to it as active on every child, so only the exact route may mark it
+      const page = { render: () => null };
+      const router = createRouter({
+        history: createMemoryHistory(),
+        routes: [
+          {
+            path: '/garden',
+            component: { render: () => h(RouterView) },
+            children: [
+              { path: '', component: page },
+              { path: 'plants', component: page },
+            ],
+          },
+        ],
+      });
+      await router.push('/garden/plants');
+      const nested: FrAppNavigationSection[] = [
+        {
+          items: [
+            { value: 'home', title: 'Home', icon: 'mdi-home', to: '/garden' },
+            { value: 'plants', title: 'Plants', icon: 'mdi-leaf', to: '/garden/plants' },
+          ],
+        },
+      ];
+      const wrapper = mountWithVuetify(
+        () =>
+          h(VLayout, () =>
+            h(FrAppNavigationDrawer, { title: 'Garden', sections: nested, activeView: 'plants' }),
+          ),
+        { global: { plugins: [router] }, attachTo: document.body },
+      );
+      await flushPromises();
+
+      expect(wrapper.find('#nav-plants').classes()).toContain('v-list-item--active');
+      expect(wrapper.find('#nav-home').classes()).not.toContain('v-list-item--active');
+
+      await router.push('/garden');
+      await flushPromises();
+
+      expect(wrapper.find('#nav-home').classes()).toContain('v-list-item--active');
     });
 
     it('opens an item with href in a new tab', async () => {
